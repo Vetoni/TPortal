@@ -11,6 +11,10 @@ use yii\web\Controller;
  */
 class SiteController extends Controller
 {
+    /**
+     * Index action method
+     * @return string
+     */
     public function actionIndex()
     {
         return $this->render('index');

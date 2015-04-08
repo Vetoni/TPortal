@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
-use frontend\components\TopMenuWidget;
+use frontend\components\MenuWidget;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -23,7 +23,7 @@ AppAsset::register($this);
     <header id="header">
         Шапка
         <nav>
-            <?= TopMenuWidget::widget(['id' => 'top-menu']) ?>
+            <?= MenuWidget::widget(['id' => 'top-menu']) ?>
         </nav>
     </header>
     <?= $content ?>

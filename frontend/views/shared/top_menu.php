@@ -4,7 +4,7 @@
         <li>
             <?php
             echo $item->name;
-            $subItems = $item->getChildren()->all();
+            $subItems = $item->getChildren();
             ?>
             <?php if (count($subItems) > 0) : ?>
                 <ul>
