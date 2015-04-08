@@ -16,27 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `migration`
+-- Table structure for table `top_menu`
 --
 
-DROP TABLE IF EXISTS `migration`;
+DROP TABLE IF EXISTS `top_menu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `migration` (
-  `version` varchar(180) NOT NULL,
-  `apply_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `top_menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `migration`
+-- Dumping data for table `top_menu`
 --
 
-LOCK TABLES `migration` WRITE;
-/*!40000 ALTER TABLE `migration` DISABLE KEYS */;
-INSERT INTO `migration` VALUES ('m000000_000000_base',1428485422),('m130524_201442_init',1428485424);
-/*!40000 ALTER TABLE `migration` ENABLE KEYS */;
+LOCK TABLES `top_menu` WRITE;
+/*!40000 ALTER TABLE `top_menu` DISABLE KEYS */;
+INSERT INTO `top_menu` VALUES (1,NULL,'О компании','/about'),(2,NULL,'Новости','/news'),(3,NULL,'Услуги','/services'),(4,NULL,'Отзывы','/reviews'),(5,4,'Отправить отзыв','/feedback'),(6,NULL,'Вопросы и ответы','/faqs'),(7,6,'Задать вопрос','/ask'),(8,NULL,'Контакты','/contact'),(9,NULL,'Поиск','/search');
+/*!40000 ALTER TABLE `top_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -87,4 +90,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-08 12:53:02
+-- Dump completed on 2015-04-08 17:37:37
