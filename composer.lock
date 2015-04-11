@@ -4,8 +4,59 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4767793f5872a4001700991017a87d24",
+    "hash": "e1ca5b10c2edbd8ceb34737bdc3654b8",
     "packages": [
+        {
+            "name": "asofter/yii2-imperavi-redactor",
+            "version": "dev-master",
+            "target-dir": "yii/imperavi",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asofter/yii2-imperavi-redactor.git",
+                "reference": "829deed55f1743aef075fabffe1ce3b96645db3d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asofter/yii2-imperavi-redactor/zipball/829deed55f1743aef075fabffe1ce3b96645db3d",
+                "reference": "829deed55f1743aef075fabffe1ce3b96645db3d",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-0": {
+                    "yii\\imperavi\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Yaremchuk",
+                    "email": "alwex10@gmail.com"
+                },
+                {
+                    "name": "Veaceslav Medvedev",
+                    "email": "slavcopost@gmail.com"
+                },
+                {
+                    "name": "Alexander Makarov",
+                    "email": "sam@rmcreative.ru",
+                    "homepage": "http://rmcreative.ru/"
+                }
+            ],
+            "description": "Imperavi Redactor WYSIWYG widget (OEM-licensed for Yii 2)",
+            "keywords": [
+                "imperavi",
+                "imperavi redactor",
+                "yii"
+            ],
+            "time": "2015-02-17 15:24:57"
+        },
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.3.4",
@@ -317,91 +368,6 @@
                 "html"
             ],
             "time": "2013-11-30 08:25:19"
-        },
-        {
-            "name": "moonlandsoft/helpers",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/moonlandsoft/helpers.git",
-                "reference": "8a8c981b17112f04e1da0bd0de8d56adfb8e5adf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/moonlandsoft/helpers/zipball/8a8c981b17112f04e1da0bd0de8d56adfb8e5adf",
-                "reference": "8a8c981b17112f04e1da0bd0de8d56adfb8e5adf",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "moonland\\helpers\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Moh Khoirul Anam",
-                    "email": "moh.khoirul.anaam@gmail.com"
-                }
-            ],
-            "description": "Helper for all widgets",
-            "keywords": [
-                "extension",
-                "yii2"
-            ],
-            "time": "2015-01-23 14:45:15"
-        },
-        {
-            "name": "moonlandsoft/yii2-tinymce",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/moonlandsoft/yii2-tinymce.git",
-                "reference": "3a3a3298696d53285cc7914a9878a4d4f24ae7b9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/moonlandsoft/yii2-tinymce/zipball/3a3a3298696d53285cc7914a9878a4d4f24ae7b9",
-                "reference": "3a3a3298696d53285cc7914a9878a4d4f24ae7b9",
-                "shasum": ""
-            },
-            "require": {
-                "moonlandsoft/helpers": "*",
-                "yiisoft/yii2": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "moonland\\tinymce\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Moh Khoirul Anam",
-                    "email": "moh.khoirul.anaam@gmail.com"
-                }
-            ],
-            "description": "The TinyMCE Extension for yii framework",
-            "keywords": [
-                "editor",
-                "extension",
-                "text",
-                "tinymce",
-                "wyswyg",
-                "yii2"
-            ],
-            "time": "2015-01-24 04:45:03"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -988,7 +954,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "asofter/yii2-imperavi-redactor": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

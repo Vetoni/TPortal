@@ -1,4 +1,5 @@
 <?php
+
 return [
     'adminEmail' => 'admin.tportal@example.com',
     'supportEmail' => 'support.tportal@example.com',

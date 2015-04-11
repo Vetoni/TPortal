@@ -18,6 +18,63 @@ USE `tportal`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `city`
+--
+
+DROP TABLE IF EXISTS `city`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `city` (
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
+  `rid` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `description` text,
+  `image_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`cid`),
+  KEY `name` (`name`),
+  KEY `fk_city_region_idx` (`rid`),
+  CONSTRAINT `fk_city_region` FOREIGN KEY (`rid`) REFERENCES `region` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `city`
+--
+
+LOCK TABLES `city` WRITE;
+/*!40000 ALTER TABLE `city` DISABLE KEYS */;
+INSERT INTO `city` VALUES (1,21,'Геленджик','Геленджи́к — город в Краснодарском крае России, курорт на Черноморском побережье Кавказа.',NULL);
+/*!40000 ALTER TABLE `city` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `field_data_city`
+--
+
+DROP TABLE IF EXISTS `field_data_city`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `field_data_city` (
+  `nid` int(11) NOT NULL,
+  `value` int(11) NOT NULL,
+  PRIMARY KEY (`nid`),
+  KEY `fk_field_data_city_idx` (`value`),
+  CONSTRAINT `fk_field_data_city` FOREIGN KEY (`value`) REFERENCES `city` (`cid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_field_data_city_node` FOREIGN KEY (`nid`) REFERENCES `node` (`nid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `field_data_city`
+--
+
+LOCK TABLES `field_data_city` WRITE;
+/*!40000 ALTER TABLE `field_data_city` DISABLE KEYS */;
+INSERT INTO `field_data_city` VALUES (1,1);
+/*!40000 ALTER TABLE `field_data_city` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `field_data_description`
 --
 
@@ -39,6 +96,7 @@ CREATE TABLE `field_data_description` (
 
 LOCK TABLES `field_data_description` WRITE;
 /*!40000 ALTER TABLE `field_data_description` DISABLE KEYS */;
+INSERT INTO `field_data_description` VALUES (1,'test','test');
 /*!40000 ALTER TABLE `field_data_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,6 +125,32 @@ LOCK TABLES `field_data_image_url` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `field_data_tour_type`
+--
+
+DROP TABLE IF EXISTS `field_data_tour_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `field_data_tour_type` (
+  `nid` int(11) NOT NULL,
+  `value` int(11) NOT NULL,
+  PRIMARY KEY (`nid`),
+  KEY `fk_field_data_tour_type_idx` (`value`),
+  CONSTRAINT `fk_field_data_tour_type` FOREIGN KEY (`value`) REFERENCES `tour_type` (`tid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_field_data_tour_type_node` FOREIGN KEY (`nid`) REFERENCES `node` (`nid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `field_data_tour_type`
+--
+
+LOCK TABLES `field_data_tour_type` WRITE;
+/*!40000 ALTER TABLE `field_data_tour_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `field_data_tour_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `language`
 --
 
@@ -75,8 +159,9 @@ DROP TABLE IF EXISTS `language`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `language` (
   `lang` varchar(12) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`lang`)
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`lang`),
+  KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -145,7 +230,7 @@ CREATE TABLE `node` (
   CONSTRAINT `fk_node_language` FOREIGN KEY (`lang`) REFERENCES `language` (`lang`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_node_self` FOREIGN KEY (`pid`) REFERENCES `node` (`nid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_node_type` FOREIGN KEY (`type`) REFERENCES `node_type` (`type`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +239,7 @@ CREATE TABLE `node` (
 
 LOCK TABLES `node` WRITE;
 /*!40000 ALTER TABLE `node` DISABLE KEYS */;
-INSERT INTO `node` VALUES (1,NULL,'region','Андорра',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(2,NULL,'region','Болгария',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(3,NULL,'region','Великобритания',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(4,NULL,'region','Венгрия',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(5,NULL,'region','Греция',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(6,NULL,'region','Грузия',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(7,NULL,'region','Доминикана',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(8,NULL,'region','Израиль',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(9,NULL,'region','Индия',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(10,NULL,'region','Индонезия',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(11,NULL,'region','Италия',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(12,NULL,'region','Кипр',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(13,NULL,'region','Китай',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(14,NULL,'region','Куба ',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(15,NULL,'region','Малайзия',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(16,NULL,'region','Мальдивы',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(17,NULL,'region','Марокко',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(18,NULL,'region','Мексика',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(19,NULL,'region','о. Маврикий',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(20,NULL,'region','ОАЭ',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(21,NULL,'region','Россия',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(22,NULL,'region','Сейшелы',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(23,NULL,'region','Словакия',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(24,NULL,'region','США',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(25,NULL,'region','Таиланд',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(26,NULL,'region','Турция',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(27,NULL,'region','Украина',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(28,NULL,'region','Финляндия',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(29,NULL,'region','Франция',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(30,NULL,'region','Черногория',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(31,NULL,'region','Чехия',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(32,NULL,'region','Шри-Ланка',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(33,NULL,'region','Ямайка ',1,'ru','2015-04-09 20:29:12','2015-04-09 20:29:12'),(64,NULL,'tour_type','Деловые туры',1,'ru','2015-04-09 20:36:59','2015-04-09 20:36:59'),(65,NULL,'tour_type','Оздоровительные туры',1,'ru','2015-04-09 20:36:59','2015-04-09 20:36:59'),(66,NULL,'tour_type','Развлечения и отдых',1,'ru','2015-04-09 20:36:59','2015-04-09 20:36:59'),(67,NULL,'tour_type','Спортивные туры',1,'ru','2015-04-09 20:36:59','2015-04-09 20:36:59'),(68,NULL,'tour_type','Экстремальный туризм',1,'ru','2015-04-09 20:36:59','2015-04-09 20:36:59'),(71,65,'tour_subtype','Бальнеологические курорты',1,'ru','2015-04-09 20:39:56','2015-04-09 20:39:56'),(72,65,'tour_subtype','Грязевые курорты',1,'ru','2015-04-09 20:39:56','2015-04-09 20:39:56'),(73,65,'tour_subtype','Лесные курорты',1,'ru','2015-04-09 20:39:56','2015-04-09 20:39:56'),(74,65,'tour_subtype','Горные курорты',1,'ru','2015-04-09 20:39:56','2015-04-09 20:39:56'),(75,65,'tour_subtype','Приморские курорты',1,'ru','2015-04-09 20:39:56','2015-04-09 20:39:56'),(78,67,'tour_subtype','Автотуризм',1,'ru','2015-04-09 20:40:48','2015-04-09 20:40:48'),(79,67,'tour_subtype','Мототуризм',1,'ru','2015-04-09 20:40:48','2015-04-09 20:40:48'),(80,67,'tour_subtype','Велосипедный туризм',1,'ru','2015-04-09 20:40:48','2015-04-09 20:40:48'),(81,67,'tour_subtype','Водный туризм',1,'ru','2015-04-09 20:40:48','2015-04-09 20:40:48'),(82,67,'tour_subtype','Парусный туризм',1,'ru','2015-04-09 20:40:48','2015-04-09 20:40:48'),(83,67,'tour_subtype','Конный туризм',1,'ru','2015-04-09 20:40:48','2015-04-09 20:40:48'),(84,67,'tour_subtype','Лыжный туризм',1,'ru','2015-04-09 20:40:48','2015-04-09 20:40:48'),(85,67,'tour_subtype','Пешеходный туризм',1,'ru','2015-04-09 20:40:48','2015-04-09 20:40:48'),(86,67,'tour_subtype','Горный туризм',1,'ru','2015-04-09 20:40:48','2015-04-09 20:40:48'),(87,67,'tour_subtype','Спелеотуризм',1,'ru','2015-04-09 20:40:48','2015-04-09 20:40:48'),(88,67,'tour_subtype','Комбинированный туризм',1,'ru','2015-04-09 20:40:48','2015-04-09 20:40:48'),(93,68,'tour_subtype','Горный турихэ',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(94,68,'tour_subtype','Дайвинг джиппинг',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(95,68,'tour_subtype','Индустриальный',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(96,68,'tour_subtype','Туризм',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(97,68,'tour_subtype','Диггерство',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(98,68,'tour_subtype','Спелеотуризм',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(99,68,'tour_subtype','Водный туризм',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(100,68,'tour_subtype','Каякинг',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(101,68,'tour_subtype','Рафтинг',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(102,68,'tour_subtype','Парусный',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(103,68,'tour_subtype','Туризм',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(104,68,'tour_subtype','Автостоп',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(105,68,'tour_subtype','Легкоходство',1,'ru','2015-04-09 20:41:08','2015-04-09 20:41:08'),(108,66,'tour_subtype','Пляжный отдых',1,'ru','2015-04-09 20:41:21','2015-04-09 20:41:21'),(109,66,'tour_subtype','Круизы',1,'ru','2015-04-09 20:41:21','2015-04-09 20:41:21'),(110,66,'tour_subtype','Романтические поездки',1,'ru','2015-04-09 20:41:21','2015-04-09 20:41:21'),(111,66,'tour_subtype','Поездка на сафари',1,'ru','2015-04-09 20:41:21','2015-04-09 20:41:21'),(112,66,'tour_subtype','Экскурсионные туры',1,'ru','2015-04-09 20:41:21','2015-04-09 20:41:21'),(113,66,'tour_subtype','Свадьбы за границей',1,'ru','2015-04-09 20:41:21','2015-04-09 20:41:21'),(114,66,'tour_subtype','Винные и пивные туры',1,'ru','2015-04-09 20:41:21','2015-04-09 20:41:21'),(115,64,'tour_subtype','Бизнес поездки',1,'ru','2015-04-09 20:41:35','2015-04-09 20:41:35'),(116,64,'tour_subtype','Обучение за границей',1,'ru','2015-04-09 20:41:35','2015-04-09 20:41:35'),(117,64,'tour_subtype','Загранпаспорт',1,'ru','2015-04-09 20:41:35','2015-04-09 20:41:35'),(118,64,'tour_subtype','Визы',1,'ru','2015-04-09 20:41:35','2015-04-09 20:41:35'),(119,64,'tour_subtype','Бронь отелей',1,'ru','2015-04-09 20:41:35','2015-04-09 20:41:35'),(120,64,'tour_subtype','Корпоративные туры',1,'ru','2015-04-09 20:41:35','2015-04-09 20:41:35'),(121,64,'tour_subtype','Военные туры',1,'ru','2015-04-09 20:41:35','2015-04-09 20:41:35'),(122,64,'tour_subtype','VIP Услуги',1,'ru','2015-04-09 20:41:35','2015-04-09 20:41:35');
+INSERT INTO `node` VALUES (1,NULL,'tour','\"Приморье SPA Hotel & Wellness\" отель',1,'ru','2015-04-11 08:58:19','2015-04-11 08:58:19'),(2,NULL,'tour',' \"Санвиль Арго\" мини-отель ',1,'ru','2015-04-11 10:17:33','2015-04-11 10:21:47');
 /*!40000 ALTER TABLE `node` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,8 +264,65 @@ CREATE TABLE `node_type` (
 
 LOCK TABLES `node_type` WRITE;
 /*!40000 ALTER TABLE `node_type` DISABLE KEYS */;
-INSERT INTO `node_type` VALUES ('city','Города','Города'),('news','Новости','Новости'),('region','Страны','Страны мира'),('tour','Туры','Туры'),('tour_subtype','Подвиды туров','Подвиды туров'),('tour_type','Виды туров','Виды туров');
+INSERT INTO `node_type` VALUES ('news','Новости','Новости'),('tour','Туры','Туры');
 /*!40000 ALTER TABLE `node_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `region`
+--
+
+DROP TABLE IF EXISTS `region`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `region` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `description` text,
+  `image_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`rid`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `region`
+--
+
+LOCK TABLES `region` WRITE;
+/*!40000 ALTER TABLE `region` DISABLE KEYS */;
+INSERT INTO `region` VALUES (1,'Андорра','<p>Страна, Европа</p><p>Андо́рра, полная официальная форма — Кня́жество Андо́рра, — одно из карликовых государств Европы, не имеющее выхода к морю, княжество, расположенное в восточных Пиренеях между Францией и Испанией.<a class=\"fl q _KCd\" href=\"http://ru.wikipedia.org/wiki/%D0%90%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0\"><span class=\"_tWc\"></span></a></p><img src=\"https://www.google.com.ua/maps/vt/data=RfCSdfNZ0LFPrHSm0ublXdzhdrDFhtmHhN1u-gM,wJr5czSdL9_4PLnotsiwRFN6Ydry49TwOvoMvEQwfbT_hDWf_JQiIm4dnR6XOdmiaa8NQgBi-zq3YeK6v-NIiw56cX5vnE3ITNBg_p_94ApRbEC1nIpvnKOPOp_5cw1Zxqyobkr6bvZQjaA83bVyTL3Q8EmM-2b5CEkgt3qx2pI_n5mito8RKAQUeWHc6CaeYRgqRk6762p7RNSVAWPsfaYPnjjlmumcEQ\" alt=\"Map of андорра\"><p><br><span class=\"_xdb\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B0%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0+%D1%81%D1%82%D0%BE%D0%BB%D0%B8%D1%86%D0%B0&amp;stick=H4sIAAAAAAAAAGOovnz8BQMDgyYHnxC7fq6-QUa6qZZMdrKVfk5-cmJJZn6efnJ-aV5JUaVVcmJBZklizvHnsoeS1tye_N0x2K-d18frpYPcGwCHpeAyRgAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CJwBEOgTKAAwEw\">Столица</a>: </span><span class=\"_Xbe kno-fv\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B0%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0+%D0%BB%D0%B0+%D0%B2%D0%B5%D0%BB%D1%8C%D1%8F&amp;stick=H4sIAAAAAAAAAGOovnz8BQMDgzEHnxC7fq6-QUa6qRIHiJFualylJZOdbKWfk5-cWJKZn6efnF-aV1JUaZWcWJBZkphz8H92vLeynX2WN2OLsq3p2xXxNYsAISbR9lAAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CJ0BEJsTKAEwEw\">Андорра-ла-Велья</a></span></p><p><span class=\"_xdb\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B0%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0+%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D1%8C&amp;stick=H4sIAAAAAAAAAGOovnz8BQMDgzoHnxC7fq6-QUa6qZZUdrKVfk5-cmJJZn4enGGVWJSa2HP7Z-mixL4D4uraotsZ5gdes9PSBAASkXiRRAAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CKABEOgTKAAwFA\">Площадь</a>: </span><span class=\"_Xbe kno-fv\">468 км²</span></p><p><span class=\"_xdb\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B0%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0+%D0%BA%D0%BE%D0%BD%D1%82%D0%B8%D0%BD%D0%B5%D0%BD%D1%82&amp;stick=H4sIAAAAAAAAAGOovnz8BQMDgzYHnxC7fq6-QUa6qZZcdrKVfk5-cmJJZn6efnJ-aV5JUaVVcn5eSWZeal6Jzs4Hx2vNdHxmz9wpbObP_X59b68QAN6m_W5IAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CKMBEOgTKAAwFQ\">Континент</a>: </span><span class=\"_Xbe kno-fv\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B5%D0%B2%D1%80%D0%BE%D0%BF%D0%B0+%D0%BA%D0%BE%D0%BD%D1%82%D0%B8%D0%BD%D0%B5%D0%BD%D1%82&amp;stick=H4sIAAAAAAAAAGOovnz8BQMDgykHnxC7fq6-QUa6qRIHiGGUZVmlJZedbKWfk5-cWJKZn6efnF-aV1JUaZWcn1eSmZeaV5JSwa203rdiYfCnLYVy9_bx9mofmAYACMR5SlIAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CKQBEJsTKAEwFQ\">Европа</a></span></p><p><span class=\"_xdb\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B0%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0+%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%B0&amp;stick=H4sIAAAAAAAAAGOovnz8BQMDgxYHnxC7fq6-QUa6qZZsdrKVfk5-cmJJZn6efnJ-aV5JUaVVcmlRUWpeciUTv0JrZeDrnVUazUueu_7XueZsuA4ArCdkuUcAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CKcBEOgTKAAwFg\">Валюта</a>: </span><span class=\"_Xbe kno-fv\">Евро</span></p><p><span class=\"_xdb\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B0%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0+%D1%84%D0%BE%D1%80%D0%BC%D0%B0+%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F&amp;stick=H4sIAAAAAAAAAAFJALb_AHvTx-gAAAAsCA4SBy9tLzBoZzUqH2tjOi9sb2NhdGlvbi9jb3VudHJ5OmdvdmVybm1lbnTu_5oY7HmckFbxDvEOwQ6IpQzZ-AzsfVNJAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CKoBEOgTKAAwFw\">Форма правления</a>: </span><span class=\"_Xbe kno-fv\">Унитарная республика, Диархия, Монархия</span></p>',''),(2,'Болгария','',''),(3,'Великобритания',NULL,NULL),(4,'Венгрия',NULL,NULL),(5,'Греция',NULL,NULL),(6,'Грузия',NULL,NULL),(7,'Доминикана',NULL,NULL),(8,'Израиль',NULL,NULL),(9,'Индия',NULL,NULL),(10,'Индонезия',NULL,NULL),(11,'Италия',NULL,NULL),(12,'Кипр',NULL,NULL),(13,'Китай',NULL,NULL),(14,'Куба ',NULL,NULL),(15,'Малайзия',NULL,NULL),(16,'Мальдивы',NULL,NULL),(17,'Марокко',NULL,NULL),(18,'Мексика',NULL,NULL),(19,'о. Маврикий',NULL,NULL),(20,'ОАЭ',NULL,NULL),(21,'Россия',NULL,NULL),(22,'Сейшелы',NULL,NULL),(23,'Словакия',NULL,NULL),(24,'США',NULL,NULL),(25,'Таиланд',NULL,NULL),(26,'Турция',NULL,NULL),(27,'Украина',NULL,NULL),(28,'Финляндия',NULL,NULL),(29,'Франция',NULL,NULL),(30,'Черногория',NULL,NULL),(31,'Чехия',NULL,NULL),(32,'Шри-Ланка',NULL,NULL),(33,'Ямайка ',NULL,NULL);
+/*!40000 ALTER TABLE `region` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tour_type`
+--
+
+DROP TABLE IF EXISTS `tour_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tour_type` (
+  `tid` int(11) NOT NULL AUTO_INCREMENT,
+  `pid` int(11) DEFAULT NULL,
+  `name` varchar(45) NOT NULL,
+  `description` text,
+  `image_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`tid`),
+  KEY `fk_tour_type_self_idx` (`pid`),
+  KEY `name` (`name`),
+  CONSTRAINT `fk_tour_type_self` FOREIGN KEY (`pid`) REFERENCES `tour_type` (`tid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour_type`
+--
+
+LOCK TABLES `tour_type` WRITE;
+/*!40000 ALTER TABLE `tour_type` DISABLE KEYS */;
+INSERT INTO `tour_type` VALUES (1,NULL,'Деловые туры',NULL,NULL),(2,NULL,'Оздоровительные туры',NULL,NULL),(3,NULL,'Развлечения и отдых',NULL,NULL),(4,NULL,'Спортивные туры',NULL,NULL),(5,NULL,'Экстремальный туризм',NULL,NULL),(8,1,'Бизнес поездки',NULL,NULL),(9,1,'Обучение за границей',NULL,NULL),(10,1,'Загранпаспорт',NULL,NULL),(11,1,'Визы',NULL,NULL),(12,1,'Бронь отелей',NULL,NULL),(13,1,'Корпоративные туры',NULL,NULL),(14,1,'Военные туры',NULL,NULL),(15,1,'VIP Услуги',NULL,NULL),(23,2,'Бальнеологические курорты',NULL,NULL),(24,2,'Грязевые курорты',NULL,NULL),(25,2,'Лесные курорты',NULL,NULL),(26,2,'Горные курорты',NULL,NULL),(27,2,'Приморские курорты',NULL,NULL),(30,3,'Пляжный отдых',NULL,NULL),(31,3,'Круизы',NULL,NULL),(32,3,'Романтические поездки',NULL,NULL),(33,3,'Поездка на сафари',NULL,NULL),(34,3,'Экскурсионные туры',NULL,NULL),(35,3,'Свадьбы за границей',NULL,NULL),(36,3,'Винные и пивные туры',NULL,NULL),(37,4,'Автотуризм',NULL,NULL),(38,4,'Мототуризм',NULL,NULL),(39,4,'Велосипедный туризм',NULL,NULL),(40,4,'Водный туризм',NULL,NULL),(41,4,'Парусный туризм',NULL,NULL),(42,4,'Конный туризм',NULL,NULL),(43,4,'Лыжный туризм',NULL,NULL),(44,4,'Пешеходный туризм',NULL,NULL),(45,4,'Горный туризм',NULL,NULL),(46,4,'Спелеотуризм',NULL,NULL),(47,4,'Комбинированный туризм',NULL,NULL),(52,5,'Горный турихэ',NULL,NULL),(53,5,'Дайвинг',NULL,NULL),(54,5,'Виндсёрфинг',NULL,NULL),(55,5,'Джиппинг','',NULL),(56,5,'Диггерство',NULL,NULL),(57,5,'Спелеотуризм',NULL,NULL),(58,5,'Водный туризм',NULL,NULL),(59,5,'Каякинг',NULL,NULL),(60,5,'Рафтинг',NULL,NULL),(61,5,'Парусный туризм',NULL,NULL),(62,5,'Родео',NULL,NULL),(63,5,'Автостоп',NULL,NULL),(64,5,'Легкоходство',NULL,NULL);
+/*!40000 ALTER TABLE `tour_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -256,4 +398,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-09 23:54:09
+-- Dump completed on 2015-04-11 19:54:40

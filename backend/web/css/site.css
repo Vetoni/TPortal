@@ -1,0 +1,9 @@
+.grid-view .table {
+    width: auto;
+}
+.grid-view a.asc:after {
+    content: '▲';
+}
+.grid-view a.desc:after {
+    content: '▼';
+}
