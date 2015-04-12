@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use trntv\filekit\behaviors\UploadBehavior;
+use common\behaviors\ImageUploadBehavior;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -16,13 +16,26 @@ use yii\db\ActiveRecord;
 class Entity extends ActiveRecord
 {
     /**
+     * @var array
+     */
+    public $image;
+
+    /**
+     * @inheritdoc
+     */
+    public function formName()
+    {
+        return '';
+    }
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
     {
         return [
             [
-                'class' => UploadBehavior::className(),
+                'class' => ImageUploadBehavior::className(),
                 'attribute' => 'image',
                 'pathAttribute' => 'image_url',
                 'baseUrlAttribute' => 'image_base_url',

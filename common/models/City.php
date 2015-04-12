@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "city".
@@ -31,13 +32,16 @@ class City extends Entity
      */
     public function rules()
     {
-        return [
-            [['rid', 'name'], 'required'],
-            [['rid'], 'integer'],
-            [['description'], 'string'],
-            [['name'], 'string', 'max' => 45],
-            [['image_url'], 'string', 'max' => 255]
-        ];
+        return ArrayHelper::merge(
+            parent::rules(),
+            [
+                [['rid', 'name'], 'required'],
+                [['rid'], 'integer'],
+                [['description'], 'string'],
+                [['name'], 'string', 'max' => 45],
+                [['image_url'], 'string', 'max' => 255]
+            ]
+        );
     }
 
     /**
@@ -45,13 +49,16 @@ class City extends Entity
      */
     public function attributeLabels()
     {
-        return [
-            'cid' => Yii::t('app', 'Id'),
-            'rid' => Yii::t('app', 'Region Id'),
-            'name' => Yii::t('app', 'Name'),
-            'description' => Yii::t('app', 'Description'),
-            'image_url' => Yii::t('app', 'Image Url'),
-        ];
+        return ArrayHelper::merge(
+            parent::attributeLabels(),
+            [
+                'cid' => Yii::t('app', 'Id'),
+                'rid' => Yii::t('app', 'Region'),
+                'name' => Yii::t('app', 'Name'),
+                'description' => Yii::t('app', 'Description'),
+                'image_url' => Yii::t('app', 'Image Url'),
+            ]
+        );
     }
 
     /**

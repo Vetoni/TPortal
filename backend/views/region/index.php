@@ -30,7 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'image',
                 'format' => 'image',
                 'filter' => false,
-                'value' => function($data) { return $data->image_base_url .'/' . $data->image_url; },
+                'value' => function ($data) {
+                    return $data->image_base_url . '/' . $data->image_url;
+                },
             ],
             [
                 'attribute' => 'description',
@@ -40,7 +42,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'format' => 'raw',
-                'value' => function() { return Html::a(Yii::t('app', 'View cities'), ['city/index']); },
+                'value' => function ($data) {
+                    return Html::a(Yii::t('app', 'View cities'), ['city/index', 'rid' => $data->rid ]);
+                },
             ],
             [
                 'class' => 'yii\grid\ActionColumn',

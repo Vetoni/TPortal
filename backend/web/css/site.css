@@ -1,15 +1,18 @@
 .grid-view .table {
     width: auto;
 }
+
 .grid-view .table td img {
     width: 240px;
     height: 150px;
     display: block;
     border-radius: 7px;
 }
+
 .grid-view a.asc:after {
     content: '▲';
 }
+
 .grid-view a.desc:after {
     content: '▼';
 }

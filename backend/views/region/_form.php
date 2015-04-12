@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -24,7 +25,7 @@ use yii\widgets\ActiveForm;
                 'buttonSource' => true,
                 'convertDivs' => false,
                 'removeEmptyTags' => false,
-                'imageUpload' => Yii::$app->urlManager->createUrl(['/file-storage/upload-imperavi'])
+                'imageUpload' => Url::to(['media/upload-imperavi']),
             ]
         ]
     ) ?>
@@ -32,13 +33,13 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'image')->widget(
         \trntv\filekit\widget\Upload::className(),
         [
-            'url' => ['/file-storage/upload'],
-            'maxFileSize' => 5000000, // 5 MiB
+            'url' => [Url::to(['media/upload'])],
         ]);
     ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Cancel'), ['index']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

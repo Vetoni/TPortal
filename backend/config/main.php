@@ -27,6 +27,19 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManager' => [
+            'rules' => [
+                'regions' => 'region/index',
+                'region/update/<id:\d+>' => 'region/update',
+                'region/delete/<id:\d+>' => 'region/delete',
+                'region/create' => 'region/create',
+
+                'cities' => 'city/index',
+                'city/update/<id:\d+>' => 'city/update',
+                'city/delete/<id:\d+>' => 'city/delete',
+                'city/create' => 'city/create',
+            ]
+        ],
     ],
 ];
 

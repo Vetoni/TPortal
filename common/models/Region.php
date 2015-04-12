@@ -17,11 +17,6 @@ use yii\helpers\ArrayHelper;
 class Region extends Entity
 {
     /**
-     * @var array
-     */
-    public $image;
-
-    /**
      * @inheritdoc
      */
     public static function tableName()

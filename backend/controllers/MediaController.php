@@ -5,8 +5,15 @@ namespace backend\controllers;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 
-class FileStorageController extends Controller
+/**
+ * MediaController implements operations for uploading and deleting media files.
+ * @package backend\controllers
+ */
+class MediaController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -19,6 +26,9 @@ class FileStorageController extends Controller
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
     public function actions()
     {
         return [
@@ -32,7 +42,7 @@ class FileStorageController extends Controller
             'upload-imperavi' => [
                 'class' => 'trntv\filekit\actions\UploadAction',
                 'fileparam' => 'file',
-                'responseUrlParam'=> 'filelink',
+                'responseUrlParam' => 'filelink',
                 'multiple' => false,
                 'disableCsrf' => true
             ],
