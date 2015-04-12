@@ -29,7 +29,13 @@ use yii\widgets\ActiveForm;
         ]
     ) ?>
 
-    <?= $form->field($model, 'image_url')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'image')->widget(
+        \trntv\filekit\widget\Upload::className(),
+        [
+            'url' => ['/file-storage/upload'],
+            'maxFileSize' => 5000000, // 5 MiB
+        ]);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

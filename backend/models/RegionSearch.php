@@ -19,7 +19,7 @@ class RegionSearch extends Region
     {
         return [
             [['rid'], 'integer'],
-            [['name', 'description', 'image_url'], 'safe'],
+            [['name', 'description'], 'safe'],
         ];
     }
 
@@ -59,10 +59,7 @@ class RegionSearch extends Region
             'rid' => $this->rid,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'image_url', $this->image_url]);
-
+        $query->andFilterWhere(['like', 'name', $this->name]);
         return $dataProvider;
     }
 }

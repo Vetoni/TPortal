@@ -30,11 +30,15 @@ CREATE TABLE `city` (
   `name` varchar(45) NOT NULL,
   `description` text,
   `image_url` varchar(255) DEFAULT NULL,
+  `image_base_url` varchar(45) DEFAULT NULL,
+  `lang` varchar(12) NOT NULL,
   PRIMARY KEY (`cid`),
   KEY `name` (`name`),
   KEY `fk_city_region_idx` (`rid`),
+  KEY `fk_city_language_idx` (`lang`),
+  CONSTRAINT `fk_city_language` FOREIGN KEY (`lang`) REFERENCES `language` (`lang`) ON UPDATE CASCADE,
   CONSTRAINT `fk_city_region` FOREIGN KEY (`rid`) REFERENCES `region` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +47,6 @@ CREATE TABLE `city` (
 
 LOCK TABLES `city` WRITE;
 /*!40000 ALTER TABLE `city` DISABLE KEYS */;
-INSERT INTO `city` VALUES (1,21,'Геленджик','Геленджи́к — город в Краснодарском крае России, курорт на Черноморском побережье Кавказа.',NULL);
 /*!40000 ALTER TABLE `city` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +73,6 @@ CREATE TABLE `field_data_city` (
 
 LOCK TABLES `field_data_city` WRITE;
 /*!40000 ALTER TABLE `field_data_city` DISABLE KEYS */;
-INSERT INTO `field_data_city` VALUES (1,1);
 /*!40000 ALTER TABLE `field_data_city` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,30 +100,6 @@ LOCK TABLES `field_data_description` WRITE;
 /*!40000 ALTER TABLE `field_data_description` DISABLE KEYS */;
 INSERT INTO `field_data_description` VALUES (1,'test','test');
 /*!40000 ALTER TABLE `field_data_description` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `field_data_image_url`
---
-
-DROP TABLE IF EXISTS `field_data_image_url`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `field_data_image_url` (
-  `nid` int(11) NOT NULL,
-  `value` varchar(255) NOT NULL,
-  PRIMARY KEY (`nid`),
-  CONSTRAINT `fk_field_data_image_url_node` FOREIGN KEY (`nid`) REFERENCES `node` (`nid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `field_data_image_url`
---
-
-LOCK TABLES `field_data_image_url` WRITE;
-/*!40000 ALTER TABLE `field_data_image_url` DISABLE KEYS */;
-/*!40000 ALTER TABLE `field_data_image_url` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -171,7 +149,7 @@ CREATE TABLE `language` (
 
 LOCK TABLES `language` WRITE;
 /*!40000 ALTER TABLE `language` DISABLE KEYS */;
-INSERT INTO `language` VALUES ('en','English'),('ru','Русский');
+INSERT INTO `language` VALUES ('en','English'),('ru','Русский'),('uk','Українська');
 /*!40000 ALTER TABLE `language` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +170,7 @@ CREATE TABLE `menu` (
   KEY `name` (`name`),
   KEY `parent_id` (`parent_id`),
   KEY `lang` (`lang`),
-  CONSTRAINT `fk_menu_lang` FOREIGN KEY (`lang`) REFERENCES `language` (`lang`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_menu_lang` FOREIGN KEY (`lang`) REFERENCES `language` (`lang`) ON UPDATE CASCADE,
   CONSTRAINT `fk_menu_self` FOREIGN KEY (`parent_id`) REFERENCES `menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -227,9 +205,9 @@ CREATE TABLE `node` (
   KEY `type` (`type`),
   KEY `lang` (`lang`),
   KEY `fk_node_self_idx` (`pid`),
-  CONSTRAINT `fk_node_language` FOREIGN KEY (`lang`) REFERENCES `language` (`lang`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_node_language` FOREIGN KEY (`lang`) REFERENCES `language` (`lang`) ON UPDATE CASCADE,
   CONSTRAINT `fk_node_self` FOREIGN KEY (`pid`) REFERENCES `node` (`nid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_node_type` FOREIGN KEY (`type`) REFERENCES `node_type` (`type`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_node_type` FOREIGN KEY (`type`) REFERENCES `node_type` (`type`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -280,9 +258,13 @@ CREATE TABLE `region` (
   `name` varchar(45) NOT NULL,
   `description` text,
   `image_url` varchar(255) DEFAULT NULL,
+  `image_base_url` varchar(45) DEFAULT NULL,
+  `lang` varchar(12) NOT NULL,
   PRIMARY KEY (`rid`),
-  KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+  KEY `name` (`name`),
+  KEY `fk_region_language_idx` (`lang`),
+  CONSTRAINT `fk_region_language` FOREIGN KEY (`lang`) REFERENCES `language` (`lang`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,7 +273,7 @@ CREATE TABLE `region` (
 
 LOCK TABLES `region` WRITE;
 /*!40000 ALTER TABLE `region` DISABLE KEYS */;
-INSERT INTO `region` VALUES (1,'Андорра','<p>Страна, Европа</p><p>Андо́рра, полная официальная форма — Кня́жество Андо́рра, — одно из карликовых государств Европы, не имеющее выхода к морю, княжество, расположенное в восточных Пиренеях между Францией и Испанией.<a class=\"fl q _KCd\" href=\"http://ru.wikipedia.org/wiki/%D0%90%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0\"><span class=\"_tWc\"></span></a></p><img src=\"https://www.google.com.ua/maps/vt/data=RfCSdfNZ0LFPrHSm0ublXdzhdrDFhtmHhN1u-gM,wJr5czSdL9_4PLnotsiwRFN6Ydry49TwOvoMvEQwfbT_hDWf_JQiIm4dnR6XOdmiaa8NQgBi-zq3YeK6v-NIiw56cX5vnE3ITNBg_p_94ApRbEC1nIpvnKOPOp_5cw1Zxqyobkr6bvZQjaA83bVyTL3Q8EmM-2b5CEkgt3qx2pI_n5mito8RKAQUeWHc6CaeYRgqRk6762p7RNSVAWPsfaYPnjjlmumcEQ\" alt=\"Map of андорра\"><p><br><span class=\"_xdb\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B0%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0+%D1%81%D1%82%D0%BE%D0%BB%D0%B8%D1%86%D0%B0&amp;stick=H4sIAAAAAAAAAGOovnz8BQMDgyYHnxC7fq6-QUa6qZZMdrKVfk5-cmJJZn6efnJ-aV5JUaVVcmJBZklizvHnsoeS1tye_N0x2K-d18frpYPcGwCHpeAyRgAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CJwBEOgTKAAwEw\">Столица</a>: </span><span class=\"_Xbe kno-fv\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B0%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0+%D0%BB%D0%B0+%D0%B2%D0%B5%D0%BB%D1%8C%D1%8F&amp;stick=H4sIAAAAAAAAAGOovnz8BQMDgzEHnxC7fq6-QUa6qRIHiJFualylJZOdbKWfk5-cWJKZn6efnF-aV1JUaZWcWJBZkphz8H92vLeynX2WN2OLsq3p2xXxNYsAISbR9lAAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CJ0BEJsTKAEwEw\">Андорра-ла-Велья</a></span></p><p><span class=\"_xdb\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B0%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0+%D0%BF%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D1%8C&amp;stick=H4sIAAAAAAAAAGOovnz8BQMDgzoHnxC7fq6-QUa6qZZUdrKVfk5-cmJJZn4enGGVWJSa2HP7Z-mixL4D4uraotsZ5gdes9PSBAASkXiRRAAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CKABEOgTKAAwFA\">Площадь</a>: </span><span class=\"_Xbe kno-fv\">468 км²</span></p><p><span class=\"_xdb\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B0%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0+%D0%BA%D0%BE%D0%BD%D1%82%D0%B8%D0%BD%D0%B5%D0%BD%D1%82&amp;stick=H4sIAAAAAAAAAGOovnz8BQMDgzYHnxC7fq6-QUa6qZZcdrKVfk5-cmJJZn6efnJ-aV5JUaVVcn5eSWZeal6Jzs4Hx2vNdHxmz9wpbObP_X59b68QAN6m_W5IAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CKMBEOgTKAAwFQ\">Континент</a>: </span><span class=\"_Xbe kno-fv\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B5%D0%B2%D1%80%D0%BE%D0%BF%D0%B0+%D0%BA%D0%BE%D0%BD%D1%82%D0%B8%D0%BD%D0%B5%D0%BD%D1%82&amp;stick=H4sIAAAAAAAAAGOovnz8BQMDgykHnxC7fq6-QUa6qRIHiGGUZVmlJZedbKWfk5-cWJKZn6efnF-aV1JUaZWcn1eSmZeaV5JSwa203rdiYfCnLYVy9_bx9mofmAYACMR5SlIAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CKQBEJsTKAEwFQ\">Европа</a></span></p><p><span class=\"_xdb\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B0%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0+%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%B0&amp;stick=H4sIAAAAAAAAAGOovnz8BQMDgxYHnxC7fq6-QUa6qZZsdrKVfk5-cmJJZn6efnJ-aV5JUaVVcmlRUWpeciUTv0JrZeDrnVUazUueu_7XueZsuA4ArCdkuUcAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CKcBEOgTKAAwFg\">Валюта</a>: </span><span class=\"_Xbe kno-fv\">Евро</span></p><p><span class=\"_xdb\"><a class=\"fl\" href=\"https://www.google.com.ua/search?biw=1920&amp;bih=925&amp;q=%D0%B0%D0%BD%D0%B4%D0%BE%D1%80%D1%80%D0%B0+%D1%84%D0%BE%D1%80%D0%BC%D0%B0+%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F&amp;stick=H4sIAAAAAAAAAAFJALb_AHvTx-gAAAAsCA4SBy9tLzBoZzUqH2tjOi9sb2NhdGlvbi9jb3VudHJ5OmdvdmVybm1lbnTu_5oY7HmckFbxDvEOwQ6IpQzZ-AzsfVNJAAAA&amp;sa=X&amp;ei=OAspVd3KKNjnaq_3gYgI&amp;ved=0CKoBEOgTKAAwFw\">Форма правления</a>: </span><span class=\"_Xbe kno-fv\">Унитарная республика, Диархия, Монархия</span></p>',''),(2,'Болгария','',''),(3,'Великобритания',NULL,NULL),(4,'Венгрия',NULL,NULL),(5,'Греция',NULL,NULL),(6,'Грузия',NULL,NULL),(7,'Доминикана',NULL,NULL),(8,'Израиль',NULL,NULL),(9,'Индия',NULL,NULL),(10,'Индонезия',NULL,NULL),(11,'Италия',NULL,NULL),(12,'Кипр',NULL,NULL),(13,'Китай',NULL,NULL),(14,'Куба ',NULL,NULL),(15,'Малайзия',NULL,NULL),(16,'Мальдивы',NULL,NULL),(17,'Марокко',NULL,NULL),(18,'Мексика',NULL,NULL),(19,'о. Маврикий',NULL,NULL),(20,'ОАЭ',NULL,NULL),(21,'Россия',NULL,NULL),(22,'Сейшелы',NULL,NULL),(23,'Словакия',NULL,NULL),(24,'США',NULL,NULL),(25,'Таиланд',NULL,NULL),(26,'Турция',NULL,NULL),(27,'Украина',NULL,NULL),(28,'Финляндия',NULL,NULL),(29,'Франция',NULL,NULL),(30,'Черногория',NULL,NULL),(31,'Чехия',NULL,NULL),(32,'Шри-Ланка',NULL,NULL),(33,'Ямайка ',NULL,NULL);
+INSERT INTO `region` VALUES (1,'Украина','<p><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOMAAACWCAMAAAAbv88MAAAAKlBMVEU6dcT53RZCe8f53yDEvmA3dMY7dsL83wX54ClJgMn84RXHwWVDfMQ/esiIqnY6AAAAx0lEQVR4nO3PBwGDABAAsS90MP3brY9wcZDZF90+y+iWjoSOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOhmcc74/unuuru+Z86845frpj1pdu7UjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaOho6GjoaHjGcVt12x81GFpSpq5NwgAAAABJRU5ErkJggg==\" alt=\"Картинки по запросу украина\"></p><p>Страна, Европа</p><p>Украи́на — государство в Восточной Европе, расположенное в юго-западной части Восточноевропейской равнины. Наибольшая по площади страна, среди тех, которые полностью расположены в Европе, вторая, если считать Россию. <a class=\"fl q _KCd\" href=\"http://ru.wikipedia.org/wiki/%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0\"><span class=\"_tWc\"></span></a></p><p><span class=\"_xdb\">Столица: </span><span class=\"_Xbe kno-fv\">Киев</span></p><p><span class=\"_xdb\">Телефонный код: </span><span class=\"_Xbe kno-fv\">+380</span></p><p><span class=\"_xdb\">Президент: </span><span class=\"_Xbe kno-fv\">Пётр Алексеевич Порошенко</span></p><p><span class=\"_xdb\">Население: </span><span class=\"_Xbe kno-fv\">45,49 миллиона (2013 г.)</span> <span class=\"_wdb\">Всемирный банк</span></p><p><span class=\"_xdb\">Валовой внутренний продукт: </span><span class=\"_Xbe kno-fv\">177,4 миллиарда USD (2013 г.)</span></p>','1/0CW-u3FBNa76eM5DlQeh8hQGmnAiAQzY.jpg','http://tportal.com/storage/files','ru'),(2,'Россия','<p>\r\n	<img style=\"box-shadow: 1px 1px 4px gray;\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOMAAACXCAMAAADQ4xypAAAAGFBMVEX////VKx4AOaZ6fb8ALKJrNYrhKgAAOap/TEO5AAAAlElEQVR4nO3PQRGDAAAEsaNA8e8YDXx3EgfZAAAAAAAAAAAAAAA+Ovt29e3X59jg2ODY4Njg2ODY4Njg2ODY4Njg2ODY4Njg2ODY4Njg2ODY4Njg2ODY4Njg2LCnb3ff/n07+hwbHBscGxwbHBscGxwbHBscGxwbHBscGxwbHBscGxwbHBscGxwbHBscGxwbHBscG141zpT5WOKoxgAAAABJRU5ErkJggg==\" alt=\"Картинки по запросу россия\">\r\n</p><p>\r\n	Страна\r\n</p><p>\r\n	Росси́я — государство в Восточной Европе и Северной Азии. Население — 146 267 288 чел., территория — 17 125 407 км². Занимает первое место в мире по территории и девятое место по численности населения. Столица — Москва. <a class=\"fl q _KCd\" href=\"http://ru.wikipedia.org/wiki/%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F\"><span class=\"_tWc\"></span></a>\r\n</p><p>\r\n	<span class=\"_xdb\">Столица: </span><span class=\"_Xbe kno-fv\">Москва</span>\r\n</p><p>\r\n	<span class=\"_xdb\">Телефонный код: </span><span class=\"_Xbe kno-fv\">+7</span>\r\n</p><p>\r\n	<span class=\"_xdb\">Код ISO: </span><span class=\"_Xbe kno-fv\">RUS</span>\r\n</p><p>\r\n	<span class=\"_xdb\">Население: </span><span class=\"_Xbe kno-fv\">143,5 миллиона (2013 г.)</span> <span class=\"_wdb\">Всемирный банк</span>\r\n</p><p>\r\n	<span class=\"_xdb\">Президент: </span><span class=\"_Xbe kno-fv\">Владимир Владимирович Путин</span>\r\n</p><p>\r\n	<span class=\"_xdb\">Государственный гимн: </span><span class=\"_Xbe kno-fv\">Государственный гимн России</span>\r\n</p>','1/NrV7KfBnvdmqBUTd1QVUSZe09BQrNZ38.jpg','http://tportal.com/storage/files','ru');
 /*!40000 ALTER TABLE `region` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,4 +380,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-11 19:54:40
+-- Dump completed on 2015-04-12 16:34:19

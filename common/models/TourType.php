@@ -3,7 +3,6 @@
 namespace common\models;
 
 use Yii;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "tour_type".
@@ -18,7 +17,7 @@ use yii\db\ActiveRecord;
  * @property TourType[] $children
  * @property Tour[] $tours
  */
-class TourType extends ActiveRecord
+class TourType extends Entity
 {
     /**
      * @inheritdoc
@@ -78,7 +77,8 @@ class TourType extends ActiveRecord
      * Gets tours of the current type.
      * @return \yii\db\ActiveQuery
      */
-    public function getTours() {
+    public function getTours()
+    {
         return $this->hasMany(Tour::className(), ['tid' => 'tid']);
     }
 }

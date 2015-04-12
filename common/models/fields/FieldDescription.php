@@ -11,14 +11,15 @@ use yii\db\ActiveRecord;
  * @property integer $nid
  * @property string $value
  * @property string $summary
-
  */
-class FieldDescription extends ActiveRecord {
+class FieldDescription extends ActiveRecord
+{
 
     /**
      * @return string
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return 'field_data_description';
     }
 

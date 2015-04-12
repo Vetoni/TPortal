@@ -3,7 +3,7 @@
 
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'language'=>'ru-RU',
+    'language' => 'ru',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -49,6 +49,19 @@ return [
                 */
 
             ],
+        ],
+        'urlManager'=>[
+            'class'=>'yii\web\UrlManager',
+            'enablePrettyUrl'=>true,
+            'showScriptName'=>false,
+        ],
+        'fileStorage' => [
+            'class' => 'trntv\filekit\Storage',
+            'baseUrl' => '@storageUrl',
+            'filesystem'=> [
+                'class' => 'common\components\LocalFilesystemBuilder',
+                'path' => '@storage/files'
+            ]
         ],
     ],
 

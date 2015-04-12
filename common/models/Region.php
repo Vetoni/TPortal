@@ -3,7 +3,7 @@
 namespace common\models;
 
 use Yii;
-use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "region".
@@ -11,12 +11,16 @@ use yii\db\ActiveRecord;
  * @property integer $rid
  * @property string $name
  * @property string $description
- * @property string $image_url
  *
  * @property City[] $cities
  */
-class Region extends ActiveRecord
+class Region extends Entity
 {
+    /**
+     * @var array
+     */
+    public $image;
+
     /**
      * @inheritdoc
      */
@@ -30,12 +34,14 @@ class Region extends ActiveRecord
      */
     public function rules()
     {
-        return [
-            [['name'], 'required'],
-            [['description'], 'string'],
-            [['name'], 'string', 'max' => 45],
-            [['image_url'], 'string', 'max' => 255]
-        ];
+        return ArrayHelper::merge(
+            parent::rules(),
+            [
+                [['name'], 'required'],
+                [['description'], 'string'],
+                [['name'], 'string', 'max' => 45],
+            ]
+        );
     }
 
     /**
@@ -43,15 +49,27 @@ class Region extends ActiveRecord
      */
     public function attributeLabels()
     {
-        return [
-            'rid' => Yii::t('app', 'Id'),
-            'name' => Yii::t('app', 'Name'),
-            'description' => Yii::t('app', 'Description'),
-            'image_url' => Yii::t('app', 'Image Url'),
-        ];
+        return ArrayHelper::merge(
+            parent::attributeLabels(),
+            [
+                'rid' => Yii::t('app', 'Id'),
+                'name' => Yii::t('app', 'Name'),
+                'description' => Yii::t('app', 'Description'),
+                'image' => Yii::t('app', 'Image'),
+            ]
+        );
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function find()
+    {
+        return parent::find()->orderBy(['rid' => SORT_ASC]);
+    }
+
+    /**
+     * Gets region cities.
      * @return \yii\db\ActiveQuery
      */
     public function getCities()

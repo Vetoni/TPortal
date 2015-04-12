@@ -3,7 +3,6 @@
 namespace common\models;
 
 use Yii;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "city".
@@ -17,7 +16,7 @@ use yii\db\ActiveRecord;
  * @property Region $region
  * @property Tour[] $tours
  */
-class City extends ActiveRecord
+class City extends Entity
 {
     /**
      * @inheritdoc
@@ -59,7 +58,8 @@ class City extends ActiveRecord
      * Gets a region for the current city.
      * @return \yii\db\ActiveQuery
      */
-    public function getRegion() {
+    public function getRegion()
+    {
         return $this->hasOne(Region::className(), ['rid' => 'rid']);
     }
 
@@ -67,7 +67,8 @@ class City extends ActiveRecord
      * Gets tours for the current city.
      * @return static
      */
-    public function getTours() {
+    public function getTours()
+    {
         return $this->hasMany(Tour::className(), ['nid' => 'nid'])
             ->viaTable('field_data_city', ['value' => 'cid']);
     }

@@ -4,7 +4,6 @@ namespace common\models;
 
 use common\models\query\NodeQuery;
 use Yii;
-use yii\db\ActiveRecord;
 
 
 /**
@@ -18,9 +17,8 @@ use yii\db\ActiveRecord;
  * @property string $lang
  * @property string $created
  * @property string $changed
-
-  */
-class Node extends ActiveRecord
+ */
+class Node extends Entity
 {
     const STATUS_PUBLISHED = 1;
     const STATUS_DRAFT = 0;
@@ -68,7 +66,8 @@ class Node extends ActiveRecord
     /**
      * @return NodeQuery
      */
-    public static function find() {
+    public static function find()
+    {
         return new NodeQuery(get_called_class());
     }
 
@@ -77,7 +76,8 @@ class Node extends ActiveRecord
      * @param $type
      * @return static
      */
-    public static function filter($type) {
+    public static function filter($type)
+    {
         return parent::find()
             ->where(['type' => $type])
             ->orderBy(['nid' => SORT_ASC]);

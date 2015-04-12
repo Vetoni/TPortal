@@ -16,7 +16,8 @@ use yii\helpers\ArrayHelper;
  * @property City $city
  * @property FieldDescription $fieldDescription
  */
-class Tour extends Node {
+class Tour extends Node
+{
 
     /**
      * @inheritdoc
@@ -35,7 +36,8 @@ class Tour extends Node {
      * Gets nodes filtered by type 'tour'.
      * @return static
      */
-    public static function find() {
+    public static function find()
+    {
         return static::filter('tour');
     }
 
@@ -43,7 +45,8 @@ class Tour extends Node {
      * Gets name of the city for the current tour.
      * @return null|string
      */
-    public function getCityName() {
+    public function getCityName()
+    {
         return is_null($this->city) ? null : $this->city->name;
     }
 
@@ -51,7 +54,8 @@ class Tour extends Node {
      * Gets description text for the current tour.
      * @return null|string
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return is_null($this->fieldDescription) ? null : $this->fieldDescription->value;
     }
 
@@ -59,7 +63,8 @@ class Tour extends Node {
      * Gets summary text for the current tour.
      * @return null|string
      */
-    public function getSummary() {
+    public function getSummary()
+    {
         return is_null($this->fieldDescription) ? null : $this->fieldDescription->summary;
     }
 
@@ -67,7 +72,8 @@ class Tour extends Node {
      * Gets city for the current tour.
      * @return static
      */
-    protected function getCity() {
+    protected function getCity()
+    {
         return $this->hasOne(City::className(), ['cid' => 'value'])
             ->viaTable('field_data_city', ['nid' => 'nid']);
     }
@@ -76,7 +82,8 @@ class Tour extends Node {
      * Gets field description for the current tour.
      * @return \yii\db\ActiveQuery
      */
-    protected function getFieldDescription() {
+    protected function getFieldDescription()
+    {
         return $this->hasOne(FieldDescription::className(), ['nid' => 'nid']);
     }
 }

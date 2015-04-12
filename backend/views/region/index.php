@@ -13,7 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="region-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Region'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -25,12 +24,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             [
                 'attribute' => 'rid',
-                'options' => ['class' => 'jay'],
             ],
             'name',
-            //'description:ntext',
-            'image_url:url',
-
+            [
+                'attribute' => 'image',
+                'format' => 'image',
+                'filter' => false,
+                'value' => function($data) { return $data->image_base_url .'/' . $data->image_url; },
+            ],
+            [
+                'attribute' => 'description',
+                'filter' => false,
+                'format' => 'html',
+                'enableSorting' => false,
+            ],
+            [
+                'format' => 'raw',
+                'value' => function() { return Html::a(Yii::t('app', 'View cities'), ['city/index']); },
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{update} {delete}',
