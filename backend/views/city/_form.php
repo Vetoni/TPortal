@@ -5,13 +5,15 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Region */
+/* @var $model common\models\City */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="region-form">
+<div class="city-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'rid')->dropDownList($regions) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 45]) ?>
 

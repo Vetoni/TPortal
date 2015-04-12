@@ -5,27 +5,33 @@ use yii\grid\GridView;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\RegionSearch */
+/* @var $searchModel backend\models\CitySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Regions');
+$this->title = Yii::t('app', 'Cities');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<div class="region-index">
+<div class="city-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Region'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create City'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+            'cid',
             [
                 'attribute' => 'rid',
+                'filter' => $regions,
+                'format' => 'html',
+                'value' => function($data) {
+                    return Html::a($data->region->name, ['region/update', 'id' => $data->rid]);
+                }
             ],
             'name',
             [
@@ -41,12 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => false,
                 'format' => 'html',
                 'enableSorting' => false,
-            ],
-            [
-                'format' => 'raw',
-                'value' => function ($data) {
-                    return Html::a(Yii::t('app', 'View cities'), ['city/index', 'rid' => $data->rid ]);
-                },
             ],
             [
                 'class' => 'yii\grid\ActionColumn',

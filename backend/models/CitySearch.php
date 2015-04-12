@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Region;
+use common\models\City;
 
 /**
- * RegionSearch represents the model behind the search form about `common\models\Region`.
+ * CitySearch represents the model behind the search form about `common\models\City`.
  */
-class RegionSearch extends Region
+class CitySearch extends City
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class RegionSearch extends Region
     public function rules()
     {
         return [
-            [['rid'], 'integer'],
+            [['cid', 'rid'], 'integer'],
             [['name'], 'safe'],
         ];
     }
@@ -36,12 +36,11 @@ class RegionSearch extends Region
      * Creates data provider instance with search query applied
      *
      * @param array $params
-     *
      * @return ActiveDataProvider
      */
     public function search($params)
     {
-        $query = Region::find();
+        $query = City::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,10 +55,12 @@ class RegionSearch extends Region
         }
 
         $query->andFilterWhere([
+            'cid' => $this->cid,
             'rid' => $this->rid,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
+
         return $dataProvider;
     }
 }
