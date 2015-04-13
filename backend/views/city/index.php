@@ -1,16 +1,11 @@
 <?php
 
-use yii\helpers\Html;
-use yii\grid\GridView;
-use yii\helpers\Url;
-
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\CitySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Cities');
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
 <div class="city-index">
 
@@ -28,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'rid',
                 'filter' => $regions,
+
                 'format' => 'html',
                 'value' => function($data) {
                     return Html::a($data->region->name, ['region/update', 'id' => $data->rid]);
