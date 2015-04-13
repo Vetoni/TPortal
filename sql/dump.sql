@@ -199,9 +199,11 @@ CREATE TABLE `node` (
   `type` varchar(32) NOT NULL,
   `title` varchar(255) NOT NULL,
   `status` int(11) NOT NULL,
-  `lang` varchar(12) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `changed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `image_url` varchar(255) DEFAULT NULL,
+  `image_base_url` varchar(45) DEFAULT NULL,
+  `lang` varchar(12) NOT NULL,
   PRIMARY KEY (`nid`),
   KEY `type` (`type`),
   KEY `lang` (`lang`),
@@ -218,7 +220,7 @@ CREATE TABLE `node` (
 
 LOCK TABLES `node` WRITE;
 /*!40000 ALTER TABLE `node` DISABLE KEYS */;
-INSERT INTO `node` VALUES (1,NULL,'tour','\"Приморье SPA Hotel & Wellness\" отель',1,'ru','2015-04-11 08:58:19','2015-04-11 08:58:19'),(2,NULL,'tour',' \"Санвиль Арго\" мини-отель ',1,'ru','2015-04-11 10:17:33','2015-04-11 10:21:47');
+INSERT INTO `node` VALUES (1,NULL,'tour','\"Приморье SPA Hotel & Wellness\" отель',1,'2015-04-11 08:58:19','2015-04-11 08:58:19',NULL,NULL,'ru'),(2,NULL,'tour',' \"Санвиль Арго\" мини-отель ',1,'2015-04-11 10:17:33','2015-04-11 10:21:47',NULL,NULL,'ru');
 /*!40000 ALTER TABLE `node` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +267,7 @@ CREATE TABLE `region` (
   KEY `name` (`name`),
   KEY `fk_region_language_idx` (`lang`),
   CONSTRAINT `fk_region_language` FOREIGN KEY (`lang`) REFERENCES `language` (`lang`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,9 +293,12 @@ CREATE TABLE `tour_type` (
   `name` varchar(45) NOT NULL,
   `description` text,
   `image_url` varchar(255) DEFAULT NULL,
+  `image_base_url` varchar(45) DEFAULT NULL,
+  `lang` varchar(12) NOT NULL,
   PRIMARY KEY (`tid`),
   KEY `fk_tour_type_self_idx` (`pid`),
   KEY `name` (`name`),
+  KEY `fk_tour_type_language_idx` (`lang`),
   CONSTRAINT `fk_tour_type_self` FOREIGN KEY (`pid`) REFERENCES `tour_type` (`tid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -304,7 +309,7 @@ CREATE TABLE `tour_type` (
 
 LOCK TABLES `tour_type` WRITE;
 /*!40000 ALTER TABLE `tour_type` DISABLE KEYS */;
-INSERT INTO `tour_type` VALUES (1,NULL,'Деловые туры',NULL,NULL),(2,NULL,'Оздоровительные туры',NULL,NULL),(3,NULL,'Развлечения и отдых',NULL,NULL),(4,NULL,'Спортивные туры',NULL,NULL),(5,NULL,'Экстремальный туризм',NULL,NULL),(8,1,'Бизнес поездки',NULL,NULL),(9,1,'Обучение за границей',NULL,NULL),(10,1,'Загранпаспорт',NULL,NULL),(11,1,'Визы',NULL,NULL),(12,1,'Бронь отелей',NULL,NULL),(13,1,'Корпоративные туры',NULL,NULL),(14,1,'Военные туры',NULL,NULL),(15,1,'VIP Услуги',NULL,NULL),(23,2,'Бальнеологические курорты',NULL,NULL),(24,2,'Грязевые курорты',NULL,NULL),(25,2,'Лесные курорты',NULL,NULL),(26,2,'Горные курорты',NULL,NULL),(27,2,'Приморские курорты',NULL,NULL),(30,3,'Пляжный отдых',NULL,NULL),(31,3,'Круизы',NULL,NULL),(32,3,'Романтические поездки',NULL,NULL),(33,3,'Поездка на сафари',NULL,NULL),(34,3,'Экскурсионные туры',NULL,NULL),(35,3,'Свадьбы за границей',NULL,NULL),(36,3,'Винные и пивные туры',NULL,NULL),(37,4,'Автотуризм',NULL,NULL),(38,4,'Мототуризм',NULL,NULL),(39,4,'Велосипедный туризм',NULL,NULL),(40,4,'Водный туризм',NULL,NULL),(41,4,'Парусный туризм',NULL,NULL),(42,4,'Конный туризм',NULL,NULL),(43,4,'Лыжный туризм',NULL,NULL),(44,4,'Пешеходный туризм',NULL,NULL),(45,4,'Горный туризм',NULL,NULL),(46,4,'Спелеотуризм',NULL,NULL),(47,4,'Комбинированный туризм',NULL,NULL),(52,5,'Горный турихэ',NULL,NULL),(53,5,'Дайвинг',NULL,NULL),(54,5,'Виндсёрфинг',NULL,NULL),(55,5,'Джиппинг','',NULL),(56,5,'Диггерство',NULL,NULL),(57,5,'Спелеотуризм',NULL,NULL),(58,5,'Водный туризм',NULL,NULL),(59,5,'Каякинг',NULL,NULL),(60,5,'Рафтинг',NULL,NULL),(61,5,'Парусный туризм',NULL,NULL),(62,5,'Родео',NULL,NULL),(63,5,'Автостоп',NULL,NULL),(64,5,'Легкоходство',NULL,NULL);
+INSERT INTO `tour_type` VALUES (1,NULL,'Деловые туры',NULL,NULL,NULL,'ru'),(2,NULL,'Оздоровительные туры',NULL,NULL,NULL,'ru'),(3,NULL,'Развлечения и отдых',NULL,NULL,NULL,'ru'),(4,NULL,'Спортивные туры',NULL,NULL,NULL,'ru'),(5,NULL,'Экстремальный туризм',NULL,NULL,NULL,'ru'),(8,1,'Бизнес поездки',NULL,NULL,NULL,'ru'),(9,1,'Обучение за границей',NULL,NULL,NULL,'ru'),(10,1,'Загранпаспорт',NULL,NULL,NULL,'ru'),(11,1,'Визы',NULL,NULL,NULL,'ru'),(12,1,'Бронь отелей',NULL,NULL,NULL,'ru'),(13,1,'Корпоративные туры',NULL,NULL,NULL,'ru'),(14,1,'Военные туры',NULL,NULL,NULL,'ru'),(15,1,'VIP Услуги',NULL,NULL,NULL,'ru'),(23,2,'Бальнеологические курорты',NULL,NULL,NULL,'ru'),(24,2,'Грязевые курорты',NULL,NULL,NULL,'ru'),(25,2,'Лесные курорты',NULL,NULL,NULL,'ru'),(26,2,'Горные курорты',NULL,NULL,NULL,'ru'),(27,2,'Приморские курорты',NULL,NULL,NULL,'ru'),(30,3,'Пляжный отдых',NULL,NULL,NULL,'ru'),(31,3,'Круизы',NULL,NULL,NULL,'ru'),(32,3,'Романтические поездки',NULL,NULL,NULL,'ru'),(33,3,'Поездка на сафари',NULL,NULL,NULL,'ru'),(34,3,'Экскурсионные туры',NULL,NULL,NULL,'ru'),(35,3,'Свадьбы за границей',NULL,NULL,NULL,'ru'),(36,3,'Винные и пивные туры',NULL,NULL,NULL,'ru'),(37,4,'Автотуризм',NULL,NULL,NULL,'ru'),(38,4,'Мототуризм',NULL,NULL,NULL,'ru'),(39,4,'Велосипедный туризм',NULL,NULL,NULL,'ru'),(40,4,'Водный туризм',NULL,NULL,NULL,'ru'),(41,4,'Парусный туризм',NULL,NULL,NULL,'ru'),(42,4,'Конный туризм',NULL,NULL,NULL,'ru'),(43,4,'Лыжный туризм',NULL,NULL,NULL,'ru'),(44,4,'Пешеходный туризм',NULL,NULL,NULL,'ru'),(45,4,'Горный туризм',NULL,NULL,NULL,'ru'),(46,4,'Спелеотуризм',NULL,NULL,NULL,'ru'),(47,4,'Комбинированный туризм',NULL,NULL,NULL,'ru'),(52,5,'Горный турихэ',NULL,NULL,NULL,'ru'),(53,5,'Дайвинг',NULL,NULL,NULL,'ru'),(54,5,'Виндсёрфинг',NULL,NULL,NULL,'ru'),(55,5,'Джиппинг',NULL,NULL,NULL,'ru'),(56,5,'Диггерство',NULL,NULL,NULL,'ru'),(57,5,'Спелеотуризм',NULL,NULL,NULL,'ru'),(58,5,'Водный туризм',NULL,NULL,NULL,'ru'),(59,5,'Каякинг',NULL,NULL,NULL,'ru'),(60,5,'Рафтинг',NULL,NULL,NULL,'ru'),(61,5,'Парусный туризм',NULL,NULL,NULL,'ru'),(62,5,'Родео',NULL,NULL,NULL,'ru'),(63,5,'Автостоп',NULL,NULL,NULL,'ru'),(64,5,'Легкоходство',NULL,NULL,NULL,'ru');
 /*!40000 ALTER TABLE `tour_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -381,4 +386,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-13  0:02:08
+-- Dump completed on 2015-04-13 15:52:05

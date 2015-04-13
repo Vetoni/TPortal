@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -13,9 +14,16 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'rid')->dropDownList($regions) ?>
-
     <?= $form->field($model, 'name')->textInput(['maxlength' => 45]) ?>
+
+    <?= $form->field($model, 'rid')->dropDownList(ArrayHelper::merge(['' => ''], $regions)) ?>
+
+    <?= $form->field($model, 'image')->widget(
+        \trntv\filekit\widget\Upload::className(),
+        [
+            'url' => [Url::to(['media/upload'])],
+        ]);
+    ?>
 
     <?= $form->field($model, 'description')->widget(
         \yii\imperavi\Widget::className(),
@@ -31,13 +39,6 @@ use yii\widgets\ActiveForm;
             ]
         ]
     ) ?>
-
-    <?= $form->field($model, 'image')->widget(
-        \trntv\filekit\widget\Upload::className(),
-        [
-            'url' => [Url::to(['media/upload'])],
-        ]);
-    ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

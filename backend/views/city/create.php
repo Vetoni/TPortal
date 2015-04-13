@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
-        'regions' => \yii\helpers\ArrayHelper::merge([null => ''], $regions),
+        'regions' => $regions,
     ]) ?>
 
 </div>

@@ -2,14 +2,15 @@
 
 namespace backend\controllers;
 
+use common\behaviors\BackUrlBehavior;
 use common\models\Region;
-use Yii;
 use common\models\City;
 use backend\models\CitySearch;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * CityController implements the CRUD actions for City model.
@@ -27,6 +28,9 @@ class CityController extends Controller
                 'actions' => [
                     'delete' => ['post'],
                 ],
+            ],
+            [
+                'class' => BackUrlBehavior::className(),
             ],
         ];
     }

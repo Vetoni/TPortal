@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "tour_type".
@@ -32,13 +33,16 @@ class TourType extends Entity
      */
     public function rules()
     {
-        return [
-            [['pid'], 'integer'],
-            [['name'], 'required'],
-            [['description'], 'string'],
-            [['name'], 'string', 'max' => 45],
-            [['image_url'], 'string', 'max' => 255]
-        ];
+        return ArrayHelper::merge(
+            parent::rules(),
+            [
+                [['pid'], 'integer'],
+                [['name'], 'required'],
+                [['description'], 'string'],
+                [['name'], 'string', 'max' => 45],
+                [['image_url'], 'string', 'max' => 255]
+            ]
+        );
     }
 
     /**
@@ -46,13 +50,16 @@ class TourType extends Entity
      */
     public function attributeLabels()
     {
-        return [
-            'tid' => Yii::t('app', 'Tid'),
-            'pid' => Yii::t('app', 'Pid'),
-            'name' => Yii::t('app', 'Name'),
-            'description' => Yii::t('app', 'Description'),
-            'image_url' => Yii::t('app', 'Image Url'),
-        ];
+        return ArrayHelper::merge(
+            parent::attributeLabels(),
+            [
+                'tid' => Yii::t('app', 'Id'),
+                'pid' => Yii::t('app', 'Parent'),
+                'name' => Yii::t('app', 'Name'),
+                'description' => Yii::t('app', 'Description'),
+                'image_url' => Yii::t('app', 'Image Url'),
+            ]
+        );
     }
 
     /**
@@ -80,5 +87,13 @@ class TourType extends Entity
     public function getTours()
     {
         return $this->hasMany(Tour::className(), ['tid' => 'tid']);
+    }
+
+    /**
+     * Get only top level tour types.
+     * @return static[]
+     */
+    public static function getTopLevelOnly() {
+        return static::findAll(['pid' => null]);
     }
 }

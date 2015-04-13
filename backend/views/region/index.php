@@ -27,13 +27,19 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'rid',
             ],
-            'name',
+            [
+                'attribute' => 'name',
+                'format' => 'html',
+                'value' => function ($data) {
+                    return Html::a($data->name, ['region/update', 'id' => $data->rid]);
+                },
+            ],
             [
                 'attribute' => 'image',
                 'format' => 'image',
                 'filter' => false,
                 'value' => function ($data) {
-                    return $data->image_base_url . '/' . $data->image_url;
+                    return is_null($data->image) ? null : $data->image_base_url . '/' . $data->image_url;
                 },
             ],
             [

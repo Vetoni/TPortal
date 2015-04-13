@@ -1,19 +1,22 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Region */
+/* @var $model common\models\TourType */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="region-form">
+<div class="tour-type-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 45]) ?>
+
+    <?= $form->field($model, 'pid')->dropDownList(ArrayHelper::merge(['' => ''], $topLevel)) ?>
 
     <?= $form->field($model, 'image')->widget(
         \trntv\filekit\widget\Upload::className(),
