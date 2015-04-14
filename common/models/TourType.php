@@ -40,7 +40,6 @@ class TourType extends Entity
                 [['name'], 'required'],
                 [['description'], 'string'],
                 [['name'], 'string', 'max' => 45],
-                [['image_url'], 'string', 'max' => 255]
             ]
         );
     }
@@ -57,7 +56,6 @@ class TourType extends Entity
                 'pid' => Yii::t('app', 'Parent'),
                 'name' => Yii::t('app', 'Name'),
                 'description' => Yii::t('app', 'Description'),
-                'image_url' => Yii::t('app', 'Image Url'),
             ]
         );
     }
@@ -87,13 +85,5 @@ class TourType extends Entity
     public function getTours()
     {
         return $this->hasMany(Tour::className(), ['tid' => 'tid']);
-    }
-
-    /**
-     * Get only top level tour types.
-     * @return static[]
-     */
-    public static function getTopLevelOnly() {
-        return static::findAll(['pid' => null]);
     }
 }

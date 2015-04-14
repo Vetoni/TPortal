@@ -3,10 +3,8 @@
 namespace backend\controllers;
 
 use common\behaviors\BackUrlBehavior;
-use common\models\Region;
 use common\models\City;
 use backend\models\CitySearch;
-use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -47,7 +45,6 @@ class CityController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'regions' => $this->getRegions(),
         ]);
     }
 
@@ -66,7 +63,6 @@ class CityController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'regions' => $this->getRegions(),
             ]);
         }
     }
@@ -86,7 +82,6 @@ class CityController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'regions' => $this->getRegions(),
             ]);
         }
     }
@@ -118,13 +113,5 @@ class CityController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-    /**
-     * Gets the array with the region id as a key and region name as a value.
-     * @return array
-     */
-    protected function getRegions() {
-        return ArrayHelper::map(Region::find()->all(), 'rid', 'name');
     }
 }

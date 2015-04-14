@@ -2,8 +2,8 @@
 
 namespace common\models;
 
-use common\models\query\NodeQuery;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 
 /**
@@ -13,6 +13,8 @@ use Yii;
  * @property integer $pid
  * @property string $type
  * @property string $title
+ * @property string $announce
+ * @property string $description
  * @property integer $status
  * @property string $lang
  * @property string $created
@@ -20,7 +22,13 @@ use Yii;
  */
 class Node extends Entity
 {
+    /**
+     * Published status.
+     */
     const STATUS_PUBLISHED = 1;
+    /**
+     * Draft status.
+     */
     const STATUS_DRAFT = 0;
 
     /**
@@ -36,14 +44,18 @@ class Node extends Entity
      */
     public function rules()
     {
-        return [
-            [['pid', 'status'], 'integer'],
-            [['type', 'title', 'status', 'lang'], 'required'],
-            [['created', 'changed'], 'safe'],
-            [['type'], 'string', 'max' => 32],
-            [['title'], 'string', 'max' => 255],
-            [['lang'], 'string', 'max' => 12]
-        ];
+        return ArrayHelper::merge(
+            parent::rules(),
+            [
+                [['pid', 'status'], 'integer'],
+                [['type', 'title', 'status', 'lang'], 'required'],
+                [['created', 'changed'], 'safe'],
+                [['type'], 'string', 'max' => 32],
+                [['title'], 'string', 'max' => 255],
+                [['description','announce'], 'string'],
+                [['lang'], 'string', 'max' => 12]
+            ]
+        );
     }
 
     /**
@@ -51,35 +63,30 @@ class Node extends Entity
      */
     public function attributeLabels()
     {
-        return [
-            'nid' => Yii::t('app', 'Nid'),
-            'pid' => Yii::t('app', 'Pid'),
-            'type' => Yii::t('app', 'Type'),
-            'title' => Yii::t('app', 'Title'),
-            'status' => Yii::t('app', 'Status'),
-            'lang' => Yii::t('app', 'Lang'),
-            'created' => Yii::t('app', 'Created'),
-            'changed' => Yii::t('app', 'Changed'),
-        ];
+        return ArrayHelper::merge(
+            parent::attributeLabels(),
+            [
+                'nid' => Yii::t('app', 'Id'),
+                'pid' => Yii::t('app', 'Parent'),
+                'type' => Yii::t('app', 'Type'),
+                'title' => Yii::t('app', 'Title'),
+                'announce' => Yii::t('app', 'Announce'),
+                'description' => Yii::t('app', 'Description'),
+                'status' => Yii::t('app', 'Status'),
+                'lang' => Yii::t('app', 'Language'),
+                'created' => Yii::t('app', 'Created date'),
+                'changed' => Yii::t('app', 'Changed date'),
+            ]
+        );
     }
 
     /**
-     * @return NodeQuery
+     * @return string
      */
-    public static function find()
+    public function getStatusText()
     {
-        return new NodeQuery(get_called_class());
-    }
-
-    /**
-     * Get nodes filtered by type and sorted by nid.
-     * @param $type
-     * @return static
-     */
-    public static function filter($type)
-    {
-        return parent::find()
-            ->where(['type' => $type])
-            ->orderBy(['nid' => SORT_ASC]);
+        return $this->status == self::STATUS_PUBLISHED ?
+            Yii::t('app', 'published') :
+            Yii::t('app', 'not published');
     }
 }

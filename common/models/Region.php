@@ -50,7 +50,6 @@ class Region extends Entity
                 'rid' => Yii::t('app', 'Id'),
                 'name' => Yii::t('app', 'Name'),
                 'description' => Yii::t('app', 'Description'),
-                'image' => Yii::t('app', 'Image'),
             ]
         );
     }

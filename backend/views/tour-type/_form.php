@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\ArrayHelper;
+use common\widgets\TourTypesWidget;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 45]) ?>
 
-    <?= $form->field($model, 'pid')->dropDownList(ArrayHelper::merge(['' => ''], $topLevel)) ?>
+    <?= $form->field($model, 'pid')->widget(TourTypesWidget::className()) ?>
 
     <?= $form->field($model, 'image')->widget(
         \trntv\filekit\widget\Upload::className(),

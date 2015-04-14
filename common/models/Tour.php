@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use common\models\fields\FieldDescription;
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -10,14 +9,37 @@ use yii\helpers\ArrayHelper;
  * Class Tour
  * @package common\models
  *
- * @property string $cityName
- * @property string $description
- * @property string $summary
- * @property City $city
- * @property FieldDescription $fieldDescription
- */
+ * @property integer $cid
+ * @property integer $tid
+ * @property integer $tourType
+ * @property integer $city
+  */
 class Tour extends Node
 {
+
+    /**
+     * @var
+     */
+    public $cid;
+
+    /**
+     * @var
+     */
+    public $tid;
+
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return ArrayHelper::merge(
+            parent::rules(),
+            [
+                [['cid', 'tid'], 'safe'],
+            ]
+        );
+    }
 
     /**
      * @inheritdoc
@@ -27,63 +49,52 @@ class Tour extends Node
         return ArrayHelper::merge(
             parent::attributeLabels(),
             [
-                'cityName' => Yii::t('app', 'City'),
+                'cid' => Yii::t('app', 'City'),
+                'tid' => Yii::t('app', 'Tour type'),
             ]
         );
     }
 
     /**
-     * Gets nodes filtered by type 'tour'.
-     * @return static
+     * @inheritdoc
      */
     public static function find()
     {
-        return static::filter('tour');
+        return parent::find()
+            ->select('node.*, c.cid, t.tid')
+            ->leftJoin('field_data_city c', 'node.nid = c.nid')
+            ->leftJoin('field_data_tour_type t', 'node.nid = t.nid')
+            ->andWhere(['type' => 'tour']);
     }
 
     /**
-     * Gets name of the city for the current tour.
-     * @return null|string
+     * @inheritdoc
      */
-    public function getCityName()
+    public function beforeSave($insert)
     {
-        return is_null($this->city) ? null : $this->city->name;
+        if (parent::beforeSave($insert)) {
+            $this->type = 'tour';
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
-     * Gets description text for the current tour.
-     * @return null|string
-     */
-    public function getDescription()
-    {
-        return is_null($this->fieldDescription) ? null : $this->fieldDescription->value;
-    }
-
-    /**
-     * Gets summary text for the current tour.
-     * @return null|string
-     */
-    public function getSummary()
-    {
-        return is_null($this->fieldDescription) ? null : $this->fieldDescription->summary;
-    }
-
-    /**
-     * Gets city for the current tour.
+     * Gets city of the tour.
      * @return static
      */
-    protected function getCity()
-    {
-        return $this->hasOne(City::className(), ['cid' => 'value'])
+    public function getCity() {
+        return $this->hasOne(City::className(), ['cid' => 'cid'])
             ->viaTable('field_data_city', ['nid' => 'nid']);
     }
 
     /**
-     * Gets field description for the current tour.
-     * @return \yii\db\ActiveQuery
+     * Get type of the tour.
+     * @return static
      */
-    protected function getFieldDescription()
-    {
-        return $this->hasOne(FieldDescription::className(), ['nid' => 'nid']);
+    public function getTourType() {
+        return $this->hasOne(TourType::className(), ['tid' => 'tid'])
+            ->viaTable('field_data_tour_type', ['nid' => 'nid']);
     }
 }

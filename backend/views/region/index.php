@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\RegionSearch */
@@ -39,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'image',
                 'filter' => false,
                 'value' => function ($data) {
-                    return is_null($data->image) ? null : $data->image_base_url . '/' . $data->image_url;
+                    return $data->imagePath;
                 },
             ],
             [

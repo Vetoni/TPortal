@@ -1,5 +1,6 @@
 <?php
 
+use common\widgets\TourTypeLinkWidget;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -32,13 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'pid',
-                'filter' => $topLevel,
+                'filter' => \common\widgets\TourTypesWidget::widget(['model' => $searchModel, 'attribute' => 'pid']),
                 'format' => 'html',
                 'enableSorting' => false,
                 'value' => function($data) {
-                    if (!is_null($data->pid)) {
-                        return Html::a($data->parent->name, ['tour-type/update', 'id' => $data->pid]);
-                    }
+                    return TourTypeLinkWidget::widget(['model' => $data]);
                 },
             ],
             [
@@ -46,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'image',
                 'filter' => false,
                 'value' => function ($data) {
-                    return is_null($data->image) ? null : $data->image_base_url . '/' . $data->image_url;
+                    return $data->imagePath;
                 },
             ],
             [

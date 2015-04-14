@@ -31,6 +31,28 @@ class Entity extends ActiveRecord
     /**
      * @inheritdoc
      */
+    public function rules()
+    {
+        return [
+            [['image_url'], 'string', 'max' => 255],
+            [['image_base_url'], 'string', 'max' => 45],
+            [['image'], 'safe']
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'image' => Yii::t('app', 'Image'),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -57,26 +79,13 @@ class Entity extends ActiveRecord
         }
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['image_url'], 'string', 'max' => 255],
-            [['image_base_url'], 'string', 'max' => 45],
-            [['image'], 'safe']
-        ];
-    }
 
     /**
-     * @inheritdoc
+     * Get full image path including base url.
+     * @return null|string
      */
-    public function attributeLabels()
-    {
-        return [
-            'image' => Yii::t('app', 'Image'),
-        ];
+    public function getImagePath() {
+        return is_null($this->image) ? null : $this->image_base_url . '/' . $this->image_url;
     }
 
     /**
@@ -84,6 +93,6 @@ class Entity extends ActiveRecord
      */
     public static function find()
     {
-        return parent::find()->andWhere(['lang' => Yii::$app->language]);
+        return parent::find()->where(['lang' => Yii::$app->language]);
     }
 }

@@ -39,7 +39,6 @@ class City extends Entity
                 [['rid'], 'integer'],
                 [['description'], 'string'],
                 [['name'], 'string', 'max' => 45],
-                [['image_url'], 'string', 'max' => 255]
             ]
         );
     }
@@ -56,7 +55,6 @@ class City extends Entity
                 'rid' => Yii::t('app', 'Region'),
                 'name' => Yii::t('app', 'Name'),
                 'description' => Yii::t('app', 'Description'),
-                'image_url' => Yii::t('app', 'Image Url'),
             ]
         );
     }

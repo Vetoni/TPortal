@@ -1,6 +1,7 @@
 <?php
 
 
+use common\widgets\RegionsWidget;
 use yii\grid\GridView;
 use yii\helpers\Html;
 
@@ -33,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'rid',
-                'filter' => $regions,
+                'filter' => RegionsWidget::widget(['model' => $searchModel, 'attribute' => 'rid']),
                 'format' => 'html',
                 'enableSorting' => false,
                 'value' => function($data) {
@@ -45,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'image',
                 'filter' => false,
                 'value' => function ($data) {
-                    return is_null($data->image) ? null : $data->image_base_url . '/' . $data->image_url;
+                    return $data->imagePath;
                 },
             ],
             [
