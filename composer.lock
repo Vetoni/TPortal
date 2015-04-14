@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8f6b0b4322d889bb988cb7bee241041d",
+    "hash": "3807c5ac36d5ad26f0c5b6852e899c71",
     "packages": [
         {
             "name": "asofter/yii2-imperavi-redactor",
