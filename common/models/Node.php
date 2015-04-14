@@ -48,12 +48,11 @@ class Node extends Entity
             parent::rules(),
             [
                 [['pid', 'status'], 'integer'],
-                [['type', 'title', 'status', 'lang'], 'required'],
+                [['title', 'status'], 'required'],
                 [['created', 'changed'], 'safe'],
-                [['type'], 'string', 'max' => 32],
                 [['title'], 'string', 'max' => 255],
                 [['description','announce'], 'string'],
-                [['lang'], 'string', 'max' => 12]
+                [['type'], 'safe'],
             ]
         );
     }

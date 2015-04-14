@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
  * @property integer $tid
  * @property integer $tourType
  * @property integer $city
-  */
+ */
 class Tour extends Node
 {
 
@@ -36,7 +36,8 @@ class Tour extends Node
         return ArrayHelper::merge(
             parent::rules(),
             [
-                [['cid', 'tid'], 'safe'],
+                [['cid', 'tid'], 'integer'],
+                [['cid', 'tid'], 'required'],
             ]
         );
     }
@@ -81,20 +82,23 @@ class Tour extends Node
     }
 
     /**
-     * Gets city of the tour.
-     * @return static
+     * @param bool $insert
+     * @param array $changedAttributes
      */
-    public function getCity() {
-        return $this->hasOne(City::className(), ['cid' => 'cid'])
-            ->viaTable('field_data_city', ['nid' => 'nid']);
-    }
+    public function afterSave($insert, $changedAttributes)
+    {
+        $command = $this->getDb()->createCommand();
 
-    /**
-     * Get type of the tour.
-     * @return static
-     */
-    public function getTourType() {
-        return $this->hasOne(TourType::className(), ['tid' => 'tid'])
-            ->viaTable('field_data_tour_type', ['nid' => 'nid']);
+        $command->delete('field_data_city', ['nid' => $this->nid])
+            ->execute();
+        $command->insert('field_data_city', ['nid' => $this->nid, 'cid' => $this->cid])
+            ->execute();
+
+        $command->delete('field_data_tour_type', ['nid' => $this->nid])
+            ->execute();
+        $command->insert('field_data_tour_type', ['nid' => $this->nid, 'tid' => $this->tid])
+            ->execute();
+
+        parent::afterSave($insert, $changedAttributes);
     }
 }

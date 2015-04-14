@@ -6,15 +6,37 @@ use yii\base\Widget;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
+/**
+ * Class DropDownListWidget
+ * @package common\widgets
+ */
 class DropDownListWidget extends Widget
 {
+    /**
+     * @var null
+     */
     public $model = null;
+    /**
+     * @var null
+     */
     public $attribute = null;
+    /**
+     * @var string
+     */
     public $value = '';
+    /**
+     * @var array
+     */
     public $htmlOptions = [];
 
+    /**
+     * @var
+     */
     protected $items;
 
+    /**
+     * @inheritdoc
+     */
     public function run()
     {
         $this->items = ArrayHelper::merge(['' => ''], $this->items);

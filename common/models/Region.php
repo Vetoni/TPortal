@@ -54,13 +54,6 @@ class Region extends Entity
         );
     }
 
-    /**
-     * @inheritdoc
-     */
-    public static function find()
-    {
-        return parent::find()->orderBy(['rid' => SORT_ASC]);
-    }
 
     /**
      * Gets region cities.

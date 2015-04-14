@@ -1,5 +1,7 @@
 <?php
 
+use common\models\City;
+use common\models\TourType;
 use common\widgets\CitiesWidget;
 use common\widgets\NodeStatusWidget;
 use common\widgets\TourSubTypesWidget;
@@ -36,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
                 'enableSorting' => false,
                 'value' => function($data) {
-                    return is_null($data->tourType) ? null : $data->tourType->name;
+                    return @TourType::findOne($data->tid)->name;
                 }
             ],
             [
@@ -45,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
                 'enableSorting' => false,
                 'value' => function($data) {
-                    return is_null($data->city) ? null : $data->city->name;
+                    return @City::findOne($data->cid)->name;
                 }
             ],
             [

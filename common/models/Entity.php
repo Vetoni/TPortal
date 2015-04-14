@@ -9,9 +9,10 @@ use yii\db\ActiveRecord;
 /**
  * This is a base model class for entities.
  *
- * @property string $lang
  * @property string $image_url
  * @property string $image_base_url
+ * @property string $image
+ * @property string $lang
  */
 class Entity extends ActiveRecord
 {
@@ -36,7 +37,8 @@ class Entity extends ActiveRecord
         return [
             [['image_url'], 'string', 'max' => 255],
             [['image_base_url'], 'string', 'max' => 45],
-            [['image'], 'safe']
+            [['image'], 'safe'],
+            [['lang'], 'safe'],
         ];
     }
 
@@ -61,7 +63,10 @@ class Entity extends ActiveRecord
                 'attribute' => 'image',
                 'pathAttribute' => 'image_url',
                 'baseUrlAttribute' => 'image_base_url',
-                'nameAttribute' => 'no_one',
+                'nameAttribute' => null,
+                'typeAttribute' => null,
+                'sizeAttribute' => null,
+                'orderAttribute' => null,
             ]
         ];
     }
