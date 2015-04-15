@@ -40,6 +40,22 @@ class Node extends Entity
     }
 
     /**
+     * Gets table relations.
+     * This should be an array in the following format:
+     * [
+     *      ['tableName' => 'table1', 'alias' => 't1', 'attributeName' => 'attr1' ],
+     *      ['tableName' => 'table2', 'alias' => 't2', 'attributeName' => 'attr2' ],
+     *      ...
+     * ]
+     * In default implementation returns empty array (that means no table relations).
+     * @return array
+     */
+    public static function tableRelations()
+    {
+        return [];
+    }
+
+    /**
      * @inheritdoc
      */
     public function rules()
@@ -87,5 +103,40 @@ class Node extends Entity
         return $this->status == self::STATUS_PUBLISHED ?
             Yii::t('app', 'published') :
             Yii::t('app', 'not published');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function find()
+    {
+        $relations = static::tableRelations();
+        $query = parent::find();
+        $selectQuery = "node.*";
+
+        foreach ($relations as $tr) {
+            $table = $tr['tableName'];
+            $alias = $tr['alias'];
+            $attribute = $tr['attributeName'];
+            $selectQuery .= ", {$alias}.{$attribute}";
+            $query = $query->leftJoin("{$table} {$alias}", "node.nid = {$alias}.nid");
+        }
+        return $query->select($selectQuery);
+    }
+
+
+    /**
+     * Inserts or updates record in junction table.
+     * @param $tableName
+     * @param $attributeName
+     * @param $attributeValue
+     * @throws \yii\db\Exception
+     */
+    public function saveRelation($tableName, $attributeName, $attributeValue)
+    {
+        $command = $this->getDb()->createCommand();
+        $command->delete($tableName, ['nid' => $this->nid])->execute();
+        $command->insert($tableName, ['nid' => $this->nid, $attributeName => $attributeValue])
+            ->execute();
     }
 }

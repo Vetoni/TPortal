@@ -59,13 +59,28 @@ class Tour extends Node
     /**
      * @inheritdoc
      */
+    public static function tableRelations()
+    {
+        return [
+            [
+                'tableName' => 'field_data_city',
+                'alias' => 'c',
+                'attributeName' => 'cid',
+            ],
+            [
+                'tableName' => 'field_data_tour_type',
+                'alias' => 't',
+                'attributeName' => 'tid',
+            ],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public static function find()
     {
-        return parent::find()
-            ->select('node.*, c.cid, t.tid')
-            ->leftJoin('field_data_city c', 'node.nid = c.nid')
-            ->leftJoin('field_data_tour_type t', 'node.nid = t.nid')
-            ->andWhere(['type' => 'tour']);
+        return parent::find()->andWhere(['type' => 'tour']);
     }
 
     /**
@@ -87,18 +102,8 @@ class Tour extends Node
      */
     public function afterSave($insert, $changedAttributes)
     {
-        $command = $this->getDb()->createCommand();
-
-        $command->delete('field_data_city', ['nid' => $this->nid])
-            ->execute();
-        $command->insert('field_data_city', ['nid' => $this->nid, 'cid' => $this->cid])
-            ->execute();
-
-        $command->delete('field_data_tour_type', ['nid' => $this->nid])
-            ->execute();
-        $command->insert('field_data_tour_type', ['nid' => $this->nid, 'tid' => $this->tid])
-            ->execute();
-
+        $this->saveRelation('field_data_city', 'cid', $this->cid);
+        $this->saveRelation('field_data_tour_type', 'tid', $this->tid);
         parent::afterSave($insert, $changedAttributes);
     }
 }

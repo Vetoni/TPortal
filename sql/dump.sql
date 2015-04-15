@@ -74,7 +74,7 @@ CREATE TABLE `field_data_city` (
 
 LOCK TABLES `field_data_city` WRITE;
 /*!40000 ALTER TABLE `field_data_city` DISABLE KEYS */;
-INSERT INTO `field_data_city` VALUES (1,1);
+INSERT INTO `field_data_city` VALUES (2,2),(1,3);
 /*!40000 ALTER TABLE `field_data_city` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +101,7 @@ CREATE TABLE `field_data_tour_type` (
 
 LOCK TABLES `field_data_tour_type` WRITE;
 /*!40000 ALTER TABLE `field_data_tour_type` DISABLE KEYS */;
-INSERT INTO `field_data_tour_type` VALUES (1,25),(2,27);
+INSERT INTO `field_data_tour_type` VALUES (2,44),(1,54);
 /*!40000 ALTER TABLE `field_data_tour_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +189,7 @@ CREATE TABLE `node` (
   CONSTRAINT `fk_node_language` FOREIGN KEY (`lang`) REFERENCES `language` (`lang`) ON UPDATE CASCADE,
   CONSTRAINT `fk_node_self` FOREIGN KEY (`pid`) REFERENCES `node` (`nid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_node_type` FOREIGN KEY (`type`) REFERENCES `node_type` (`type`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -198,7 +198,7 @@ CREATE TABLE `node` (
 
 LOCK TABLES `node` WRITE;
 /*!40000 ALTER TABLE `node` DISABLE KEYS */;
-INSERT INTO `node` VALUES (1,NULL,'tour','\"Приморье SPA Hotel & Wellness\" отель','<p>asdasd</p>','<p>asdasd</p>',0,'2015-04-11 08:58:19','2015-04-14 17:10:28','1/Uur8zzjC2KnJKZtI_697_6lmTsYtF55g.jpg','http://tportal.com/storage/files','ru'),(2,NULL,'tour',' \"Санвиль Арго\" мини-отель ','','',1,'2015-04-11 10:17:33','2015-04-14 10:23:52',NULL,NULL,'ru');
+INSERT INTO `node` VALUES (1,NULL,'tour','\"Приморье SPA Hotel & Wellness\" отель','','<p>Привет</p>',0,'2015-04-11 08:58:19','2015-04-15 09:03:42','1/DvIA3ho55uEHzXWJDsZdMmPzB7Awx8Sl.jpg','http://tportal.com/storage/files','ru'),(2,NULL,'tour',' \"Санвиль Арго\" мини-отель ','','',1,'2015-04-11 10:17:33','2015-04-14 18:28:15','1/XEC5ypsE39d4_mJg2grP34h9IoAPCywV.jpg','http://tportal.com/storage/files','ru');
 /*!40000 ALTER TABLE `node` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,4 +364,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-14 20:38:13
+-- Dump completed on 2015-04-15 12:04:36
