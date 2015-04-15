@@ -11,8 +11,23 @@ use yii\web\Controller;
  */
 class SiteController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction'
+            ]
+        ];
+    }
+
+    /**
+     * @return string
+     */
     public function actionIndex()
     {
-        return $this->redirect(['region/index']);
+        return $this->render('index');
     }
 }

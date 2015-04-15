@@ -29,14 +29,15 @@ $config = [
         ],
         'urlManager' => [
             'rules' => [
+                '/' => 'site/index',
                 'region/update/<id:\d+>' => 'region/update',
                 'region/delete/<id:\d+>' => 'region/delete',
-
                 'city/update/<id:\d+>' => 'city/update',
                 'city/delete/<id:\d+>' => 'city/delete',
-
                 'tour-type/update/<id:\d+>' => 'tour-type/update',
                 'tour-type/delete/<id:\d+>' => 'tour-type/delete',
+                'tour/update/<id:\d+>' => 'tour/update',
+                'tour/delete/<id:\d+>' => 'tour/delete',
             ]
         ],
     ],

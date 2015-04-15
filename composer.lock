@@ -4,8 +4,48 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3807c5ac36d5ad26f0c5b6852e899c71",
+    "hash": "467746cbe89692c91df8b9d71260e034",
     "packages": [
+        {
+            "name": "almasaeed2010/adminlte",
+            "version": "v2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/almasaeed2010/AdminLTE.git",
+                "reference": "c25a8710f419a1be142f9b46037be00388a7272c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/c25a8710f419a1be142f9b46037be00388a7272c",
+                "reference": "c25a8710f419a1be142f9b46037be00388a7272c",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abdullah Almsaeed",
+                    "email": "support@almsaeedstudio.com"
+                }
+            ],
+            "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 3",
+            "homepage": "http://almsaeedstudio.com/",
+            "keywords": [
+                "JS",
+                "admin",
+                "back-end",
+                "css",
+                "less",
+                "responsive",
+                "template",
+                "theme",
+                "web"
+            ],
+            "time": "2015-03-17 15:36:50"
+        },
         {
             "name": "asofter/yii2-imperavi-redactor",
             "version": "dev-master",
@@ -447,6 +487,38 @@
             }
         },
         {
+            "name": "bower-asset/slimscroll",
+            "version": "v1.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rochal/jQuery-slimScroll.git",
+                "reference": "c1d1c794f8364d751b188c8b21859501c7991249"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rochal/jQuery-slimScroll/zipball/c1d1c794f8364d751b188c8b21859501c7991249",
+                "reference": "c1d1c794f8364d751b188c8b21859501c7991249",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.7"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "./jquery.slimscroll.min.js"
+            },
+            "description": "slimScroll is a small jQuery plugin that transforms any div into a scrollable area. slimScroll doesn't occupy any visual space as it only appears on a user initiated mouse-over.",
+            "keywords": [
+                "scroll",
+                "scrollable",
+                "scrollbar",
+                "scroller",
+                "scrolling",
+                "slimscroll",
+                "ui"
+            ]
+        },
+        {
             "name": "bower-asset/yii2-pjax",
             "version": "v2.0.4",
             "source": {
@@ -540,6 +612,48 @@
             "time": "2015-03-06 05:21:16"
         },
         {
+            "name": "diiimonn/yii2-asset-slimscroll",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/diiimonn/yii2-asset-slimscroll.git",
+                "reference": "5857868c9e0ef1847c0f5525915937476a92b062"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/diiimonn/yii2-asset-slimscroll/zipball/5857868c9e0ef1847c0f5525915937476a92b062",
+                "reference": "5857868c9e0ef1847c0f5525915937476a92b062",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/slimscroll": ">=1.3.3"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "diiimonn\\assets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Dmitriy Gavrilenko",
+                    "email": "diiimonn@gmail.com"
+                }
+            ],
+            "description": "Use slimScroll jquery plugin in your project",
+            "homepage": "https://github.com/diiimonn/yii2-asset-slimscroll",
+            "keywords": [
+                "asset",
+                "extension",
+                "jquery",
+                "plugin",
+                "slimscroll",
+                "yii2"
+            ],
+            "time": "2015-02-23 12:00:23"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.6.0",
             "source": {
@@ -582,6 +696,54 @@
                 "html"
             ],
             "time": "2013-11-30 08:25:19"
+        },
+        {
+            "name": "fortawesome/font-awesome",
+            "version": "v4.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0",
+                "reference": "41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0",
+                "shasum": ""
+            },
+            "require-dev": {
+                "jekyll": "1.0.2",
+                "lessc": "1.4.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OFL-1.1",
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Gandy",
+                    "email": "dave@fontawesome.io",
+                    "homepage": "http://twitter.com/davegandy",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The iconic font and CSS framework",
+            "homepage": "http://fontawesome.io/",
+            "keywords": [
+                "FontAwesome",
+                "awesome",
+                "bootstrap",
+                "font",
+                "icon"
+            ],
+            "time": "2015-01-22 18:09:42"
         },
         {
             "name": "league/flysystem",
@@ -1449,7 +1611,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "asofter/yii2-imperavi-redactor": 20
+        "asofter/yii2-imperavi-redactor": 20,
+        "diiimonn/yii2-asset-slimscroll": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

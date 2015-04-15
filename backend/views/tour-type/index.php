@@ -8,7 +8,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\TourTypeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Tour Types');
+$this->title = Yii::t('app', 'Tour types');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tour-type-index">
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
                 'enableSorting' => false,
                 'value' => function($data) {
-                    return TourTypeLinkWidget::widget(['model' => $data]);
+                    return @Html::a($data->parent->name,['tour-type/update', 'id' => $data->pid]);
                 },
             ],
             [

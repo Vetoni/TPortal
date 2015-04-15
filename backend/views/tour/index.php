@@ -71,12 +71,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'created',
                 'filter' => DatePicker::widget(['model' => $searchModel, 'attribute' => 'created', 'options' => ['class' => 'form-control']]),
-                'format' => 'html',
+                'format' => 'DateTime',
             ],
             [
                 'attribute' => 'changed',
                 'filter' => DatePicker::widget(['model' => $searchModel, 'attribute' => 'changed', 'options' => ['class' => 'form-control']]),
-                'format' => 'html',
+                'format' => 'DateTime',
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
