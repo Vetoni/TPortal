@@ -1,4 +1,5 @@
 <?php
+
 use backend\assets\AppAsset;
 use yii\helpers\Html;
 
@@ -52,11 +53,8 @@ AppAsset::register($this);
         </section>
     </div>
     <footer class="main-footer">
-        <?=
-            Yii::t('app',
-                '<strong>Copyright &copy; 2014-2015 <a href="{link}">Almsaeed Studio</a>.</strong> All rights reserved.',
-                [ 'link' => 'http://almsaeedstudio.com'])
-        ?>
+        <strong><?= Yii::t('app', 'Copyright') ?> &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong>
+        <?= Yii::t('app', 'All rights reserved.') ?>
     </footer>
 </div>
 <?php $this->endBody() ?>

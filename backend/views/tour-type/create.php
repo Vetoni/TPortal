@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\TourType */
 
-$this->title = Yii::t('app', 'Create Tour Type');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tour Types'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Create Tour type');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tour types'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tour-type-create">

@@ -6,9 +6,9 @@ use yii\helpers\Html;
 /* @var $model common\models\TourType */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Tour Type',
+    'modelClass' => 'Tour type',
 ]) . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tour Types'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tour types'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->tid]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>

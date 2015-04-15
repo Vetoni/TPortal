@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
                 'enableSorting' => false,
                 'value' => function($data) {
-                    return @TourType::findOne($data->tid)->name;
+                    return @Html::a(TourType::findOne($data->tid)->name, ['tour-type/update', 'id' => $data->tid]);
                 }
             ],
             [
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
                 'enableSorting' => false,
                 'value' => function($data) {
-                    return @City::findOne($data->cid)->name;
+                    return @Html::a(@City::findOne($data->cid)->name, ['city/update', 'id' => $data->cid]);
                 }
             ],
             [

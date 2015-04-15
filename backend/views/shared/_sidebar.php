@@ -18,7 +18,7 @@ use \yii\helpers\Url;
     <li class="header"><?= Yii::t('app', 'MAIN NAVIGATION') ?></li>
     <li class="active treeview">
         <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-dashboard"></i> <span><?= Yii::t('app', 'Dashboard') ?></span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
             <li class="active">
@@ -53,7 +53,7 @@ use \yii\helpers\Url;
             <i class="fa fa-table"></i><?= Yii::t('app', 'Tour types') ?>
         </a>
     </li>
-    <li class="header">Yii::t('app', 'LABELS')</li>
+    <li class="header"><?= Yii::t('app', 'LABELS') ?></li>
     <li><a href="#"><i class="fa fa-circle-o text-danger"></i> Important</a></li>
     <li><a href="#"><i class="fa fa-circle-o text-warning"></i> Warning</a></li>
     <li><a href="#"><i class="fa fa-circle-o text-info"></i> Information</a></li>
