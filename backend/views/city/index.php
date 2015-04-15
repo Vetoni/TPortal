@@ -14,8 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="city-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a(Yii::t('app', 'Create City'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -40,14 +38,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($data) {
                     return Html::a($data->region->name, ['region/update', 'id' => $data->rid]);
                 }
-            ],
-            [
-                'attribute' => 'image',
-                'format' => 'image',
-                'filter' => false,
-                'value' => function ($data) {
-                    return $data->imagePath;
-                },
             ],
             [
                 'attribute' => 'description',

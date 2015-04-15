@@ -47,15 +47,23 @@ AppAsset::register($this);
         </section>
     </aside>
     <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                <?= $this->title ?>
+            </h1>
+
+
+        </section>
         <!-- Main content -->
         <section class="content">
-            <?= $content ?>
+            <div class="box">
+                <div class="box-body">
+                    <?= $content ?>
+                </div>
+            </div>
         </section>
     </div>
-    <footer class="main-footer">
-        <strong><?= Yii::t('app', 'Copyright') ?> &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong>
-        <?= Yii::t('app', 'All rights reserved.') ?>
-    </footer>
 </div>
 <?php $this->endBody() ?>
 </body>

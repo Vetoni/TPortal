@@ -17,8 +17,14 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'All rights reserved.' => 'Все права защищены.',
-    'Copyright' => ' ',
+    'Create city' => 'Создать город',
+    'Create region' => 'Создать страну',
+    'Create tour' => 'Создать тур',
+    'Create tour type' => 'Создать вид туров',
+    'Update city: ' => 'Обновить город: ',
+    'Update region: ' => 'Обновить страну: ',
+    'Update tour type: ' => 'Обновить вид туров: ',
+    'Update tour: ' => 'Обновить тур: ',
     'Admin page' => 'Административная панель',
     'Announce' => 'Анонс',
     'Cancel' => 'Отмена',
@@ -55,7 +61,6 @@ return [
     'Tours' => 'Туры',
     'Type' => 'Тип',
     'Update' => 'Обновить',
-    'Update {modelClass}: ' => 'Обновить {modelClass}: ',
     'User Image' => 'Фото',
     'View cities' => 'Показать города',
     'Welcome' => 'Добро пожаловать',

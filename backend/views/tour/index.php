@@ -18,8 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tour-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a(Yii::t('app', 'Create Tour'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -31,7 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'nid',
             ],
-            'title',
+            [
+                'attribute' => 'title',
+                'format' => 'html',
+                'value' => function($data) {
+                    return Html::a($data->title, ['tour/update', 'id' => $data->nid]);
+                }
+            ],
             [
                 'attribute' => 'tid',
                 'filter' => TourSubTypesWidget::widget(['model' => $searchModel, 'attribute' => 'tid']),
@@ -49,15 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($data) {
                     return @Html::a(@City::findOne($data->cid)->name, ['city/update', 'id' => $data->cid]);
                 }
-            ],
-            [
-                'attribute' => 'image',
-                'format' => 'image',
-                'filter' => false,
-                'enableSorting' => false,
-                'value' => function ($data) {
-                    return $data->imagePath;
-                },
             ],
             [
                 'attribute' => 'status',

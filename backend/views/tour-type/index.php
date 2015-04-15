@@ -13,8 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tour-type-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a(Yii::t('app', 'Create Tour type'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -38,14 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'enableSorting' => false,
                 'value' => function($data) {
                     return @Html::a($data->parent->name,['tour-type/update', 'id' => $data->pid]);
-                },
-            ],
-            [
-                'attribute' => 'image',
-                'format' => 'image',
-                'filter' => false,
-                'value' => function ($data) {
-                    return $data->imagePath;
                 },
             ],
             [
