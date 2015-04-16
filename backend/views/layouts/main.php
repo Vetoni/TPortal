@@ -2,6 +2,7 @@
 
 use backend\assets\AppAsset;
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -52,7 +53,15 @@ AppAsset::register($this);
             <h1>
                 <?= $this->title ?>
             </h1>
-
+            <?=
+                Breadcrumbs::widget([
+                    'homeLink' => [
+                        'label' => Yii::t('app', 'Dashboard'),
+                        'url' => Yii::$app->homeUrl,
+                    ],
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                ])
+            ?>
 
         </section>
         <!-- Main content -->

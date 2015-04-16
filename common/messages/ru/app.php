@@ -37,7 +37,7 @@ return [
     'Create Tour' => 'Создать тур',
     'Create Tour type' => 'Создать вид туров',
     'Created date' => 'Дата создания',
-    'Dashboard' => 'Доска',
+    'Dashboard' => 'Администрирование',
     'Description' => 'Описание',
     'Foreign tour' => 'Забугор-вояж',
     'Get started' => 'Поехали!',

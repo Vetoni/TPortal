@@ -54,7 +54,6 @@ class Region extends Entity
         );
     }
 
-
     /**
      * Gets region cities.
      * @return \yii\db\ActiveQuery
