@@ -5,10 +5,10 @@ namespace common\widgets;
 use Yii;
 
 /**
- * Class NodeStatusWidget
+ * Class NodeStatusDropDown
  * @package common\widgets
  */
-class NodeStatusWidget extends DropDownListWidget
+class NodeStatusDropDown extends EntityDropDown
 {
     /**
      * @inheritdoc

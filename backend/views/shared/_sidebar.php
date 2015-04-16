@@ -1,12 +1,12 @@
 <?php
 
-use common\widgets\CountWidget;
+use common\widgets\EntityCounter;
 use \yii\helpers\Url;
 
 ?>
 <div class="user-panel">
     <div class="pull-left image">
-        <img src="/img/user/user2-160x160.jpg" class="img-circle" alt="Yii::t('app', 'User Image') ?>" />
+        <img src="/img/user/user2-160x160.jpg" class="img-circle" alt="<?= Yii::t('app', 'User Image') ?>" />
     </div>
     <div class="pull-left info">
         <p>Alexander Pierce</p>
@@ -15,50 +15,86 @@ use \yii\helpers\Url;
     </div>
 </div>
 <ul class="sidebar-menu">
-    <li class="header"><?= Yii::t('app', 'MAIN NAVIGATION') ?></li>
-    <li class="active treeview">
-        <a href="#">
-            <i class="fa fa-dashboard"></i> <span><?= Yii::t('app', 'Dashboard') ?></span> <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li class="active">
-                <a href="#"><i class="fa fa-circle-o"></i><?= Yii::t('app', 'Get started') ?></a>
-            </li>
-            <li>
-                <a href="<?= Url::to(['/site/index']) ?>"><i class="fa fa-circle-o"></i><?= Yii::t('app', 'Site content') ?></a>
-            </li>
-        </ul>
-    </li>
-    <li>
-        <a href="<?= Url::to('/tour/index') ?>">
-            <i class="fa fa-plane"></i>
-            <small class="label pull-right bg-red"><?= CountWidget::widget(['entity' => 'Tour']) ?></small>
-            <?= Yii::t('app', 'Tours') ?>
-        </a>
-    </li>
-    <li>
-        <a href="<?= Url::to(['/region/index']) ?>">
-            <i class="fa fa-globe"></i>
-            <small class="label pull-right bg-green"><?= CountWidget::widget(['entity' => 'Region']) ?></small>
-            <?= Yii::t('app', 'Regions') ?>
-        </a>
-    </li>
-    <li>
-        <a href="<?= Url::to('/city/index') ?>">
-            <i class="fa fa-car"></i>
-            <small class="label pull-right bg-blue"><?= CountWidget::widget(['entity' => 'City']) ?></small>
-            <?= Yii::t('app', 'Cities') ?>
-        </a>
-    </li>
-    <li>
-        <a href="<?= Url::to('/tour-type/index') ?>">
-            <i class="fa fa-table"></i>
-            <small class="label pull-right bg-orange"><?= CountWidget::widget(['entity' => 'TourType']) ?></small>
-            <?= Yii::t('app', 'Tour types') ?>
-        </a>
-    </li>
-    <li class="header"><?= Yii::t('app', 'LABELS') ?></li>
-    <li><a href="#"><i class="fa fa-circle-o text-danger"></i> Important</a></li>
-    <li><a href="#"><i class="fa fa-circle-o text-warning"></i> Warning</a></li>
-    <li><a href="#"><i class="fa fa-circle-o text-info"></i> Information</a></li>
+
+    <?php
+        $items = [
+            [
+                'type' => 'header',
+                'title' => Yii::t('app', 'MAIN NAVIGATION'),
+            ],
+            [
+                'type' => 'section',
+                'class' => 'fa-dashboard',
+                'title' => Yii::t('app', 'Dashboard'),
+                'items' => [
+                    [ 'url' => '#', 'title' => Yii::t('app', 'Get started'), 'class' => 'fa-circle-o' ],
+                    [ 'url' => Url::to(['site/index']), 'title' => Yii::t('app', 'Site content'), 'class' => 'fa-circle-o' ],
+                ]
+            ],
+            [
+                'type' => 'item',
+                'class' => 'fa-plane',
+                'title' => Yii::t('app', 'Tours'),
+                'url' => Url::to(['tour/index']),
+                'extra' => [
+                    'class' => 'bg-red',
+                    'content' =>  EntityCounter::widget(['entity' => 'Tour']),
+                ]
+            ],
+            [
+                'type' => 'item',
+                'class' => 'fa-globe',
+                'title' => Yii::t('app', 'Regions'),
+                'url' => Url::to(['region/index']),
+                'extra' => [
+                    'class' => 'bg-green',
+                    'content' =>  EntityCounter::widget(['entity' => 'Region']),
+                ]
+            ],
+            [
+                'type' => 'item',
+                'class' => 'fa-car',
+                'title' => Yii::t('app', 'Cities'),
+                'url' => Url::to(['city/index']),
+                'extra' => [
+                    'class' => 'bg-blue',
+                    'content' =>  EntityCounter::widget(['entity' => 'City']),
+                ]
+            ],
+            [
+                'type' => 'item',
+                'class' => 'fa-table',
+                'title' => Yii::t('app', 'Tour types'),
+                'url' => Url::to(['tour-type/index']),
+                'extra' => [
+                    'class' => 'bg-blue',
+                    'content' =>  EntityCounter::widget(['entity' => 'TourType']),
+                ]
+            ],
+            [
+                'type' => 'header',
+                'title' => Yii::t('app', 'LABELS'),
+            ],
+            [
+                'type' => 'item',
+                'class' => 'fa-circle-o text-danger',
+                'title' => 'Important',
+                'url' => '#',
+            ],
+            [
+                'type' => 'item',
+                'class' => 'fa-circle-o text-warning',
+                'title' => 'Warning',
+                'url' => '#',
+            ],
+            [
+                'type' => 'item',
+                'class' => 'fa-circle-o text-info',
+                'title' => 'Information',
+                'url' => '#',
+            ],
+        ];
+
+        echo backend\widgets\Menu::widget(['items' => $items]);
+    ?>
 </ul>

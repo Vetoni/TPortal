@@ -2,27 +2,25 @@
 
 namespace common\widgets;
 
-use common\models\TourType;
+use common\models\City;
 use yii\helpers\ArrayHelper;
 
 /**
- * Class TourTypesWidget
+ * Class CitiesDropDown
  * @package common\widgets
  */
-class TourTypesWidget extends DropDownListWidget
+class CitiesDropDown extends EntityDropDown
 {
     /**
      * @inheritdoc
      */
     public function init()
     {
-        $this->items = ArrayHelper::map
-        (
-            TourType::find()
-                ->where(['pid' => null])
+        $this->items = ArrayHelper::map(
+            City::find()
                 ->orderBy('name')
                 ->all(),
-            'tid',
+            'cid',
             'name'
         );
     }

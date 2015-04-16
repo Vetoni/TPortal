@@ -6,10 +6,10 @@ use common\models\TourType;
 use yii\helpers\ArrayHelper;
 
 /**
- * Class TourSubTypesWidget
+ * Class TourTypesDropDown
  * @package common\widgets
  */
-class TourSubTypesWidget extends TourTypesWidget
+class TourTypesDropDown extends EntityDropDown
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class TourSubTypesWidget extends TourTypesWidget
         $this->items = ArrayHelper::map
         (
             TourType::find()
-                ->where(['not', ['pid' => null]])
+                ->where(['pid' => null])
                 ->orderBy('name')
                 ->all(),
             'tid',

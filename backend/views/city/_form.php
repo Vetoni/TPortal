@@ -1,6 +1,6 @@
 <?php
 
-use common\widgets\RegionsWidget;
+use common\widgets\RegionsDropDown;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 45]) ?>
 
-    <?= $form->field($model, 'rid')->widget(RegionsWidget::className()) ?>
+    <?= $form->field($model, 'rid')->widget(RegionsDropDown::className()) ?>
 
     <?= $form->field($model, 'image')->widget(
         \trntv\filekit\widget\Upload::className(),

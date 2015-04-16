@@ -7,10 +7,10 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /**
- * Class DropDownListWidget
+ * Class EntityDropDown
  * @package common\widgets
  */
-class DropDownListWidget extends Widget
+class EntityDropDown extends Widget
 {
     /**
      * @var \yii\base\Model

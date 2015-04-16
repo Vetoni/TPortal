@@ -1,7 +1,7 @@
 <?php
 
 
-use common\widgets\RegionsWidget;
+use common\widgets\RegionsDropDown;
 use yii\grid\GridView;
 use yii\helpers\Html;
 
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'rid',
-                'filter' => RegionsWidget::widget(['model' => $searchModel, 'attribute' => 'rid']),
+                'filter' => RegionsDropDown::widget(['model' => $searchModel, 'attribute' => 'rid']),
                 'format' => 'html',
                 'enableSorting' => false,
                 'value' => function($data) {

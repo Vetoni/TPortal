@@ -6,10 +6,10 @@ use common\models\Region;
 use yii\helpers\ArrayHelper;
 
 /**
- * Class RegionsWidget
+ * Class RegionsDropDown
  * @package common\widgets
  */
-class RegionsWidget extends DropDownListWidget
+class RegionsDropDown extends EntityDropDown
 {
     /**
      * @inheritdoc

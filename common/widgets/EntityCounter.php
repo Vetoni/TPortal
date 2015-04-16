@@ -6,10 +6,10 @@ use Yii;
 use yii\base\Widget;
 
 /**
- * Class CountWidget
+ * Class EntityCounter
  * @package common\widgets
  */
-class CountWidget extends Widget
+class EntityCounter extends Widget
 {
     public $entity;
 

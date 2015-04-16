@@ -30,12 +30,20 @@ $config = [
         'urlManager' => [
             'rules' => [
                 '/' => 'site/index',
+
+                'region' => 'region/index',
                 'region/update/<id:\d+>' => 'region/update',
                 'region/delete/<id:\d+>' => 'region/delete',
+
+                'city' => 'city/index',
                 'city/update/<id:\d+>' => 'city/update',
                 'city/delete/<id:\d+>' => 'city/delete',
+
+                'tour-type' => 'tour-type/index',
                 'tour-type/update/<id:\d+>' => 'tour-type/update',
                 'tour-type/delete/<id:\d+>' => 'tour-type/delete',
+
+                'tour' => 'tour/index',
                 'tour/update/<id:\d+>' => 'tour/update',
                 'tour/delete/<id:\d+>' => 'tour/delete',
             ]

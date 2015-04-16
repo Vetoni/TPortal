@@ -1,6 +1,6 @@
 <?php
 
-use common\widgets\TourTypeLinkWidget;
+use common\widgets\TourTypesDropDown;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'pid',
-                'filter' => \common\widgets\TourTypesWidget::widget(['model' => $searchModel, 'attribute' => 'pid']),
+                'filter' => TourTypesDropDown::widget(['model' => $searchModel, 'attribute' => 'pid']),
                 'format' => 'html',
                 'enableSorting' => false,
                 'value' => function($data) {

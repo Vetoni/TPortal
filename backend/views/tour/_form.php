@@ -1,7 +1,8 @@
 <?php
 
-use common\widgets\CitiesWidget;
-use common\widgets\TourSubTypesWidget;
+use common\widgets\CitiesDropDown;
+use common\widgets\NodeStatusDropDown;
+use common\widgets\TourSubTypesDropDown;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -17,11 +18,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'tid')->widget(TourSubTypesWidget::className()) ?>
+    <?= $form->field($model, 'tid')->widget(TourSubTypesDropDown::className()) ?>
 
-    <?= $form->field($model, 'cid')->widget(CitiesWidget::className()) ?>
+    <?= $form->field($model, 'cid')->widget(CitiesDropDown::className()) ?>
 
-    <?= $form->field($model, 'status')->widget(\common\widgets\NodeStatusWidget::className()) ?>
+    <?= $form->field($model, 'status')->widget(NodeStatusDropDown::className()) ?>
 
     <?= $form->field($model, 'image')->widget(
         \trntv\filekit\widget\Upload::className(),

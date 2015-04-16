@@ -2,9 +2,9 @@
 
 use common\models\City;
 use common\models\TourType;
-use common\widgets\CitiesWidget;
-use common\widgets\NodeStatusWidget;
-use common\widgets\TourSubTypesWidget;
+use common\widgets\CitiesDropDown;
+use common\widgets\NodeStatusDropDown;
+use common\widgets\TourSubTypesDropDown;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\jui\DatePicker;
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'tid',
-                'filter' => TourSubTypesWidget::widget(['model' => $searchModel, 'attribute' => 'tid']),
+                'filter' => TourSubTypesDropDown::widget(['model' => $searchModel, 'attribute' => 'tid']),
                 'format' => 'html',
                 'enableSorting' => false,
                 'value' => function($data) {
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'cid',
-                'filter' => CitiesWidget::widget(['model' => $searchModel, 'attribute' => 'cid']),
+                'filter' => CitiesDropDown::widget(['model' => $searchModel, 'attribute' => 'cid']),
                 'format' => 'html',
                 'enableSorting' => false,
                 'value' => function($data) {
@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'status',
                 'format' => 'html',
-                'filter' => NodeStatusWidget::widget(['model' => $searchModel, 'attribute' => 'status']),
+                'filter' => NodeStatusDropDown::widget(['model' => $searchModel, 'attribute' => 'status']),
                 'enableSorting' => false,
                 'value' => function ($data) {
                     return $data->statusText;
