@@ -13,13 +13,13 @@ use yii\helpers\Html;
 class DropDownListWidget extends Widget
 {
     /**
-     * @var null
+     * @var \yii\base\Model
      */
-    public $model = null;
+    public $model;
     /**
-     * @var null
+     * @var string
      */
-    public $attribute = null;
+    public $attribute;
     /**
      * @var string
      */

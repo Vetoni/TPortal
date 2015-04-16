@@ -1,6 +1,6 @@
 <?php
 
-use common\widgets\TourCountWidget;
+use common\widgets\CountWidget;
 use \yii\helpers\Url;
 
 ?>
@@ -32,25 +32,29 @@ use \yii\helpers\Url;
     <li>
         <a href="<?= Url::to('/tour/index') ?>">
             <i class="fa fa-plane"></i>
-            <small class="label pull-right bg-green">
-                <?= TourCountWidget::widget() ?>
-            </small>
+            <small class="label pull-right bg-red"><?= CountWidget::widget(['entity' => 'Tour']) ?></small>
             <?= Yii::t('app', 'Tours') ?>
         </a>
     </li>
     <li>
         <a href="<?= Url::to(['/region/index']) ?>">
-            <i class="fa fa-globe"></i><?= Yii::t('app', 'Regions') ?>
+            <i class="fa fa-globe"></i>
+            <small class="label pull-right bg-green"><?= CountWidget::widget(['entity' => 'Region']) ?></small>
+            <?= Yii::t('app', 'Regions') ?>
         </a>
     </li>
     <li>
         <a href="<?= Url::to('/city/index') ?>">
-            <i class="fa fa-car"></i><?= Yii::t('app', 'Cities') ?>
+            <i class="fa fa-car"></i>
+            <small class="label pull-right bg-blue"><?= CountWidget::widget(['entity' => 'City']) ?></small>
+            <?= Yii::t('app', 'Cities') ?>
         </a>
     </li>
     <li>
         <a href="<?= Url::to('/tour-type/index') ?>">
-            <i class="fa fa-table"></i><?= Yii::t('app', 'Tour types') ?>
+            <i class="fa fa-table"></i>
+            <small class="label pull-right bg-orange"><?= CountWidget::widget(['entity' => 'TourType']) ?></small>
+            <?= Yii::t('app', 'Tour types') ?>
         </a>
     </li>
     <li class="header"><?= Yii::t('app', 'LABELS') ?></li>
