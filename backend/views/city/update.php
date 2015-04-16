@@ -5,7 +5,7 @@
 
 $this->title = Yii::t('app', 'Update city: ') . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Cities'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->cid]];
+$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['update', 'id' => $model->cid]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="city-update">
