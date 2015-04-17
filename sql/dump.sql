@@ -79,6 +79,31 @@ INSERT INTO `field_data_city` VALUES (2,2),(1,3);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `field_data_special_order`
+--
+
+DROP TABLE IF EXISTS `field_data_special_order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `field_data_special_order` (
+  `nid` int(11) NOT NULL,
+  `special_order` int(11) NOT NULL,
+  PRIMARY KEY (`nid`),
+  CONSTRAINT `fk_field_data_special_order` FOREIGN KEY (`nid`) REFERENCES `node` (`nid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `field_data_special_order`
+--
+
+LOCK TABLES `field_data_special_order` WRITE;
+/*!40000 ALTER TABLE `field_data_special_order` DISABLE KEYS */;
+INSERT INTO `field_data_special_order` VALUES (1,1),(2,0);
+/*!40000 ALTER TABLE `field_data_special_order` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `field_data_tour_type`
 --
 
@@ -364,4 +389,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-15 12:04:36
+-- Dump completed on 2015-04-17 12:45:34
