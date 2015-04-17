@@ -4,16 +4,14 @@ namespace backend\models;
 
 use backend\models\filter\DateTimeFilter;
 use Yii;
-use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
-use common\models\Tour;
+use common\models\NewsItem;
 
 
 /**
- * TourSearch represents the model behind the search form about `common\models\Tour`.
+ * NewsItemSearch represents the model behind the search form about `common\models\NewsItem`.
  */
-class TourSearch extends Tour
+class NewsItemSearch extends NewsItem
 {
     use DateTimeFilter;
 
@@ -23,22 +21,9 @@ class TourSearch extends Tour
     public function rules()
     {
         return [
-            [['nid', 'pid', 'status', 'special_order'], 'integer'],
-            [['type', 'title', 'created', 'changed', 'cid', 'tid' ], 'safe'],
+            [['nid', 'pid', 'status'], 'integer'],
+            [['type', 'title', 'created', 'changed' ], 'safe'],
         ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        return ArrayHelper::merge(
-            Model::scenarios(),
-            [
-                Model::SCENARIO_DEFAULT => ['tid', 'cid', 'special_order'],
-            ]
-        );
     }
 
     /**
@@ -50,7 +35,7 @@ class TourSearch extends Tour
      */
     public function search($params)
     {
-        $query = Tour::find();
+        $query = NewsItem::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -66,10 +51,7 @@ class TourSearch extends Tour
 
         $query->andFilterWhere([
             'node.nid' => $this->nid,
-            'c.cid' => $this->cid,
-            't.tid' => $this->tid,
             'status' => $this->status,
-            's.special_order' => $this->special_order,
         ]);
 
         $this->applyDateFilter($query, 'created', $this->created);

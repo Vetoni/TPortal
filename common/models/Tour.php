@@ -11,11 +11,18 @@ use yii\helpers\ArrayHelper;
  *
  * @property integer $cid
  * @property integer $tid
- * @property integer $tourType
- * @property integer $city
+ * @property integer special_order
  */
 class Tour extends Node
 {
+    /**
+     * Special order status.
+     */
+    const SPECIAL_ORDER = 1;
+    /**
+     * Default order status.
+     */
+    const DEFAULT_ORDER = 0;
 
     /**
      * @var
@@ -27,6 +34,11 @@ class Tour extends Node
      */
     public $tid;
 
+    /**
+     * @var
+     */
+    public $special_order;
+
 
     /**
      * @inheritdoc
@@ -36,8 +48,8 @@ class Tour extends Node
         return ArrayHelper::merge(
             parent::rules(),
             [
-                [['cid', 'tid'], 'integer'],
-                [['cid', 'tid'], 'required'],
+                [['cid', 'tid', 'special_order'], 'integer'],
+                [['cid', 'tid', 'special_order'], 'required'],
             ]
         );
     }
@@ -52,6 +64,7 @@ class Tour extends Node
             [
                 'cid' => Yii::t('app', 'City'),
                 'tid' => Yii::t('app', 'Tour type'),
+                'special_order' => Yii::t('app', 'Is special order'),
             ]
         );
     }
@@ -71,6 +84,11 @@ class Tour extends Node
                 'tableName' => 'field_data_tour_type',
                 'alias' => 't',
                 'attributeName' => 'tid',
+            ],
+            [
+                'tableName' => 'field_data_special_order',
+                'alias' => 's',
+                'attributeName' => 'special_order',
             ],
         ];
     }
@@ -104,6 +122,17 @@ class Tour extends Node
     {
         $this->saveRelation('field_data_city', 'cid', $this->cid);
         $this->saveRelation('field_data_tour_type', 'tid', $this->tid);
+        $this->saveRelation('field_data_special_order', 'special_order', $this->special_order);
         parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * @return string
+     */
+    public function getSpecialOrderText()
+    {
+        return $this->special_order == self::SPECIAL_ORDER ?
+            Yii::t('app', 'yes') :
+            Yii::t('app', 'no');
     }
 }

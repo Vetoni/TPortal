@@ -40,6 +40,7 @@ return [
     'Get started' => '',
     'Id' => '',
     'Image' => '',
+    'Is special order' => '',
     'LABELS' => '',
     'Language' => '',
     'MAIN NAVIGATION' => '',
@@ -67,6 +68,8 @@ return [
     'User Image' => '',
     'View cities' => '',
     'Welcome' => '',
+    'no' => '',
     'not published' => '',
     'published' => '',
+    'yes' => '',
 ];

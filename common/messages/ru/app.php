@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Create news item' => 'Создать новость',
-    'News' => 'Новости',
-    'Update news item: ' => 'Обновить новость',
+    'Is special order' => 'Спец. предложение',
+    'no' => 'нет',
+    'yes' => 'да',
     'Admin page' => 'Административная панель',
     'Announce' => 'Анонс',
     'Cancel' => 'Отмена',
@@ -32,6 +32,7 @@ return [
     'Create Tour' => 'Создать тур',
     'Create Tour type' => 'Создать вид туров',
     'Create city' => 'Создать город',
+    'Create news item' => 'Создать новость',
     'Create region' => 'Создать страну',
     'Create tour' => 'Создать тур',
     'Create tour type' => 'Создать вид туров',
@@ -46,6 +47,7 @@ return [
     'Language' => 'Язык',
     'MAIN NAVIGATION' => 'Навигация',
     'Name' => 'Имя',
+    'News' => 'Новости',
     'Parent' => 'Родитель',
     'Profile' => 'Профиль',
     'Region' => 'Регион',
@@ -61,6 +63,7 @@ return [
     'Type' => 'Тип',
     'Update' => 'Обновить',
     'Update city: ' => 'Обновить город: ',
+    'Update news item: ' => 'Обновить новость',
     'Update region: ' => 'Обновить страну: ',
     'Update tour type: ' => 'Обновить вид туров: ',
     'Update tour: ' => 'Обновить тур: ',

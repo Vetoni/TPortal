@@ -2,6 +2,7 @@
 
 use common\models\City;
 use common\models\TourType;
+use common\widgets\BooleanDropDown;
 use common\widgets\CitiesDropDown;
 use common\widgets\NodeStatusDropDown;
 use common\widgets\TourSubTypesDropDown;
@@ -61,6 +62,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'enableSorting' => false,
                 'value' => function ($data) {
                     return $data->statusText;
+                },
+            ],
+            [
+                'attribute' => 'special_order',
+                'format' => 'html',
+                'filter' => BooleanDropDown::widget(['model' => $searchModel, 'attribute' => 'special_order']),
+                'enableSorting' => false,
+                'value' => function ($data) {
+                    return $data->specialOrderText;
                 },
             ],
             [

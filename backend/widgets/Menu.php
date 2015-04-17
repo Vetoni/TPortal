@@ -12,8 +12,8 @@ use yii\web\Request;
  * Widget for sidebar menu.
  * @package backend\widgets
  */
-class Menu extends Widget {
-
+class Menu extends Widget
+{
     /**
      * @var
      */
@@ -104,18 +104,20 @@ class Menu extends Widget {
         $a_inner .= $section['title'];
         $a_inner .= Html::tag('i', '', ['class' => "fa fa-angle-left pull-right"]);
         $a = Html::tag('a', $a_inner, ['href' => '#']);
-        $sectionActive = false;
 
         // Render menu section items.
-        $ul_inner = array_reduce($section['items'], function ($a, $b) use (&$sectionActive) {
-            $a .= $this->renderMenuSectionItem($b, $active);
+        $items = $section['items'];
+        $ul_inner = '';
+        $sectionActive = false;
 
-            //Section becomes active when at least one menu items is active.
+        foreach ($items as $item) {
+            $ul_inner .= $this->renderMenuSectionItem($item, $active);
+
+            // Section becomes active when at least one menu items is active.
             if ($active) {
                 $sectionActive = true;
             }
-            return $a;
-        });
+        }
         $ul = Html::tag('ul', $ul_inner, ['class' => 'treeview-menu']);
         return Html::tag('li', $a . $ul, $sectionActive ? ['class' => 'active treeview'] : ['treeview']);
     }
@@ -152,5 +154,4 @@ class Menu extends Widget {
         $controller = Yii::$app->controller->id;
         return $path_c == $controller;
     }
-
 }

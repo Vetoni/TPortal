@@ -1,31 +1,22 @@
 <?php
 
-use common\widgets\BooleanDropDown;
-use common\widgets\CitiesDropDown;
 use common\widgets\NodeStatusDropDown;
-use common\widgets\TourSubTypesDropDown;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Tour */
+/* @var $model common\models\NewItem */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="tour-form">
+<div class="news-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'tid')->widget(TourSubTypesDropDown::className()) ?>
-
-    <?= $form->field($model, 'cid')->widget(CitiesDropDown::className()) ?>
-
     <?= $form->field($model, 'status')->widget(NodeStatusDropDown::className()) ?>
-
-    <?= $form->field($model, 'special_order')->widget(BooleanDropDown::className()) ?>
 
     <?= $form->field($model, 'image')->widget(
         \trntv\filekit\widget\Upload::className(),
