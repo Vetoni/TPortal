@@ -2,10 +2,8 @@
 
 namespace backend\controllers;
 
-use common\behaviors\BackUrlBehavior;
-use common\models\City;
-use common\models\TourType;
 use Yii;
+use common\behaviors\BackUrlBehavior;
 use common\models\Tour;
 use backend\models\TourSearch;
 use yii\web\Controller;

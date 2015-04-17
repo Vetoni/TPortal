@@ -46,6 +46,10 @@ $config = [
                 'tour' => 'tour/index',
                 'tour/update/<id:\d+>' => 'tour/update',
                 'tour/delete/<id:\d+>' => 'tour/delete',
+
+                'news' => 'news/index',
+                'news/update/<id:\d+>' => 'news/update',
+                'news/delete/<id:\d+>' => 'news/delete',
             ]
         ],
     ],

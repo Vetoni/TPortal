@@ -57,7 +57,7 @@ use \yii\helpers\Url;
                 'title' => Yii::t('app', 'Cities'),
                 'url' => Url::to(['city/index']),
                 'extra' => [
-                    'class' => 'bg-blue',
+                    'class' => 'bg-yellow',
                     'content' =>  EntityCounter::widget(['entity' => 'City']),
                 ]
             ],
@@ -69,6 +69,16 @@ use \yii\helpers\Url;
                 'extra' => [
                     'class' => 'bg-blue',
                     'content' =>  EntityCounter::widget(['entity' => 'TourType']),
+                ]
+            ],
+            [
+                'type' => 'item',
+                'class' => 'fa-newspaper-o',
+                'title' => Yii::t('app', 'News'),
+                'url' => Url::to(['news/index']),
+                'extra' => [
+                    'class' => 'bg-purple',
+                    'content' =>  EntityCounter::widget(['entity' => 'NewsItem']),
                 ]
             ],
             [
