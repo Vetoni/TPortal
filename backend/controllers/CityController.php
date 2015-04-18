@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\behaviors\BackUrlBehavior;
 use common\models\City;
 use backend\models\CitySearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -29,6 +30,15 @@ class CityController extends Controller
             ],
             [
                 'class' => BackUrlBehavior::className(),
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
             ],
         ];
     }

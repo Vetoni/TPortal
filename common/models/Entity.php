@@ -84,12 +84,12 @@ class Entity extends ActiveRecord
         }
     }
 
-
     /**
      * Get full image path including base url.
      * @return null|string
      */
-    public function getImagePath() {
+    public function getImagePath()
+    {
         return is_null($this->image) ? null : $this->image_base_url . '/' . $this->image_url;
     }
 

@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\NewsItem;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -26,6 +27,15 @@ class NewsController extends Controller
             ],
             [
                 'class' => BackUrlBehavior::className(),
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
             ],
         ];
     }

@@ -4,16 +4,22 @@ use common\widgets\EntityCounter;
 use \yii\helpers\Url;
 
 ?>
+
+<?php if (!Yii::$app->user->isGuest): ?>
+
 <div class="user-panel">
     <div class="pull-left image">
         <img src="/img/user/user2-160x160.jpg" class="img-circle" alt="<?= Yii::t('app', 'User Image') ?>" />
     </div>
     <div class="pull-left info">
-        <p>Alexander Pierce</p>
+        <p><?= Yii::$app->user->identity->username ?></p>
 
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
     </div>
 </div>
+
+<?php endif; ?>
+
 <ul class="sidebar-menu">
 
     <?php

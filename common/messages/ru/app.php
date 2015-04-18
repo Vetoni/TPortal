@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Is special order' => 'Спец. предложение',
-    'no' => 'нет',
-    'yes' => 'да',
+    'Password' => 'Пароль',
+    'Remember me' => 'Запомнить меня',
+    'User name' => 'Имя пользователя',
     'Admin page' => 'Административная панель',
     'Announce' => 'Анонс',
     'Cancel' => 'Отмена',
@@ -43,12 +43,15 @@ return [
     'Get started' => 'Поехали!',
     'Id' => 'Номер',
     'Image' => 'Картинка',
+    'Is special order' => 'Спец. предложение',
     'LABELS' => 'Метки',
     'Language' => 'Язык',
+    'Login' => 'Вход',
     'MAIN NAVIGATION' => 'Навигация',
     'Name' => 'Имя',
     'News' => 'Новости',
     'Parent' => 'Родитель',
+    'Please fill out the following fields to login:' => 'Пожалуйста заполните следующие поля для входа:',
     'Profile' => 'Профиль',
     'Region' => 'Регион',
     'Regions' => 'Регионы',
@@ -70,6 +73,8 @@ return [
     'User Image' => 'Фото',
     'View cities' => 'Показать города',
     'Welcome' => 'Добро пожаловать',
+    'no' => 'нет',
     'not published' => 'не опубликован',
     'published' => 'опубликован',
+    'yes' => 'да',
 ];

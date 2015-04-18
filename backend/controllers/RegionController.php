@@ -6,6 +6,7 @@ use Yii;
 use common\behaviors\BackUrlBehavior;
 use common\models\Region;
 use backend\models\RegionSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -30,6 +31,15 @@ class RegionController extends Controller
             ],
             [
                 'class' => BackUrlBehavior::className(),
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
             ],
         ];
     }

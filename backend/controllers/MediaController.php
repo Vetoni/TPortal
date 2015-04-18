@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use Intervention\Image\ImageManagerStatic;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 
@@ -11,6 +13,11 @@ use yii\web\Controller;
  */
 class MediaController extends Controller
 {
+    /**
+     * Image width
+     */
+    const IMG_WIDTH = 300;
+
     /**
      * @inheritdoc
      */
@@ -22,7 +29,16 @@ class MediaController extends Controller
                 'actions' => [
                     'upload-delete' => ['delete']
                 ]
-            ]
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
         ];
     }
 
@@ -34,7 +50,14 @@ class MediaController extends Controller
         return [
             'upload' => [
                 'class' => 'trntv\filekit\actions\UploadAction',
-                'deleteRoute' => 'upload-delete'
+                'deleteRoute' => 'upload-delete',
+                'on afterSave' => function($event) {
+                    /* @var $file \League\Flysystem\File */
+                    $file = $event->file;
+                    /** Crops image to fixed width */
+                    $img = ImageManagerStatic::make($file->read())->widen(self::IMG_WIDTH);
+                    $file->put($img->encode());
+                }
             ],
             'upload-delete' => [
                 'class' => 'trntv\filekit\actions\DeleteAction'

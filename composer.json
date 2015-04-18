@@ -8,7 +8,8 @@
         "trntv/yii2-file-kit": "~1.0.0",
         "almasaeed2010/adminlte": "~2.0",
         "FortAwesome/Font-Awesome": "*",
-        "diiimonn/yii2-asset-slimscroll": "dev-master"
+        "diiimonn/yii2-asset-slimscroll": "dev-master",
+        "intervention/image": "~2.1"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

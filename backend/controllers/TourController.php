@@ -6,6 +6,7 @@ use Yii;
 use common\behaviors\BackUrlBehavior;
 use common\models\Tour;
 use backend\models\TourSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -26,6 +27,15 @@ class TourController extends Controller
             ],
             [
                 'class' => BackUrlBehavior::className(),
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
             ],
         ];
     }
