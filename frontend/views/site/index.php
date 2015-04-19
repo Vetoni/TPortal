@@ -13,7 +13,7 @@ $this->title = 'Главная страница';
     <div class="new">
         <a href=""><img src="/img/new.jpg" alt=""></a>
         <h3><a href="<?= Url::to('news', ['id' => $item->nid]) ?>"><?= $item->title ?></a></h3>
-        <p><?= $item->announce ?></p>
+        <?= $item->announce ?>
         <a class="more" href="<?= Url::to('news', ['id' => $item->nid]) ?>">Читать далее</a>
     </div>
     <div class="clr"></div>
