@@ -79,6 +79,15 @@ class TourType extends Entity
     }
 
     /**
+     * Get main tour types.
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTypes()
+    {
+        return TourType::find()->where(['pid' => null]);
+    }
+
+    /**
      * Gets tours of the current type.
      * @return \yii\db\ActiveQuery
      */

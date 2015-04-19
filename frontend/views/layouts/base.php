@@ -14,15 +14,15 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
 </head>
 <body>
     <header id="header">
-        <img src="img/sea.jpg" alt="">
-        <img class="globe" src="img/globe.png" alt="">
-        <img class="logo" src="img/logo.png" alt="">
+        <img src="/img/sea.jpg" alt="">
+        <img class="globe" src="/img/globe.png" alt="">
+        <img class="logo" src="/img/logo.png" alt="">
         <p class="firm">"Забугор-вояж" тур-фирма</p>
 
         <a class="header-menu1" href="#">

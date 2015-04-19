@@ -4,7 +4,7 @@ $this->title = 'Страница ошибки';
 ?>
 <div class="content">
     <div class="left">
-        Упс, страница не найдена
+        <h1>Ошибка!!!</h1>
     </div>
     <div class="clr"></div>
 </div>

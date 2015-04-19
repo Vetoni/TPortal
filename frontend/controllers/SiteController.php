@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\NewsItem;
 use Yii;
 use yii\web\Controller;
 
@@ -23,6 +24,11 @@ class SiteController extends Controller
         ];
     }
 
+    /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
     public function beforeAction($action)
     {
         if ($action->id == 'error')
@@ -37,6 +43,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index', ['news' => NewsItem::getTop()->all()]);
     }
 }

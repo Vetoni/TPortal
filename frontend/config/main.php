@@ -26,6 +26,14 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManager' => [
+            'rules' => [
+                '/' => 'site/index',
+
+                'tours/<id:\d+>' => 'tour-type/index',
+                'tours/<type>/<id:\d+>' => 'tour-sub-type/index'
+            ]
+        ],
     ],
 ];
 

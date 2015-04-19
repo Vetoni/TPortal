@@ -10,6 +10,18 @@ namespace common\models;
 class NewsItem extends Node
 {
     /**
+     * Get top news
+     */
+    public static function getTop()
+    {
+        return static::find()
+            ->andWhere(['status' => 1])
+            ->orderBy('created')
+            ->limit(3);
+    }
+
+
+    /**
      * @inheritdoc
      */
     public static function find()

@@ -16,6 +16,6 @@ class MenuItem extends ActiveRecord
      */
     public static function find()
     {
-        return parent::find()->where(['lang' => Yii::$app->language ]);
+        return parent::find()->where(['lang' => Yii::$app->language]);
     }
 }
