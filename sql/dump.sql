@@ -156,35 +156,32 @@ INSERT INTO `language` VALUES ('en','English'),('ru','Русский'),('uk','У
 UNLOCK TABLES;
 
 --
--- Table structure for table `menu`
+-- Table structure for table `menu_item`
 --
 
-DROP TABLE IF EXISTS `menu`;
+DROP TABLE IF EXISTS `menu_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `menu` (
+CREATE TABLE `menu_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   `lang` varchar(12) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
-  KEY `parent_id` (`parent_id`),
   KEY `lang` (`lang`),
-  CONSTRAINT `fk_menu_lang` FOREIGN KEY (`lang`) REFERENCES `language` (`lang`) ON UPDATE CASCADE,
-  CONSTRAINT `fk_menu_self` FOREIGN KEY (`parent_id`) REFERENCES `menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_menu_lang` FOREIGN KEY (`lang`) REFERENCES `language` (`lang`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `menu`
+-- Dumping data for table `menu_item`
 --
 
-LOCK TABLES `menu` WRITE;
-/*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` VALUES (1,NULL,'О компании','/about','ru'),(2,NULL,'Новости','/news','ru'),(3,NULL,'Услуги','/services','ru'),(4,NULL,'Отзывы','/reviews','ru'),(5,4,'Отправить отзыв','/feedback','ru'),(6,NULL,'Вопросы и ответы','/faqs','ru'),(7,6,'Задать вопрос','/ask','ru'),(8,NULL,'Контакты','/contact','ru'),(9,NULL,'Поиск','/search','ru');
-/*!40000 ALTER TABLE `menu` ENABLE KEYS */;
+LOCK TABLES `menu_item` WRITE;
+/*!40000 ALTER TABLE `menu_item` DISABLE KEYS */;
+INSERT INTO `menu_item` VALUES (1,'Главная','/','ru'),(2,'Новости','/news','ru'),(3,'Услуги','/services','ru'),(4,'Отправить отзыв','/reviews','ru'),(5,'Задать вопрос','/faqs','ru'),(6,'Контакты','/contact','ru');
+/*!40000 ALTER TABLE `menu_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -389,4 +386,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-18 14:31:37
+-- Dump completed on 2015-04-19 17:15:16

@@ -12,6 +12,26 @@ use yii\web\Controller;
 class SiteController extends Controller
 {
     /**
+     * @inheritdoc
+     */
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ]
+        ];
+    }
+
+    public function beforeAction($action)
+    {
+        if ($action->id == 'error')
+            $this->layout = 'base';
+
+        return parent::beforeAction($action);
+    }
+
+    /**
      * Index action method
      * @return string
      */

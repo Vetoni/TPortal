@@ -19,7 +19,6 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
 <?php echo Html::beginTag('body', ['class' => 'skin-green']) ?>
 <div class="wrapper">
     <header class="main-header">
@@ -75,6 +74,5 @@ AppAsset::register($this);
     </div>
 </div>
 <?php $this->endBody() ?>
-</body>
 </html>
 <?php $this->endPage() ?>
