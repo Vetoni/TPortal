@@ -10,7 +10,8 @@ use trntv\filekit\filesystem\FilesystemBuilderInterface;
  * Class LocalFilesystemBuilder
  * @package common\components
  */
-class LocalFilesystemBuilder implements FilesystemBuilderInterface {
+class LocalFilesystemBuilder implements FilesystemBuilderInterface
+{
     /**
      * @var
      */

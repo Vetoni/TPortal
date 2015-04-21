@@ -66,7 +66,7 @@ return [
     'Type' => 'Тип',
     'Update' => 'Обновить',
     'Update city: ' => 'Обновить город: ',
-    'Update news item: ' => 'Обновить новость',
+    'Update news item: ' => 'Обновить новость: ',
     'Update region: ' => 'Обновить страну: ',
     'Update tour type: ' => 'Обновить вид туров: ',
     'Update tour: ' => 'Обновить тур: ',

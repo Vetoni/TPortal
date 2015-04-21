@@ -10,6 +10,8 @@ use yii\web\Controller;
 class TourSubTypeController extends Controller
 {
     /**
+     * @param $type
+     * @param $id
      * @return mixed
      */
     public function actionIndex($type, $id)

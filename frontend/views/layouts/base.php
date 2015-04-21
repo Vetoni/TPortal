@@ -1,12 +1,12 @@
 <?php
 use frontend\widgets\Menu;
 use yii\helpers\Html;
-use frontend\assets\AppAsset;
+
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-AppAsset::register($this);
+\frontend\assets\AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -14,11 +14,12 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/main.css">
-    <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <?php $this->head() ?>
+    <?= Html::csrfMetaTags() ?>
 </head>
 <body>
+<?php $this->beginBody() ?>
     <header id="header">
         <img src="/img/sea.jpg" alt="">
         <img class="globe" src="/img/globe.png" alt="">
@@ -48,5 +49,7 @@ AppAsset::register($this);
         <?= Menu::widget() ?>
     </div>
     <?= $content ?>
+<?php $this->endBody() ?>
 </body>
 </html>
+<?php $this->endPage() ?>

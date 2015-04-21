@@ -16,7 +16,7 @@ class MediaController extends Controller
     /**
      * Image width
      */
-    const IMG_WIDTH = 300;
+    const DEFAULT_IMG_WIDTH = 185;
 
     /**
      * @inheritdoc
@@ -55,7 +55,7 @@ class MediaController extends Controller
                     /* @var $file \League\Flysystem\File */
                     $file = $event->file;
                     /** Crops image to fixed width */
-                    $img = ImageManagerStatic::make($file->read())->widen(self::IMG_WIDTH);
+                    $img = ImageManagerStatic::make($file->read())->widen(self::DEFAULT_IMG_WIDTH);
                     $file->put($img->encode());
                 }
             ],
