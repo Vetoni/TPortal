@@ -17,10 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Home page' => 'Домашняя страница',
-    'More details' => 'Читать далее',
+    'Content' => 'Содержимое',
+    'Content pages' => 'Страницы содержимого',
+    'Create content page' => 'Создать страницу содержимого',
+    'Update content page: ' => 'Обновить страницу содержимого: ',
     'About company' => 'О компании',
-    'Admin page' => 'Административная панель',
     'Announce' => 'Анонс',
     'Cancel' => 'Отмена',
     'Changed date' => 'Дата изменения',
@@ -41,6 +42,7 @@ return [
     'Description' => 'Описание',
     'Foreign tour' => 'Забугор-вояж',
     'Get started' => 'Поехали!',
+    'Home page' => 'Домашняя страница',
     'Id' => 'Номер',
     'Image' => 'Картинка',
     'Is special order' => 'Спец. предложение',
@@ -48,6 +50,7 @@ return [
     'Language' => 'Язык',
     'Login' => 'Вход',
     'MAIN NAVIGATION' => 'Навигация',
+    'More details' => 'Читать далее',
     'Name' => 'Имя',
     'News' => 'Новости',
     'Parent' => 'Родитель',
@@ -59,7 +62,6 @@ return [
     'Remember me' => 'Запомнить меня',
     'Search' => 'Поиск',
     'Sign out' => 'Выход',
-    'Site content' => 'Контент сайта',
     'Special orders' => 'Спецпредложения',
     'Status' => 'Статус',
     'Title' => 'Название',

@@ -5,6 +5,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    'defaultRoute'=>'content/index',
     'modules' => [],
     'components' => [
         'request' => [
@@ -29,7 +30,7 @@ $config = [
         ],
         'urlManager' => [
             'rules' => [
-                '/' => 'site/index',
+                '/' => 'content/index',
 
                 'region' => 'region/index',
                 'region/update/<id:\d+>' => 'region/update',
@@ -50,6 +51,10 @@ $config = [
                 'news' => 'news/index',
                 'news/update/<id:\d+>' => 'news/update',
                 'news/delete/<id:\d+>' => 'news/delete',
+
+                'content' => 'content/index',
+                'content/update/<id:\d+>' => 'content/update',
+                'content/delete/<id:\d+>' => 'content/delete',
             ]
         ],
     ],

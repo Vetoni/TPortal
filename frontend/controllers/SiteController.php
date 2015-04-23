@@ -1,7 +1,9 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\ContentPage;
 use common\models\NewsItem;
+use common\models\Settings;
 use Yii;
 use yii\web\Controller;
 
@@ -42,6 +44,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index', ['news' => NewsItem::getTop()->all()]);
+        $settings = Settings::findOne(['id' => 1]);
+        return $this->render('index', [
+            'news' => NewsItem::getTop()->all(),
+            'homePage' => ContentPage::findOne($settings->homepage),
+        ]);
     }
 }

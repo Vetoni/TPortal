@@ -28,13 +28,23 @@ use \yii\helpers\Url;
                 'type' => 'header',
                 'title' => Yii::t('app', 'MAIN NAVIGATION'),
             ],
+//            [
+//                'type' => 'section',
+//                'class' => 'fa-dashboard',
+//                'title' => Yii::t('app', 'Dashboard'),
+//                'items' => [
+//                    [ 'url' => '#', 'title' => Yii::t('app', 'Get started'), 'class' => 'fa-circle-o' ],
+//                    [ 'url' => Url::to(['site/index']), 'title' => Yii::t('app', 'Welcome'), 'class' => 'fa-circle-o' ],
+//                ]
+//            ],
             [
-                'type' => 'section',
-                'class' => 'fa-dashboard',
-                'title' => Yii::t('app', 'Dashboard'),
-                'items' => [
-                    [ 'url' => '#', 'title' => Yii::t('app', 'Get started'), 'class' => 'fa-circle-o' ],
-                    [ 'url' => Url::to(['site/index']), 'title' => Yii::t('app', 'Site content'), 'class' => 'fa-circle-o' ],
+                'type' => 'item',
+                'class' => 'fa-server',
+                'title' => Yii::t('app', 'Content'),
+                'url' => Url::to(['content/index']),
+                'extra' => [
+                    'class' => 'bg-gray',
+                    'content' =>  EntityCounter::widget(['entity' => 'ContentPage']),
                 ]
             ],
             [
@@ -87,28 +97,28 @@ use \yii\helpers\Url;
                     'content' =>  EntityCounter::widget(['entity' => 'NewsItem']),
                 ]
             ],
-            [
-                'type' => 'header',
-                'title' => Yii::t('app', 'LABELS'),
-            ],
-            [
-                'type' => 'item',
-                'class' => 'fa-circle-o text-danger',
-                'title' => 'Important',
-                'url' => '#',
-            ],
-            [
-                'type' => 'item',
-                'class' => 'fa-circle-o text-warning',
-                'title' => 'Warning',
-                'url' => '#',
-            ],
-            [
-                'type' => 'item',
-                'class' => 'fa-circle-o text-info',
-                'title' => 'Information',
-                'url' => '#',
-            ],
+//            [
+//                'type' => 'header',
+//                'title' => Yii::t('app', 'LABELS'),
+//            ],
+//            [
+//                'type' => 'item',
+//                'class' => 'fa-circle-o text-danger',
+//                'title' => 'Important',
+//                'url' => '#',
+//            ],
+//            [
+//                'type' => 'item',
+//                'class' => 'fa-circle-o text-warning',
+//                'title' => 'Warning',
+//                'url' => '#',
+//            ],
+//            [
+//                'type' => 'item',
+//                'class' => 'fa-circle-o text-info',
+//                'title' => 'Information',
+//                'url' => '#',
+//            ],
         ];
 
         echo backend\widgets\Menu::widget(['items' => $items]);
