@@ -1,3 +1,7 @@
+<?php
+$this->title = Yii::t('app', 'Tours');
+?>
+
 <form class="tour-search" action="search">
     <h3>Поиск тура</h3>
     <span>Вид тура</span><input type="text">

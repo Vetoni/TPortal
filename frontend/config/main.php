@@ -29,13 +29,14 @@ $config = [
         'urlManager' => [
             'rules' => [
                 '/' => 'site/index',
-
+                'tours' => 'tour/index',
                 'tours-type/<id:\d+>' => 'tour-type/index',
                 'tours-type/<type>/<id:\d+>' => 'tour-sub-type/index',
                 'news/<id:\d+>' => 'news/view',
             ]
         ],
     ],
+    'layout' => 'two-column'
 ];
 
 if (!YII_ENV_TEST) {

@@ -5,7 +5,6 @@ use common\models\NewsItem;
 use Yii;
 use yii\web\Controller;
 
-
 /**
  * Class SiteController
  * @package frontend\controllers
@@ -32,7 +31,7 @@ class SiteController extends Controller
     public function beforeAction($action)
     {
         if ($action->id == 'error')
-            $this->layout = 'base';
+            $this->layout = 'one-column';
 
         return parent::beforeAction($action);
     }

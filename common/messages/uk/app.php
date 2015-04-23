@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'About company' => '',
     'Admin page' => '',
     'Announce' => '',
     'Cancel' => '',
@@ -38,6 +39,7 @@ return [
     'Description' => '',
     'Foreign tour' => '',
     'Get started' => '',
+    'Home page' => '',
     'Id' => '',
     'Image' => '',
     'Is special order' => '',
@@ -45,6 +47,7 @@ return [
     'Language' => '',
     'Login' => '',
     'MAIN NAVIGATION' => '',
+    'More details' => '',
     'Name' => '',
     'News' => '',
     'Parent' => '',
@@ -54,8 +57,10 @@ return [
     'Region' => '',
     'Regions' => '',
     'Remember me' => '',
+    'Search' => '',
     'Sign out' => '',
     'Site content' => '',
+    'Special orders' => '',
     'Status' => '',
     'Title' => '',
     'Toggle navigation' => '',
@@ -76,5 +81,6 @@ return [
     'no' => '',
     'not published' => '',
     'published' => '',
+    'tel.' => '',
     'yes' => '',
 ];
