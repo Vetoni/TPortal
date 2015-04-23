@@ -29,7 +29,7 @@ use yii\helpers\Html;
         <a class="header-menu1" href="#">
             <div>Спецпредложения</div>
         </a>
-        <a class="header-menu2" href="#">
+        <a class="header-menu2" href="<?= \yii\helpers\Url::to(['tour/index'])?>">
             <div>Туры</div>
         </a>
         <a class="header-menu3" href="#">

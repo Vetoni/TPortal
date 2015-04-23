@@ -11,9 +11,9 @@ $types = TourType::getTypes()->all();
     <?php
         echo Carousel::widget([
             'items' => [
-                ['content' => '<img src="img/evento-expo-in-citta-1280-x-400.jpg"/>'],
-                ['content' => '<img src="img/paraty-2-1280x400.jpg"/>'],
-                ['content' => '<img src="img/paraty-3-1280x400.jpg"/>'],
+                ['content' => '<img src="/img/evento-expo-in-citta-1280-x-400.jpg"/>'],
+                ['content' => '<img src="/img/paraty-2-1280x400.jpg"/>'],
+                ['content' => '<img src="/img/paraty-3-1280x400.jpg"/>'],
             ],
             'controls' => [
                 '<span class="glyphicon glyphicon-chevron-left"></span>',
