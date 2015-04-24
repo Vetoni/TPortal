@@ -523,7 +523,7 @@ body {
 }
 #content .left .subtype {
   text-align: left;
-  padding: 20px 10px 20px 40px;
+  padding: 20px 10px 20px 25px;
 }
 #content .left .subtype li a {
   font-size: 14px;
@@ -598,30 +598,52 @@ body {
 #content .right .more {
   float: right;
 }
-#content .right .tour-search {
+#content .right #tour_search {
   background: linear-gradient(top, #f6f1cf 0%, #a1c9c4 100%);
   background: -moz-linear-gradient(top, #f6f1cf 0%, #a1c9c4 100%);
   background: -ms-linear-gradient(top, #f6f1cf 0%, #a1c9c4 100%);
   background: -o-linear-gradient(top, #f6f1cf 0%, #a1c9c4 100%);
   background: -webkit-linear-gradient(top, #f6f1cf 0%, #a1c9c4 100%);
   margin: 20px;
-  padding: 10px 120px 50px 40px;
+  padding: 10px 100px 50px 40px;
   box-shadow: 1px 1px 3px #5a6f73;
 }
-#content .right .tour-search h3 {
+#content .right #tour_search h3 {
   padding: 20px;
 }
-#content .right .tour-search span {
+#content .right #tour_search .form-group {
+  margin-bottom: 0;
   display: inline-block;
-  width: 130px;
+}
+#content .right #tour_search .help-block {
+  display: inline-block;
+}
+#content .right #tour_search label {
+  font-weight: normal;
+  display: inline-block;
+  width: 150px;
   text-align: center;
 }
-#content .right .tour-search input[type='text'] {
+#content .right #tour_search select,
+#content .right #tour_search input[type='text'],
+#content .right #tour_search input[type='checkbox'] {
+  display: inline-block;
   width: 200px;
+  height: 22px;
+  padding: 0;
+  line-height: normal;
+  color: inherit;
   margin: 10px;
+  border-radius: 0;
+  border: none;
   box-shadow: inset 1px 1px 1px #5a6f73;
 }
-#content .right .tour-search input[type='submit'] {
+#content .right #tour_search input[type='checkbox'] {
+  width: auto;
+  height: auto;
+  margin-left: 8px;
+}
+#content .right #tour_search button[type='submit'] {
   background: linear-gradient(top, #f6f1cf 0%, #a1c9c4 100%);
   background: -moz-linear-gradient(top, #f6f1cf 0%, #a1c9c4 100%);
   background: -ms-linear-gradient(top, #f6f1cf 0%, #a1c9c4 100%);
@@ -632,8 +654,8 @@ body {
   color: #5a6f73;
   border: 1px solid #8da2a6;
   float: right;
-  margin-right: 50px;
-  margin-top: 10px;
+  margin-right: 25px;
+  margin-top: 40px;
 }
 #content .right h3 {
   padding-left: 40px;

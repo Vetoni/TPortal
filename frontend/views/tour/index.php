@@ -1,67 +1,85 @@
 <?php
+
+use common\models\City;
+use common\models\Region;
+use common\models\TourType;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\jui\DatePicker;
+use yii\widgets\ActiveForm;
+
 $this->title = Yii::t('app', 'Tours');
+
+$regions = ArrayHelper::map(Region::find()->all(), 'rid', 'name');
+$cities = ArrayHelper::map(City::find()->all(), 'cid', 'name');
+$types = ArrayHelper::map(TourType::getTypes()->all(), 'tid', 'name');
+$subtypes = ArrayHelper::map(TourType::getSubTypes()->all(), 'tid', 'name');
 ?>
 
-<form class="tour-search" action="search">
-    <h3>Поиск тура</h3>
-    <span>Вид тура</span><input type="text">
-    <span>Место/город</span><input type="text">
-    <span>Дата</span><input type="text">
-    <span>Подвид</span><input type="text">
-    <span>Страна</span><input type="text">
-    <span>Спецпредложение</span><input type="text">
+<?php $form = ActiveForm::begin(['id' => 'tour_search']); ?>
 
-    <input type="submit" value="Искать">
+<h3><?= Yii::t('app','Search tour') ?></h3>
 
+<?= $form->field($model, 'pid')->dropDownList($types, [
+    'prompt' => Yii::t('app', 'Choose a type'),
+    'data-ajax' => 'true',
+    'data-target' => 'tid',
+    'data-url' => yii\helpers\Url::to(['tour-sub-type/list']),
+    'data-attribute' => 'pid',
+]) ?>
 
-</form>
+<?= $form->field($model, 'tid')->dropDownList($subtypes, [
+    'prompt' => Yii::t('app', 'Choose a sub type'),
+]) ?>
 
-<h3>Результаты поиска</h3>
+<?= $form->field($model, 'rid')->dropDownList($regions, [
+    'prompt' => Yii::t('app', 'Choose a region'),
+    'data-ajax' => 'true',
+    'data-target' => 'cid',
+    'data-url' => yii\helpers\Url::to(['city/list']),
+    'data-attribute' => 'rid',
+]) ?>
 
-<div class="search-result">
-    <div>
-        <a href="#"><img src="img/new.jpg" alt=""></a>
-        <p>Инфа о туре</p>
-    </div>
-    <div>
-        <a href="#"><img src="img/new.jpg" alt=""></a>
-        <p>Инфа о туре</p>
-    </div>
-    <div>
-        <a href="#"><img src="img/new.jpg" alt=""></a>
-        <p>Инфа о туре</p>
-    </div>
-</div>
+<?= $form->field($model, 'cid')->dropDownList($cities, [
+    'prompt' => Yii::t('app', 'Choose a city'),
+]) ?>
 
-<div class="search-result">
-    <div>
-        <a href="#"><img src="img/new.jpg" alt=""></a>
-        <p>Инфа о туре</p>
-    </div>
-    <div>
-        <a href="#"><img src="img/new.jpg" alt=""></a>
-        <p>Инфа о туре</p>
-    </div>
-    <div>
-        <a href="#"><img src="img/new.jpg" alt=""></a>
-        <p>Инфа о туре</p>
-    </div>
-</div>
+<?= $form->field($model, 'date')->widget(DatePicker::className()) ?>
+<?= $form->field($model, 'special_order')->checkbox([], false) ?>
 
-<div class="search-result">
-    <div>
-        <a href="#"><img src="img/new.jpg" alt=""></a>
-        <p>Инфа о туре</p>
-    </div>
-    <div>
-        <a href="#"><img src="img/new.jpg" alt=""></a>
-        <p>Инфа о туре</p>
-    </div>
-    <div>
-        <a href="#"><img src="img/new.jpg" alt=""></a>
-        <p>Инфа о туре</p>
-    </div>
-</div>
+<?= Html::submitButton(Yii::t('app','Search')) ?>
 
-<img class="element" src="img/element.png" alt="">
+<?php ActiveForm::end(); ?>
+<h3><?= Yii::t('app','Search results') ?></h3>
+
+<?php
+
+$result = $model->result;
+
+if ($result) {
+    $itemsPerRow = 3;
+    $rows = ceil(count($result) / $itemsPerRow);
+    for ($row = 0; $row < $rows; $row++) :
+        $tours = array_slice($result, $row * $itemsPerRow, $itemsPerRow);
+        ?>
+        <div class="search-result">
+            <?php foreach ($tours as $tour): ?>
+            <div>
+                <a href="<?= Url::to(['tour/view', 'id' => $tour->nid]) ?>">
+                    <img src="<?= $tour->imagePath ?>">
+                </a>
+                <p><?= $tour->title ?></p>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    <?php
+    endfor;
+}
+else {
+    echo "<p>" . Yii::t('app', 'No results found') . "</p>";
+}
+?>
+
+<img class="element" src="/img/element.png" alt="">
 

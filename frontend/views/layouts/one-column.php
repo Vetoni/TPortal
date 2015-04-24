@@ -2,6 +2,7 @@
 $this->beginContent('@frontend/views/layouts/base.php');
 ?>
 
+<!-- Content -->
 <div id="content">
     <div class="center">
         <?= $content ?>

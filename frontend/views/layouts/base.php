@@ -51,7 +51,6 @@ AppAsset::register($this);
         <?= Menu::widget() ?>
     </nav>
 
-    <!-- Content -->
     <?= $content ?>
 <?php $this->endBody() ?>
 </body>
