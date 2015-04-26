@@ -30,8 +30,13 @@ $config = [
             'rules' => [
                 '/' => 'site/index',
                 'tours' => 'tour/index',
-                'tours-type/<id:\d+>' => 'tour-type/index',
-                'tours-type/<type>/<id:\d+>' => 'tour-sub-type/index',
+                'tour/<id:\d+>' => 'tour/view',
+                'special' => 'tour/special',
+                'regions' => 'region/index',
+                'region/<id:\d+>' => 'region/view',
+                'city/<id:\d+>' => 'city/view',
+                'tours-type/<id:\d+>' => 'tour-type/view',
+                'tours-type/<pid:\d+>/<tid:\d+>' => 'tour-sub-type/view',
                 'news/<id:\d+>' => 'news/view',
             ]
         ],

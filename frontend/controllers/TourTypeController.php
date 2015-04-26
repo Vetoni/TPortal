@@ -1,7 +1,9 @@
 <?php
 
 namespace frontend\controllers;
+use common\models\TourType;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class TourTypeController
@@ -10,10 +12,16 @@ use yii\web\Controller;
 class TourTypeController extends Controller
 {
     /**
-     * @return mixed
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
      */
-    public function actionIndex($id)
+    public function actionView($id)
     {
-        return $this->render('index');
+        $type = TourType::findOne($id);
+        if ($type == null) {
+            throw new NotFoundHttpException();
+        }
+        return $this->render('view', ['type' => $type]);
     }
 }

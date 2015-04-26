@@ -7,12 +7,12 @@ $this->beginContent('@frontend/views/layouts/base.php');
 ?>
 
     <!-- Image carousel -->
-    <?= $this->render('/shared/image_carousel') ?>
+    <?= $this->render('/shared/_carousel') ?>
 
     <!-- Content -->
     <div id="content">
         <div class="left">
-            <?= $this->render('/shared/left_menu') ?>
+            <?= $this->render('/shared/_menu') ?>
             <?= Html::img('@web/img/balls2.png') ?>
         </div>
 

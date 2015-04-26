@@ -2,24 +2,23 @@
 
 namespace frontend\controllers;
 
-use common\models\City;
-use yii\helpers\Json;
+use common\models\Region;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
- * Class CityController
+ * Class RegionController
  * @package frontend\controllers
  */
-class CityController extends Controller
+class RegionController extends Controller
 {
     /**
-     * @param $rid
      * @return string
      */
-    public function actionList($rid) {
-
-        return Json::encode(City::getList($rid));
+    public function actionIndex()
+    {
+        $regions = Region::find()->all();
+        return $this->render('index', ['model' => $regions]);
     }
 
 
@@ -30,14 +29,14 @@ class CityController extends Controller
      */
     public function actionView($id)
     {
-        $city = City::findOne($id);
+        $region = Region::findOne($id);
 
-        if ($city == null) {
+        if ($region == null) {
             throw new NotFoundHttpException();
         }
 
         return $this->render('view', [
-            'city' => $city,
+            'region' => $region,
         ]);
     }
 }

@@ -9,6 +9,7 @@ use yii\db\ActiveRecord;
 /**
  * This is a base model class for entities.
  *
+ * @property string $imagePath
  * @property string $image_url
  * @property string $image_base_url
  * @property string $image

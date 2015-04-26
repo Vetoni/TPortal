@@ -61,31 +61,27 @@ class TourSearch extends Tour
     public function search() {
         $query = Tour::find();
 
-        if ($this->rid) {
-            if (!$this->cid) {
-                $keys = Region::findOne($this->rid)->cities;
-                $query->andFilterWhere(['IN', 'c.cid', ArrayHelper::getColumn($keys, 'cid')]);
-            }
-            else {
-                $query->andFilterWhere(['c.cid' => $this->cid]);
-            }
+        if ($this->rid && !$this->cid) {
+            $keys = Region::findOne($this->rid)->cities;
+            $query->andFilterWhere(['IN', 'c.cid', ArrayHelper::getColumn($keys, 'cid')]);
         }
 
-        if ($this->pid) {
-            if (!$this->tid) {
-                $keys = TourType::findOne($this->pid)->children;
-                $query->andFilterWhere(['IN', 't.tid', ArrayHelper::getColumn($keys, 'tid')]);
-            }
-            else {
-                $query->andFilterWhere(['t.tid' => $this->tid]);
-            }
+        if ($this->cid) {
+            $query->andFilterWhere(['c.cid' => $this->cid]);
+        }
+
+        if ($this->pid && !$this->tid) {
+             $keys = TourType::findOne($this->pid)->children;
+             $query->andFilterWhere(['IN', 't.tid', ArrayHelper::getColumn($keys, 'tid')]);
+        }
+
+        if ($this->tid) {
+            $query->andFilterWhere(['t.tid' => $this->tid]);
         }
 
         if ($this->special_order) {
             $query->andFilterWhere(['s.special_order' => $this->special_order]);
         }
-
-        $query->andFilterWhere(['status' => 1]);
 
         $this->result = $query->all();
         return $this->result;

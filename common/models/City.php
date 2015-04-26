@@ -75,7 +75,7 @@ class City extends Entity
     public function getTours()
     {
         return $this->hasMany(Tour::className(), ['nid' => 'nid'])
-            ->viaTable('field_data_city', ['value' => 'cid']);
+            ->viaTable('field_data_city', ['cid' => 'cid']);
     }
 
     /**

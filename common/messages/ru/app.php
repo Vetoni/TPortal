@@ -17,8 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'No results found' => 'Нет результатов',
+    'Tour subtypes' => 'Подвиды туров',
     'About company' => 'О компании',
+    'All regions' => 'Все страны',
     'Announce' => 'Анонс',
     'Cancel' => 'Отмена',
     'Changed date' => 'Дата изменения',
@@ -28,6 +29,7 @@ return [
     'Choose a type' => 'Выберите вид туров',
     'Cities' => 'Города',
     'City' => 'Город',
+    'City list' => 'Список городов',
     'Content' => 'Содержимое',
     'Content pages' => 'Страницы содержимого',
     'Create' => 'Создать',
@@ -43,7 +45,6 @@ return [
     'Create tour type' => 'Создать вид туров',
     'Created date' => 'Дата создания',
     'Dashboard' => 'Администрирование',
-    'Date' => 'Дата',
     'Description' => 'Описание',
     'Foreign tour' => 'Забугор-вояж',
     'Home page' => 'Домашняя страница',
@@ -56,6 +57,7 @@ return [
     'More details' => 'Читать далее',
     'Name' => 'Имя',
     'News' => 'Новости',
+    'No tours found' => 'Нет результатов для отображения',
     'Parent' => 'Родитель',
     'Password' => 'Пароль',
     'Please fill out the following fields to login:' => 'Пожалуйста заполните следующие поля для входа:',

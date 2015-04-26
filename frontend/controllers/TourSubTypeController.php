@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use common\models\TourType;
 use yii\helpers\Json;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class TourSubTypeController
@@ -12,21 +13,27 @@ use yii\web\Controller;
 class TourSubTypeController extends Controller
 {
     /**
-     * @param $type
-     * @param $id
-     * @return mixed
+     * @param $pid
+     * @param $tid
+     * @return string
+     * @throws NotFoundHttpException
      */
-    public function actionIndex($type, $id)
+    public function actionView($pid, $tid)
     {
-        return $this->render('index');
+        $type = TourType::findOne($tid);
+
+        if ($type == null) {
+            throw new NotFoundHttpException();
+        }
+        return $this->render('view', ['type' => $type]);
     }
 
     /**
      * @param $pid
      * @return string
      */
-    public function actionList($pid) {
-
+    public function actionList($pid)
+    {
         return Json::encode(TourType::getList($pid));
     }
 }

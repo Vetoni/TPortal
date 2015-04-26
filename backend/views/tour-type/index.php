@@ -39,12 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'attribute' => 'description',
-                'filter' => false,
-                'format' => 'html',
-                'enableSorting' => false,
-            ],
-            [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{update} {delete}',
             ],

@@ -121,9 +121,16 @@ class Node extends Entity
             $selectQuery .= ", {$alias}.{$attribute}";
             $query = $query->leftJoin("{$table} {$alias}", "node.nid = {$alias}.nid");
         }
-        return $query->select($selectQuery);
-    }
 
+        $query = $query->select($selectQuery);
+
+        if (Yii::$app->id == 'app-frontend') {
+            $query->andFilterWhere(['status' => 1]);
+        }
+
+        return $query;
+
+    }
 
     /**
      * Inserts or updates record in junction table.

@@ -4,7 +4,6 @@ use common\models\City;
 use common\models\Region;
 use common\models\TourType;
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 
@@ -53,35 +52,10 @@ $subtypes = TourType::getList($model->pid);
 <?= Html::submitButton(Yii::t('app','Search')) ?>
 
 <?php ActiveForm::end(); ?>
+
+<?php if ($model->result !== null) : ?>
+
 <h3><?= Yii::t('app','Search results') ?></h3>
+<?= $this->render('/shared/_grid', ['model' => $model->result]) ?>
 
-<?php
-
-$result = $model->result;
-
-if ($result) {
-    $itemsPerRow = 3;
-    $rows = ceil(count($result) / $itemsPerRow);
-    for ($row = 0; $row < $rows; $row++) :
-        $tours = array_slice($result, $row * $itemsPerRow, $itemsPerRow);
-        ?>
-        <div class="search-result">
-            <?php foreach ($tours as $tour): ?>
-            <div>
-                <a href="<?= Url::to(['tour/view', 'id' => $tour->nid]) ?>">
-                    <img src="<?= $tour->imagePath ?>">
-                </a>
-                <p><?= $tour->title ?></p>
-            </div>
-            <?php endforeach; ?>
-        </div>
-    <?php
-    endfor;
-}
-else {
-    echo "<p>" . Yii::t('app', 'No results found') . "</p>";
-}
-?>
-
-<img class="element" src="/img/element.png" alt="">
-
+<?php endif; ?>

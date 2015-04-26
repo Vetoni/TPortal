@@ -123,6 +123,7 @@ class TourType extends Entity
      */
     public function getTours()
     {
-        return $this->hasMany(Tour::className(), ['tid' => 'tid']);
+        return $this->hasMany(Tour::className(), ['nid' => 'nid'])
+            ->viaTable('field_data_tour_type', ['tid' => 'tid']);
     }
 }

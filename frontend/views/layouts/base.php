@@ -9,6 +9,9 @@ use yii\helpers\Url;
 /* @var $content string */
 
 AppAsset::register($this);
+$this->title = $this->title
+    ? Yii::t('app', 'Foreign tour') . " | $this->title"
+    : Yii::t('app', 'Foreign tour');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -29,13 +32,13 @@ AppAsset::register($this);
         <?= Html::img('@web/img/globe.png', ['class' => 'globe']) ?>
         <?= Html::img('@web/img/logo.png', ['class' => 'logo']) ?>
         <p class="firm"><?= Yii::t('app', 'Foreign tour') ?></p>
-        <a class="header-menu1" href="#">
+        <a class="header-menu1" href="<?= Url::to(['tour/special'])?>">
             <div><?= Yii::t('app', 'Special orders') ?></div>
         </a>
         <a class="header-menu2" href="<?= Url::to(['tour/index'])?>">
             <div><?= Yii::t('app', 'Tours') ?></div>
         </a>
-        <a class="header-menu3" href="#">
+        <a class="header-menu3" href="<?= Url::to(['region/index'])?>">
             <div><?= Yii::t('app', 'Regions') ?></div>
         </a>
         <p class="phone"><?= Yii::t('app', 'tel.') ?> 8-800-000-00-00</p>
