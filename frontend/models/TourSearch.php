@@ -67,19 +67,24 @@ class TourSearch extends Tour
     public function search() {
         $query = Tour::find();
 
-        if ($this->rid && !$this->cid) {
-            $keys = Region::findOne($this->rid)->cities;
-            $query->andFilterWhere(['IN', 'c.cid', ArrayHelper::getColumn($keys, 'cid')]);
+        if ($this->rid) {
+            if (!$this->cid) {
+                $keys = Region::findOne($this->rid)->cities;
+                $query->andFilterWhere(['IN', 'c.cid', ArrayHelper::getColumn($keys, 'cid')]);
+            }
+            else {
+                $query->andFilterWhere(['c.cid' => $this->cid]);
+            }
         }
-        else if ($this->pid && !$this->tid) {
-            $keys = TourType::findOne($this->pid)->children;
-            $query->andFilterWhere(['IN', 't.tid', ArrayHelper::getColumn($keys, 'tid')]);
-        }
-        else {
-            $query->andFilterWhere([
-                'c.cid' => $this->cid,
-                't.tid' => $this->tid,
-            ]);
+
+        if ($this->pid) {
+            if (!$this->tid) {
+                $keys = TourType::findOne($this->pid)->children;
+                $query->andFilterWhere(['IN', 't.tid', ArrayHelper::getColumn($keys, 'tid')]);
+            }
+            else {
+                $query->andFilterWhere(['t.tid' => $this->tid]);
+            }
         }
 
         if ($this->special_order) {

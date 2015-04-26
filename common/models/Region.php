@@ -62,4 +62,12 @@ class Region extends Entity
     {
         return $this->hasMany(City::className(), ['rid' => 'rid']);
     }
+
+    /**
+     * @return array
+     */
+    public static function getList()
+    {
+        return ArrayHelper::map(static::find()->all(), 'rid', 'name');
+    }
 }

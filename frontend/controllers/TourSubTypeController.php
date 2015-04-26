@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 use common\models\TourType;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\web\Controller;
 
@@ -28,10 +27,6 @@ class TourSubTypeController extends Controller
      */
     public function actionList($pid) {
 
-        $subTypes = strlen($pid) == 0 ?
-            TourType::getSubTypes()->all() :
-            TourType::findOne($pid)->children;
-
-        return Json::encode(ArrayHelper::map($subTypes, 'tid', 'name'));
+        return Json::encode(TourType::getList($pid));
     }
 }

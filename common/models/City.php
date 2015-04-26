@@ -77,4 +77,17 @@ class City extends Entity
         return $this->hasMany(Tour::className(), ['nid' => 'nid'])
             ->viaTable('field_data_city', ['value' => 'cid']);
     }
+
+    /**
+     * @param $rid
+     * @return mixed
+     */
+    public static function getList($rid)
+    {
+        $cities = strlen($rid) == 0 ?
+            static::find()->all() :
+            Region::findOne($rid)->cities;
+
+        return ArrayHelper::map($cities, 'cid', 'name');
+    }
 }

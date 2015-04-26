@@ -97,6 +97,27 @@ class TourType extends Entity
     }
 
     /**
+     * @param $pid
+     * @return mixed
+     */
+    public static function getList($pid)
+    {
+        $subTypes = strlen($pid) == 0 ?
+            static::getSubTypes()->all() :
+            static::findOne($pid)->children;
+
+        return ArrayHelper::map($subTypes, 'tid', 'name');
+    }
+
+    /**
+     * @return array
+     */
+    public static function getTopList()
+    {
+        return ArrayHelper::map(static::getTypes()->all(), 'tid', 'name');
+    }
+
+    /**
      * Gets tours of the current type.
      * @return \yii\db\ActiveQuery
      */

@@ -3,18 +3,22 @@
 use common\models\City;
 use common\models\Region;
 use common\models\TourType;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\jui\DatePicker;
 use yii\widgets\ActiveForm;
 
+
+/* @var $this yii\web\View */
+/* @var $model frontend\models\TourSearch */
+/* @var $form yii\widgets\ActiveForm */
+
 $this->title = Yii::t('app', 'Tours');
 
-$regions = ArrayHelper::map(Region::find()->all(), 'rid', 'name');
-$cities = ArrayHelper::map(City::find()->all(), 'cid', 'name');
-$types = ArrayHelper::map(TourType::getTypes()->all(), 'tid', 'name');
-$subtypes = ArrayHelper::map(TourType::getSubTypes()->all(), 'tid', 'name');
+$regions = Region::getList();
+$cities = City::getList($model->rid);
+$types = TourType::getTopList();
+$subtypes = TourType::getList($model->pid);
 ?>
 
 <?php $form = ActiveForm::begin(['id' => 'tour_search']); ?>
