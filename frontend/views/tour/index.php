@@ -5,7 +5,6 @@ use common\models\Region;
 use common\models\TourType;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\jui\DatePicker;
 use yii\widgets\ActiveForm;
 
 
@@ -49,7 +48,6 @@ $subtypes = TourType::getList($model->pid);
     'prompt' => Yii::t('app', 'Choose a city'),
 ]) ?>
 
-<?= $form->field($model, 'date')->widget(DatePicker::className()) ?>
 <?= $form->field($model, 'special_order')->checkbox([], false) ?>
 
 <?= Html::submitButton(Yii::t('app','Search')) ?>

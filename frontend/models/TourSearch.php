@@ -28,11 +28,6 @@ class TourSearch extends Tour
     /**
      * @var
      */
-    public $date;
-
-    /**
-     * @var
-     */
     public $result;
 
     /**
@@ -41,7 +36,7 @@ class TourSearch extends Tour
     public function rules()
     {
         return [
-            [['nid', 'pid', 'tid', 'rid', 'cid', 'status', 'special_order', 'date', 'type', 'title', 'created', 'changed'], 'safe'],
+            [['nid', 'pid', 'tid', 'rid', 'cid', 'status', 'special_order', 'type', 'title', 'created', 'changed'], 'safe'],
         ];
     }
 
@@ -55,7 +50,6 @@ class TourSearch extends Tour
             'tid' => Yii::t('app', 'Tour subtype'),
             'rid' => Yii::t('app', 'Region'),
             'cid' => Yii::t('app', 'City'),
-            'date' => Yii::t('app', 'Date'),
             'special_order' => Yii::t('app', 'Special order'),
         ];
     }

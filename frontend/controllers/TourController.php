@@ -17,7 +17,6 @@ class TourController extends Controller
      */
     public function actionIndex() {
         $model = new TourSearch();
-        $searchResult = null;
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->search();
         }
