@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\Html;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -20,15 +19,9 @@ $this->title = $region->name;
 <h3>
     <?= Yii::t('app', 'City list') ?>
 </h3>
-<ul>
-    <?php foreach ($region->cities as $city) : ?>
-        <li>
-            <a href="<?= Url::to(['city/view', 'id' => $city->cid]) ?>">
-                <?= Html::img($city->imagePath) ?>
-                <?= $city->name ?>
-            </a>
-        </li>
-    <?php endforeach; ?>
-</ul>
+<?= $this->render('/shared/_grid', [
+    'source' => $region->cities,
+    'getUrl' => function($item) { return Url::to(['city/view', 'id' => $item->cid]); }
+]) ?>
 
 <? endif; ?>

@@ -1,6 +1,7 @@
 <?php
 
 namespace frontend\controllers;
+
 use common\models\TourType;
 use yii\helpers\Json;
 use yii\web\Controller;

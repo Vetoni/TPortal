@@ -1,2 +1,3 @@
-*
+files/*/*
+!files/1/demo_*.jpg
 !.gitignore

@@ -1,4 +1,5 @@
 $(function(){
+
     $('select[data-ajax="true"]').change(function() {
         var url = $(this).attr('data-url');
         var attr = $(this).attr('data-attribute');

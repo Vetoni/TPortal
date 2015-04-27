@@ -12,15 +12,8 @@ Yii::$app->params["showCarousel"] = true;
 <?= $homePage->description ?>
 
 <?= Html::a(Yii::t('app', 'News'), Url::to('news/index'), ['class'=>'content-item'])  ?>
-<?php
-foreach($news as $item):
-    $url = Url::to(['news/view', 'id' => $item->nid]);
-    ?>
-    <div class="news-item">
-        <a href="<?= $url ?>"><img src="<?= $item->imagePath ?>" alt=""></a>
-        <h3><a href="<?= $url ?>"><?= $item->title ?></a></h3>
-        <?= $item->announce ?>
-        <a class="more" href="<?= $url ?>"><?= Yii::t('app', 'More details'); ?></a>
-    </div>
-    <div class="clr"></div>
-<?php endforeach; ?>
+
+<?= $this->render('/shared/_list', [
+    'source' => $news,
+    'getUrl' => function($item) { return Url::to(['news/view', 'id' => $item->nid]); }
+]) ?>

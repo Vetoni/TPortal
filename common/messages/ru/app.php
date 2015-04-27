@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Tour subtypes' => 'Подвиды туров',
+    'No results found' => 'Нет результатов для отображения',
     'About company' => 'О компании',
     'All regions' => 'Все страны',
     'Announce' => 'Анонс',
@@ -57,7 +57,6 @@ return [
     'More details' => 'Читать далее',
     'Name' => 'Имя',
     'News' => 'Новости',
-    'No tours found' => 'Нет результатов для отображения',
     'Parent' => 'Родитель',
     'Password' => 'Пароль',
     'Please fill out the following fields to login:' => 'Пожалуйста заполните следующие поля для входа:',
@@ -75,6 +74,7 @@ return [
     'Title' => 'Название',
     'Toggle navigation' => 'Показать/скрыть навигацию',
     'Tour subtype' => 'Подвид тура',
+    'Tour subtypes' => 'Подвиды туров',
     'Tour type' => 'Вид тура',
     'Tour types' => 'Виды туров',
     'Tours' => 'Туры',

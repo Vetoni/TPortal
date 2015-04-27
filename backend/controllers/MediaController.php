@@ -19,6 +19,11 @@ class MediaController extends Controller
     const DEFAULT_IMG_WIDTH = 185;
 
     /**
+     * Image height
+     */
+    const DEFAULT_IMG_HEIGHT = 125;
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
@@ -55,7 +60,7 @@ class MediaController extends Controller
                     /* @var $file \League\Flysystem\File */
                     $file = $event->file;
                     /** Crops image to fixed width */
-                    $img = ImageManagerStatic::make($file->read())->widen(self::DEFAULT_IMG_WIDTH);
+                    $img = ImageManagerStatic::make($file->read())->resize(self::DEFAULT_IMG_WIDTH, self::DEFAULT_IMG_HEIGHT);
                     $file->put($img->encode());
                 }
             ],

@@ -84,7 +84,8 @@ class TourType extends Entity
      */
     public static function getTypes()
     {
-        return TourType::find()->where(['pid' => null]);
+        return TourType::find()
+            ->where(['pid' => null]);
     }
 
     /**
@@ -93,7 +94,8 @@ class TourType extends Entity
      */
     public static function getSubTypes()
     {
-        return TourType::find()->where(['IS NOT', 'pid', null]);
+        return TourType::find()
+            ->where(['IS NOT', 'pid', null]);
     }
 
     /**

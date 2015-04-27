@@ -56,7 +56,7 @@ return [
     'More details' => '',
     'Name' => '',
     'News' => '',
-    'No tours found' => '',
+    'No results found' => '',
     'Parent' => '',
     'Password' => '',
     'Please fill out the following fields to login:' => '',

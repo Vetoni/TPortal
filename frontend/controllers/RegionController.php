@@ -18,9 +18,8 @@ class RegionController extends Controller
     public function actionIndex()
     {
         $regions = Region::find()->all();
-        return $this->render('index', ['model' => $regions]);
+        return $this->render('index', ['regions' => $regions]);
     }
-
 
     /**
      * @param $id

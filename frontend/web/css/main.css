@@ -572,7 +572,7 @@ body {
   padding: 20px 10px 20px 40px;
   border-bottom: 1px dashed #5a6f73;
 }
-#content .right .news-item {
+#content .right .list-item {
   background: linear-gradient(top, white 0%, #a1c9c4 100%);
   background: -moz-linear-gradient(top, white 0%, #a1c9c4 100%);
   background: -ms-linear-gradient(top, white 0%, #a1c9c4 100%);
@@ -582,17 +582,17 @@ body {
   margin: 20px;
   box-shadow: 1px 1px 3px #5a6f73;
 }
-#content .right .news-item img {
+#content .right .list-item img {
   float: right;
   display: block;
   margin: 10px;
   border: 10px solid #f6f1cf;
 }
-#content .right .news-item p {
+#content .right .list-item p {
   height: 90px;
   padding: 10px 20px;
 }
-#content .right .news-item h3 {
+#content .right .list-item h3 {
   padding: 15px 30px 0;
 }
 #content .right .more {

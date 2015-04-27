@@ -15,7 +15,6 @@ class NewsItem extends Node
     public static function getTop()
     {
         return static::find()
-            ->andWhere(['status' => 1])
             ->orderBy('created')
             ->limit(3);
     }

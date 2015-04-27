@@ -4,8 +4,8 @@ use common\models\City;
 use common\models\Region;
 use common\models\TourType;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\TourSearch */
@@ -56,6 +56,9 @@ $subtypes = TourType::getList($model->pid);
 <?php if ($model->result !== null) : ?>
 
 <h3><?= Yii::t('app','Search results') ?></h3>
-<?= $this->render('/shared/_grid', ['model' => $model->result]) ?>
+<?= $this->render('/shared/_grid', [
+    'source' => $model->result,
+    'getUrl' => function($item) { return Url::to(['tour/view', 'id' => $item->nid]); }
+]) ?>
 
 <?php endif; ?>
