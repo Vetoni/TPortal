@@ -17,16 +17,16 @@ class EmailHelper{
      * @param $to
      */
     public static function send($template, $title, $model, $to) {
-        //try {
+        try {
             Yii::$app->mailer->compose($template, [
                 'model' => $model
             ])->setFrom(Yii::$app->params["adminEmail"])
               ->setTo($to)
               ->setSubject("TPortal: $title")
               ->send();
-        //}
-        //catch (\Swift_SwiftException $e) {
-         //   Yii::error($e->getMessage());
-       // }
+        }
+        catch (\Swift_SwiftException $e) {
+            Yii::error($e->getMessage());
+        }
     }
 }
