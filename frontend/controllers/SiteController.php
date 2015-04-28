@@ -1,10 +1,11 @@
 <?php
 namespace frontend\controllers;
 
+use Yii;
 use common\models\ContentPage;
 use common\models\NewsItem;
 use common\models\Settings;
-use Yii;
+use frontend\models\FeedbackForm;
 use yii\web\Controller;
 
 /**
@@ -44,10 +45,67 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $settings = Settings::findOne(['id' => 1]);
+        $settings = Settings::findOne(['id' => 'homepage']);
         return $this->render('index', [
             'news' => NewsItem::getTop()->all(),
-            'homePage' => ContentPage::findOne($settings->homepage),
+            'page' => ContentPage::findOne($settings->value),
+        ]);
+    }
+
+    /**
+     * Index action method
+     * @return string
+     */
+    public function actionContact()
+    {
+        $settings = Settings::findOne(['id' => 'contactpage']);
+        return $this->render('contact', [
+            'page' => ContentPage::findOne($settings->value),
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function  actionServices()
+    {
+        $settings = Settings::findOne(['id' => 'servicespage']);
+        return $this->render('services', [
+            'page' => ContentPage::findOne($settings->value),
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionFaq()
+    {
+        $settings = Settings::findOne(['id' => 'faqpage']);
+        return $this->render('faq', [
+            'page' => ContentPage::findOne($settings->value),
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionFeedback()
+    {
+        $settings = Settings::findOne(['id' => 'feedbackpage']);
+
+        $model = new FeedbackForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            /*
+             * Here will be sending email
+             */
+
+            $model->emailSent = true;
+        }
+
+        return $this->render('feedback', [
+            'page' => ContentPage::findOne($settings->value),
+            'model' => $model,
         ]);
     }
 }

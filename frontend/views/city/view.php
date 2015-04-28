@@ -23,4 +23,4 @@ $this->title = $city->name;
     'getUrl' => function($item) { return Url::to(['tour/view', 'id' => $item->nid]); }
 ]) ?>
 
-<? endif; ?>
+<?php endif; ?>

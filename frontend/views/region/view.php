@@ -24,4 +24,4 @@ $this->title = $region->name;
     'getUrl' => function($item) { return Url::to(['city/view', 'id' => $item->cid]); }
 ]) ?>
 
-<? endif; ?>
+<?php endif; ?>

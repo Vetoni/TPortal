@@ -2,8 +2,9 @@
 
 namespace frontend\controllers;
 
-use common\models\Tour;
 use Yii;
+use common\models\Tour;
+use frontend\models\OrderForm;
 use frontend\models\TourSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -54,5 +55,47 @@ class TourController extends Controller
         }
 
         return $this->render('view', ['tour' => $tour]);
+    }
+
+    /**
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionOrder($id)
+    {
+        $tour = Tour::findOne($id);
+
+        if ($tour == null) {
+            throw new NotFoundHttpException();
+        }
+
+        $model = new OrderForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            /*
+             * Here will be sending email
+             */
+
+            $model->emailSent = true;
+            $model->orderNo = $this->generateRandomString();
+            $model->tourId = $id;
+        }
+
+        return $this->render('order', ['model' => $model]);
+    }
+
+    /**
+     * @param int $length
+     * @return string
+     */
+    function generateRandomString($length = 8) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }

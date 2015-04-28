@@ -27,6 +27,7 @@ use yii\widgets\ActiveForm;
         [
             'plugins' => ['fullscreen', 'fontcolor', 'video'],
             'options' => [
+                'deniedTags' => ['html', 'head', 'link', 'body', 'meta', 'style', 'applet'],
                 'minHeight' => 400,
                 'maxHeight' => 400,
                 'buttonSource' => true,

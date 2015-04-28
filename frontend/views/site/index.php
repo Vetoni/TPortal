@@ -1,5 +1,8 @@
 <?php
+
 /* @var $this yii\web\View */
+/* @var $page common\models\ContentPage */
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -9,7 +12,7 @@ Yii::$app->params["showCarousel"] = true;
 
 <?= Html::a(Yii::t('app', 'About company'), Url::to('site/about'), ['class'=>'content-item'])  ?>
 
-<?= $homePage->description ?>
+<?= $page->description ?>
 
 <?= Html::a(Yii::t('app', 'News'), Url::to('news/index'), ['class'=>'content-item'])  ?>
 

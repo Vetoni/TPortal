@@ -1,8 +1,8 @@
 <?php
 
-/* @var $this yii\web\View */
 use yii\helpers\Url;
 
+/* @var $this yii\web\View */
 /* @var $tours array */
 /* @var $form yii\widgets\ActiveForm */
 
