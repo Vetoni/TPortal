@@ -59,6 +59,7 @@ class OrderForm extends Model
         return [
             [['name', 'surname', 'address', 'email', 'phone'], 'required'],
             [['name', 'surname', 'email', 'phone'], 'string', 'max' => 255],
+            [['email'], 'email'],
             [['orderNo', 'tourId', 'emailSent'], 'safe'],
         ];
     }

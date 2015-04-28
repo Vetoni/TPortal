@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\components\EmailHelper;
 use Yii;
 use common\models\Tour;
 use frontend\models\OrderForm;
@@ -73,13 +74,15 @@ class TourController extends Controller
         $model = new OrderForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            /*
-             * Here will be sending email
-             */
-
             $model->emailSent = true;
             $model->orderNo = $this->generateRandomString();
             $model->tourId = $id;
+
+            EmailHelper::send('order', Yii::t('app', 'Tour order request'), $model,
+                Yii::$app->params["adminEmail"]);
+
+            EmailHelper::send('order', Yii::t('app', 'Tour order request'), $model,
+                $model->email);
         }
 
         return $this->render('order', ['model' => $model]);

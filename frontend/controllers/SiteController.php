@@ -1,7 +1,9 @@
 <?php
+
 namespace frontend\controllers;
 
 use Yii;
+use common\components\EmailHelper;
 use common\models\ContentPage;
 use common\models\NewsItem;
 use common\models\Settings;
@@ -96,9 +98,9 @@ class SiteController extends Controller
         $model = new FeedbackForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            /*
-             * Here will be sending email
-             */
+
+            EmailHelper::send('feedback', Yii::t('app', 'Feedback'), $model,
+                Yii::$app->params["adminEmail"]);
 
             $model->emailSent = true;
         }
