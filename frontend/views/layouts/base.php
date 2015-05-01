@@ -12,10 +12,11 @@ AppAsset::register($this);
 $this->title = $this->title
     ? Yii::t('app', 'Foreign tour') . " | $this->title"
     : Yii::t('app', 'Foreign tour');
+$lang = Yii::$app->language;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="<?= $lang ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +31,7 @@ $this->title = $this->title
     <header id="header">
         <!-- Logo -->
         <a href="<?= Url::home() ?>">
-            <img src="img/<?= Yii::$app->language ?>/logo.png" alt="">
+            <?= Html::img("@web/img/$lang/logo.png") ?>
         </a>
     </header>
 
