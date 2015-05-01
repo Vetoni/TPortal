@@ -8,12 +8,14 @@ use yii\helpers\Url;
 $this->title = $type->name;
 ?>
 
-<h3><?= $this->title ?></h3>
+<h3 class="content-item-caption"><?= $this->title ?></h3>
 
-<?= $type->description ?>
+<div class="content-item">
+    <?= $type->description ?>
+</div>
 
 <?php if (count($type->children) > 0) : ?>
-    <h3>
+    <h3 class="content-item-caption">
         <?= Yii::t('app', 'Tour subtypes') ?>
     </h3>
 

@@ -10,11 +10,13 @@ $this->title = Yii::t('app', 'Home page');
 Yii::$app->params["showCarousel"] = true;
 ?>
 
-<?= Html::a(Yii::t('app', 'About company'), Url::to('site/about'), ['class'=>'content-item'])  ?>
+<?= Html::a(Yii::t('app', 'About company'), Url::to(['site/contact']), ['class'=>'content-item-caption'])  ?>
 
-<?= $page->description ?>
+<div class="content-item">
+    <?= $page->description ?>
+</div>
 
-<?= Html::a(Yii::t('app', 'News'), Url::to('news/index'), ['class'=>'content-item'])  ?>
+<?= Html::a(Yii::t('app', 'News'), Url::to(['news/index']), ['class'=>'content-item-caption'])  ?>
 
 <?= $this->render('/shared/_list', [
     'source' => $news,

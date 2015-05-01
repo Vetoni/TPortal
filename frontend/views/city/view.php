@@ -8,15 +8,19 @@ use yii\helpers\Url;
 $this->title = $city->name;
 ?>
 
-<h3><?= $this->title ?></h3>
+<div class="content-item-caption">
+    <?= $this->title ?>
+</div>
 
-<?= $city->description ?>
+<div class="content-item">
+    <?= $city->description ?>
+</div>
 
 <?php if (count($city->tours) > 0) : ?>
 
-<h3>
+<div class="content-item-caption">
     <?= Yii::t('app', 'Tours') ?>
-</h3>
+</div>
 
 <?= $this->render('/shared/_grid', [
     'source' => $city->tours,

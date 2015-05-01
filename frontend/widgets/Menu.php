@@ -32,12 +32,11 @@ class Menu extends Widget
     public function run()
     {
         $inner = '';
-        $counter = 0;
         foreach ($this->items as $item)
         {
-            $a = Html::a($item->name, $item->url, ['class' => 'nav-ico'.(++$counter)]);
+            $a = Html::a($item->name, $item->url);
             $inner .= Html::tag('li', $a);
         }
-        return Html::tag('ul', $inner, ['class' => 'menu-main']);
+        return Html::tag('ul', $inner);
     }
 }

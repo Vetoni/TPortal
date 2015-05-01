@@ -13,6 +13,7 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('app', 'Feedback page');
 ?>
 
+<div class="content-item">
 <?= $page->description ?>
 
 <?php if ($model->emailSent) : ?>
@@ -48,3 +49,4 @@ $this->title = Yii::t('app', 'Feedback page');
     <?php ActiveForm::end(); ?>
 
 <?php endif; ?>
+</div>

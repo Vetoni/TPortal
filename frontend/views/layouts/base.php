@@ -29,32 +29,19 @@ $this->title = $this->title
     <!-- Header -->
     <header id="header">
         <!-- Logo -->
-        <?= Html::img('@web/img/globe.png', ['class' => 'globe']) ?>
-        <?= Html::img('@web/img/logo.png', ['class' => 'logo']) ?>
-        <p class="firm"><?= Yii::t('app', 'Foreign tour') ?></p>
-        <a class="header-menu1" href="<?= Url::to(['tour/special'])?>">
-            <div><?= Yii::t('app', 'Special orders') ?></div>
+        <a href="<?= Url::home() ?>">
+            <img src="img/<?= Yii::$app->language ?>/logo.png" alt="">
         </a>
-        <a class="header-menu2" href="<?= Url::to(['tour/index'])?>">
-            <div><?= Yii::t('app', 'Tours') ?></div>
-        </a>
-        <a class="header-menu3" href="<?= Url::to(['region/index'])?>">
-            <div><?= Yii::t('app', 'Regions') ?></div>
-        </a>
-        <p class="phone"><?= Yii::t('app', 'tel.') ?> 8-800-000-00-00</p>
-        <form id="search" action="search">
-            <input type="search" placeholder="<?= Yii::t('app', 'Search') ?>">
-            <input type="submit" value="">
-        </form>
     </header>
 
     <!-- Top menu -->
-    <nav id="nav" role="navigation">
-        <?= Html::img('@web/img/balls1.png') ?>
+    <nav id="top-nav" role="navigation">
         <?= Menu::widget() ?>
     </nav>
 
     <?= $content ?>
+
+
 <?php $this->endBody() ?>
 </body>
 </html>

@@ -7,6 +7,10 @@
 $this->title = $model->title;
 ?>
 
-<h3><?= $this->title ?></h3>
+<h3 class="content-item-caption">
+    <?= $this->title ?>
+</h3>
 
-<?= $model->description ?>
+<div class="content-item">
+    <?= $model->description ?>
+</div>

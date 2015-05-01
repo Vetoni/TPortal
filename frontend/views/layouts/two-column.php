@@ -1,32 +1,26 @@
 <?php
 
-use frontend\widgets\Menu;
 use yii\helpers\Html;
 
-$this->beginContent('@frontend/views/layouts/base.php');
 ?>
+<?php $this->beginContent('@frontend/views/layouts/base.php'); ?>
+    <!-- Content wrapper -->
+    <div class="content-wrapper">
 
-    <!-- Image carousel -->
-    <?= $this->render('/shared/_carousel') ?>
-
-    <!-- Content -->
-    <div id="content">
-        <div class="left">
+        <!-- Left menu -->
+        <div class="left-menu">
             <?= $this->render('/shared/_menu') ?>
             <?= Html::img('@web/img/balls2.png') ?>
         </div>
 
-        <div class="right">
+        <!-- Image carousel -->
+        <?= $this->render('/shared/_carousel') ?>
+
+        <!-- Content -->
+        <div class="content">
             <?= $content ?>
         </div>
 
         <div class="clr"></div>
     </div>
-
-    <!-- Footer -->
-    <footer id="footer">
-        <?= Html::img('@web/img/globe2.png') ?>
-        <?= Menu::widget() ?>
-    </footer>
-
 <?php $this->endContent(); ?>

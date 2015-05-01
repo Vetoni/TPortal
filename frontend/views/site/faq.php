@@ -6,4 +6,6 @@
 $this->title = Yii::t('app', 'FAQ page');
 ?>
 
-<?= $page->description ?>
+<div class="content-item">
+    <?= $page->description ?>
+</div>

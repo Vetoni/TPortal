@@ -8,7 +8,7 @@ if (count($source) > 0):
 foreach($source as $item):
     $url = call_user_func($getUrl, $item);
     ?>
-    <div class="list-item">
+    <div class="content-item">
         <a href="<?= $url ?>"><img src="<?= $item->imagePath ?>" alt=""></a>
         <h3><a href="<?= $url ?>"><?= $item->title ?></a></h3>
         <?= $item->announce ?>
@@ -18,7 +18,7 @@ foreach($source as $item):
 <?php endforeach; ?>
 
 <?php else: ?>
-    <div class="list-item">
+    <div class="content-item">
         <p><?= Yii::t('app', 'No results found') ?></p>
     </div>
     <div class="clr"></div>

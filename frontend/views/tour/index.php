@@ -21,7 +21,11 @@ $subtypes = TourType::getList($model->pid);
 
 <?php $form = ActiveForm::begin(['id' => 'tour_search']); ?>
 
-<h3><?= Yii::t('app','Search tour') ?></h3>
+<h3 class="content-item-caption">
+    <?= Yii::t('app','Search tour') ?>
+</h3>
+
+<div class="content-item">
 
 <?= $form->field($model, 'pid')->dropDownList($types, [
     'prompt' => Yii::t('app', 'Choose a type'),
@@ -53,9 +57,13 @@ $subtypes = TourType::getList($model->pid);
 
 <?php ActiveForm::end(); ?>
 
+</div>
+
 <?php if ($model->result !== null) : ?>
 
-<h3><?= Yii::t('app','Search results') ?></h3>
+<div class="content-item-caption">
+    <?= Yii::t('app','Search results') ?>
+</div>
 <?= $this->render('/shared/_grid', [
     'source' => $model->result,
     'getUrl' => function($item) { return Url::to(['tour/view', 'id' => $item->nid]); }

@@ -10,15 +10,19 @@ use yii\helpers\Url;
 $this->title = $region->name;
 ?>
 
-<h3><?= $this->title ?></h3>
+<h3 class="content-item-caption">
+    <?= $this->title ?>
+</h3>
 
-<?= $region->description ?>
+<div class="content-item">
+    <?= $region->description ?>
+</div>
 
 <?php if (count($region->cities) > 0) : ?>
 
-<h3>
+<div class="content-item-caption">
     <?= Yii::t('app', 'City list') ?>
-</h3>
+</div>
 <?= $this->render('/shared/_grid', [
     'source' => $region->cities,
     'getUrl' => function($item) { return Url::to(['city/view', 'id' => $item->cid]); }

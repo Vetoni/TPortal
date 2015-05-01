@@ -9,7 +9,7 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'All regions');
 
 ?>
-<h3><?= $this->title ?></h3>
+<h3 class="content-item-caption"><?= $this->title ?></h3>
 <?= $this->render('/shared/_grid', [
     'source' => $regions,
     'getUrl' => function($item) { return Url::to(['region/view', 'id' => $item->rid]); }

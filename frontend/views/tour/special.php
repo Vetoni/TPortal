@@ -9,7 +9,7 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'Special orders');
 
 ?>
-<h3><?= $this->title ?></h3>
+<h3 class="content-item-caption"><?= $this->title ?></h3>
 <?= $this->render('/shared/_grid', [
     'source' => $tours,
     'getUrl' => function($item) { return Url::to(['tour/view', 'id' => $item->nid]); }

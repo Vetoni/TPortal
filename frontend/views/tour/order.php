@@ -12,26 +12,33 @@ use yii\widgets\ActiveForm;
 
 <?php if ($model->emailSent) : ?>
 
-    <h3><?= Yii::t('app', 'Your request is successfully sent!') ?></h3>
-    <p><?= Yii::t('app', 'Our manager will contact you soon.') ?></p>
-    <p><?= Html::a(Yii::t('app', 'Go home'), Url::home()) ?></p>
+    <h3 class="content-item-caption"><?= Yii::t('app', 'Your request is successfully sent!') ?></h3>
+    <div class="content-item">
+        <p><?= Yii::t('app', 'Our manager will contact you soon.') ?></p>
+        <p><?= Html::a(Yii::t('app', 'Go home'), Url::home()) ?></p>
+    </div>
 
 <?php else: ?>
 
-    <?php $form = ActiveForm::begin() ?>
+    <div class="content-item">
 
-    <?= $form->field($model, 'name') ?>
+        <?php $form = ActiveForm::begin() ?>
 
-    <?= $form->field($model, 'surname') ?>
+        <?= $form->field($model, 'name') ?>
 
-    <?= $form->field($model, 'address') ?>
+        <?= $form->field($model, 'surname') ?>
 
-    <?= $form->field($model, 'email') ?>
+        <?= $form->field($model, 'address') ?>
 
-    <?= $form->field($model, 'phone') ?>
+        <?= $form->field($model, 'email') ?>
 
-    <?= Html::submitButton(Yii::t('app', 'Order')) ?>
+        <?= $form->field($model, 'phone') ?>
 
-    <?php ActiveForm::end(); ?>
+        <?= Html::submitButton(Yii::t('app', 'Order')) ?>
+
+        <?php ActiveForm::end(); ?>
+
+    </div>
 
 <?php endif; ?>
+
