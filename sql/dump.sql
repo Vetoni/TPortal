@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `tportal` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `tportal`;
--- MySQL dump 10.13  Distrib 5.6.19, for linux-glibc2.5 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
--- Host: localhost    Database: tportal
+-- Host: 127.0.0.1    Database: tportal
 -- ------------------------------------------------------
--- Server version	5.6.21
+-- Server version	5.6.24
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -180,7 +180,7 @@ CREATE TABLE `menu_item` (
 
 LOCK TABLES `menu_item` WRITE;
 /*!40000 ALTER TABLE `menu_item` DISABLE KEYS */;
-INSERT INTO `menu_item` VALUES (1,'Главная','/','ru'),(2,'Новости','/news','ru'),(3,'Услуги','/services','ru'),(4,'Обратная связь','/feedback','ru'),(5,'Вопросы и ответы','/faq','ru'),(6,'Контакты','/contact','ru');
+INSERT INTO `menu_item` VALUES (1,'Главная','/','ru'),(2,'Новости','/news','ru'),(3,'Услуги','/services','ru'),(4,'Обратная связь','/feedback','ru'),(5,'Вопросы','/faq','ru'),(6,'Контакты','/contact','ru');
 /*!40000 ALTER TABLE `menu_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -367,14 +367,6 @@ LOCK TABLES `user` WRITE;
 INSERT INTO `user` VALUES (1,'admin','5SmPKuZB-nw1s6oVCv9VlX9XNn9cCRVb','$2y$13$f5mtkgY2YvR4YI71to6Qv.nZZq7Ph5PdS7YeeSJ8FsVXknQidJFLG',NULL,'admin.tportal@gmail.com',10,1428485605,1428485605);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'tportal'
---
-
---
--- Dumping routines for database 'tportal'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -385,4 +377,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-28 17:17:25
+-- Dump completed on 2015-05-10 20:07:54
