@@ -24,4 +24,4 @@ $this->title = $type->name;
         'getUrl' => function($item) { return Url::to(['tour-sub-type/view', 'pid' => $item->pid, 'tid' => $item->tid]); }
     ]) ?>
 
-<? endif; ?>
+<?php endif; ?>
