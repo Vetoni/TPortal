@@ -13,14 +13,9 @@ TPortal - простейший туристический портал, пост
 Инструкции по установке и первоначальной настройке Composer можно найти в официальной документации Yii Framework 2.0
 После этого нужно обновить внешние пакеты коммандой "composer update".
 
-Конфигурация в вебсервере Apache предполагает создание трех виртуальных хостов примерно с таким мэпингом:
+Конфигурация в вебсервере Apache предполагает создание двух виртуальных хостов примерно с таким мэпингом:
 
 ```xml
-<VirtualHost *:80>
-DocumentRoot C:/Development/Estore/web
-ServerName estore.com
-</VirtualHost>
-
 <VirtualHost *:80>
 DocumentRoot C:/Development/TPortal/frontend/web
 ServerName tportal.com
