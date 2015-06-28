@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
 
 
@@ -53,6 +54,20 @@ class Node extends Entity
     public static function tableRelations()
     {
         return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created',
+                'updatedAtAttribute' => 'changed',
+            ],
+        ];
     }
 
     /**

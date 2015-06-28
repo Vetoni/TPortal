@@ -91,7 +91,7 @@ class Entity extends ActiveRecord
      */
     public function getImagePath()
     {
-        return is_null($this->image) ? null : $this->image_base_url . '/' . $this->image_url;
+        return is_null($this->image_url) ? null : $this->image_base_url . '/' . $this->image_url;
     }
 
     /**
